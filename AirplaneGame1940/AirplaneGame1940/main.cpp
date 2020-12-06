@@ -1,7 +1,7 @@
 #include <iostream>
 #include "graphics.h"
 #include "scancodes.h"
-#include "Entity.h"
+
 #include "Projectile.h"
 #include "playerPlane.h"
 
