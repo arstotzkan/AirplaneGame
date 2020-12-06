@@ -16,3 +16,4 @@ Projectile::Projectile()
 	width = 100;
 	height = 50;
 }
+
