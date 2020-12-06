@@ -17,12 +17,13 @@ public:
 	float y;
 	float width;
 	float height;
-	Projectile* arr;
+	std::list <Projectile>  projList;
+	//Projectile* arr;
 
 	playerPlane(float x, float y, float width, float height);
 	playerPlane();
 	void draw();
-	void update(std::list <Projectile> projList);
+	void update(/*std::list <Projectile> projList*/);
 	void borderCheck();
 
 

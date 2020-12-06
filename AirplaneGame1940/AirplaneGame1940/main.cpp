@@ -21,17 +21,17 @@
 */
 
 playerPlane* square = new playerPlane(600, 300, 30, 30);
-std::list <Projectile> projList;
+//std::list <Projectile> projList;
 //Projectile* square2 = new Projectile();
 
 void update(float ms)
 {
-    square->update(projList);
+    square->update();
     //square2->update();
     std::list <Projectile> ::iterator it;
-    for (it = projList.begin(); it != projList.end(); ++it)
+    for (it = square->projList.begin(); it != square->projList.end(); ++it)
         it->update();
-   std::cout << projList.size();
+   //std::cout << projList.size();
 }
 
 // The window content drawing function.
@@ -42,7 +42,7 @@ void draw()
     graphics::resetPose();
 
     std::list <Projectile> ::iterator it;
-    for (it = projList.begin(); it != projList.end(); ++it)
+    for (it = square->projList.begin(); it != square->projList.end(); ++it)
         it->draw();
 }
 

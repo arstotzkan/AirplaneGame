@@ -11,7 +11,7 @@ playerPlane::playerPlane(float temp_x, float temp_y, float temp_width, float tem
 	y = temp_y;
 	width = temp_width;
 	height = temp_height;
-	arr = new Projectile();
+	std::list <Projectile>  projList;
 }
 playerPlane::playerPlane()
 {
@@ -35,7 +35,7 @@ void playerPlane::draw()
 	graphics::drawRect(x, y, width, width, br);
 }
 
-void playerPlane::update(std::list <Projectile> projList)
+void playerPlane::update(/*std::list <Projectile>  projList*/)
 {
 	if (graphics::getKeyState(graphics::SCANCODE_W) || graphics::getKeyState(graphics::SCANCODE_UP))
 		y -= 5;
@@ -47,7 +47,7 @@ void playerPlane::update(std::list <Projectile> projList)
 		x += 5;
 	if (graphics::getKeyState(graphics::SCANCODE_SPACE))
 	{
-		arr = new Projectile(x, y, 10, 5);
+		Projectile* arr = new Projectile(x, y, 10, 5);
 		projList.push_back(*arr);
 	}
 	//arr->update();
