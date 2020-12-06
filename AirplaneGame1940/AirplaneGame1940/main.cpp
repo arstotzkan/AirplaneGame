@@ -1,6 +1,7 @@
 #include <iostream>
 #include "graphics.h"
 #include "scancodes.h"
+#include "Entity.h"
 
 /*class hierarchy:
 * -item
@@ -14,34 +15,12 @@
 *		-player(maybe)
 *		-enemy (maybe)
 */
-
-void update(float ms)
-{
-
-}
-
-// The window content drawing function.
-void draw()
-{
-    graphics::Brush br;
-
-    graphics::setOrientation(45);
-
-    br.outline_opacity = 0.0f;
-
-    graphics::drawRect(500, 250, 200, 200, br);
-
-    br.fill_color[0] = 1.0f;
-    br.fill_color[1] = 1.0f;
-    br.fill_color[2] = 1.0f;
-
-    drawText(300, 440, 70, "Hello World!", br);
-    graphics::resetPose();
-}
-
 int main()
 {
     graphics::createWindow(1200, 600, "Hello World");
+
+    Entity *square = new Entity(600, 300, 30, 30);
+
 
     graphics::setDrawFunction(draw);
     graphics::setUpdateFunction(update);
@@ -58,4 +37,17 @@ int main()
     graphics::startMessageLoop();
 
     return 0;
+}
+
+void update(float ms)
+{
+    square->update();
+
+}
+
+// The window content drawing function.
+void draw()
+{
+    square->draw();
+    graphics::resetPose();
 }

@@ -3,16 +3,22 @@
 
 class Entity
 {
-private:
+/*private:
+	float x;
+	float y;
+	float width;
+	float height;
+*/
+public:
 	float x;
 	float y;
 	float width;
 	float height;
 
-public:
 	Entity(float x, float y, float width, float height);
 	Entity();
-	void drawAndUpdate();
+	void draw();
+	void update();
 
 
 };

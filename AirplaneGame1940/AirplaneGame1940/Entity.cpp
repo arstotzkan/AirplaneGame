@@ -17,7 +17,20 @@ Entity::Entity()
 	height = 50;
 }
 
-void Entity::drawAndUpdate()
+void Entity::draw()
+{
+	graphics::Brush br;
+
+	graphics::setOrientation(0);
+
+	br.outline_opacity = 0.0f;
+	br.fill_color[0] = 1.0f;
+	br.fill_color[1] = 1.0f;
+	br.fill_color[2] = 1.0f;
+	graphics::drawRect(x, y, width, width, br);
+}
+
+void Entity::update()
 {
 	if (graphics::getKeyState(graphics::SCANCODE_W))
 		y += 1;
