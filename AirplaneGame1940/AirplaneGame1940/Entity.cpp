@@ -40,5 +40,12 @@ void Entity::update()
 		x -= 5;
 	if (graphics::getKeyState(graphics::SCANCODE_D) || graphics::getKeyState(graphics::SCANCODE_RIGHT))
 		x += 5;
+	//if (graphics::getKeyState(graphics::SCANCODE_SPACE)
+		//STH STH NEW PROJECTILE
+
+}
+
+void Entity::borderCheck()
+{
 
 }
