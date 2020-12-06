@@ -11,6 +11,7 @@ private:
 
 public:
 	Entity(float x, float y, float width, float height);
+	Entity();
 	void drawAndUpdate();
 
 

@@ -20,7 +20,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="projectile.h">
+    <ClInclude Include="Entity.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
