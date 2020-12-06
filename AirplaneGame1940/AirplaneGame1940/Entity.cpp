@@ -1,6 +1,6 @@
 #include "Entity.h"
 #include "graphics.h"
-
+#include "scancodes.h"
 
 Entity::Entity(float temp_x, float temp_y, float temp_width, float temp_height)
 {
@@ -17,7 +17,15 @@ Entity::Entity()
 	height = 50;
 }
 
-Entity::drawAndUpdate()
+void Entity::drawAndUpdate()
 {
+	if (graphics::getKeyState(graphics::SCANCODE_W))
+		y += 1;
+	else if (graphics::getKeyState(graphics::SCANCODE_S))
+		y -= 1;
+	else if (graphics::getKeyState(graphics::SCANCODE_A))
+		x -= 1;
+	else if (graphics::getKeyState(graphics::SCANCODE_D))
+		x += 1;
 
 }
