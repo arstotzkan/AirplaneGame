@@ -2,9 +2,14 @@
 #include "graphics.h"
 #include "Entity.h"
 
-class Airplane : public Entity
+class Airplane
 {
 public:
+	float x;
+	float y;
+	float width;
+	float height;
+
 	Airplane(float x, float y, float width, float height);
 	Airplane();
 };

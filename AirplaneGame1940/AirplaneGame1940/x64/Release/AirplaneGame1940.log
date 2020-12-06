@@ -1,7 +1,6 @@
-﻿  Entity.cpp
-C:\Users\Panos\Programming Projects\GitHub\AirplaneGame\AirplaneGame1940\AirplaneGame1940\projectile.h(8,1): error C2504: 'Entity': base class undefined
-  main.cpp
-C:\Users\Panos\Programming Projects\GitHub\AirplaneGame\AirplaneGame1940\AirplaneGame1940\projectile.h(8,1): error C2504: 'Entity': base class undefined
-  playerPlane.cpp
-C:\Users\Panos\Programming Projects\GitHub\AirplaneGame\AirplaneGame1940\AirplaneGame1940\projectile.h(8,1): error C2504: 'Entity': base class undefined
-  Projectile.cpp
+﻿  Generating code
+  3 of 140 functions ( 2.1%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    0 functions had inline decision re-evaluated but remain unchanged
+  Finished generating code
+  AirplaneGame1940.vcxproj -> C:\Users\Panos\Programming Projects\GitHub\AirplaneGame\AirplaneGame1940\x64\Release\AirplaneGame1940.exe
