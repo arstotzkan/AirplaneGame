@@ -26,17 +26,16 @@ void draw()
 
     graphics::setOrientation(45);
 
-    br.texture = "assets\\boy2.png";
     br.outline_opacity = 0.0f;
 
     graphics::drawRect(500, 250, 200, 200, br);
 
-    br.fill_color[0] = 0.5f;
+    br.fill_color[0] = 0.0f;
     br.fill_color[1] = 0.0f;
     br.fill_color[2] = 0.0f;
 
-    graphics::resetPose();
     drawText(300, 440, 70, "Hello World!", br);
+    graphics::resetPose();
 }
 
 int main()
@@ -51,8 +50,8 @@ int main()
 
     graphics::Brush br;
     br.fill_color[0] = 0.5f;
-    br.fill_color[1] = 0.7f;
-    br.fill_color[2] = 0.9f;
+    br.fill_color[1] = 0.5f;
+    br.fill_color[2] = 0.5f;
     graphics::setWindowBackground(br);
 
     graphics::startMessageLoop();
