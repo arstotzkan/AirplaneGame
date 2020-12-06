@@ -15,12 +15,25 @@
 *		-player(maybe)
 *		-enemy (maybe)
 */
+
+Entity* square = new Entity(600, 300, 30, 30);
+
+void update(float ms)
+{
+    square->update();
+
+}
+
+// The window content drawing function.
+void draw()
+{
+    square->draw();
+    graphics::resetPose();
+}
+
 int main()
 {
     graphics::createWindow(1200, 600, "Hello World");
-
-    Entity *square = new Entity(600, 300, 30, 30);
-
 
     graphics::setDrawFunction(draw);
     graphics::setUpdateFunction(update);
@@ -37,17 +50,4 @@ int main()
     graphics::startMessageLoop();
 
     return 0;
-}
-
-void update(float ms)
-{
-    square->update();
-
-}
-
-// The window content drawing function.
-void draw()
-{
-    square->draw();
-    graphics::resetPose();
 }

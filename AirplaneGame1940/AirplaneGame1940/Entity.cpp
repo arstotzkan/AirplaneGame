@@ -33,12 +33,12 @@ void Entity::draw()
 void Entity::update()
 {
 	if (graphics::getKeyState(graphics::SCANCODE_W))
-		y += 1;
+		y += 5;
 	else if (graphics::getKeyState(graphics::SCANCODE_S))
-		y -= 1;
+		y -= 5;
 	else if (graphics::getKeyState(graphics::SCANCODE_A))
-		x -= 1;
+		x -= 5;
 	else if (graphics::getKeyState(graphics::SCANCODE_D))
-		x += 1;
+		x += 5;
 
 }
