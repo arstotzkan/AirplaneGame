@@ -19,6 +19,7 @@ public:
 	Entity();
 	void draw();
 	void update();
+	void borderCheck();
 
 
 };

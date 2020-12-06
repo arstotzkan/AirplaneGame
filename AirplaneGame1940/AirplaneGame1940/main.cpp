@@ -4,14 +4,14 @@
 #include "Entity.h"
 
 /*class hierarchy:
-* -item
-*	-airplane
+* -item +
+*	-airplane 
 *		-player
 *		-enemy
 *			-fighter
 *			-bomber
 *			-heavy bomber
-*	-projectile 
+*	-projectile + 
 *		-player(maybe)
 *		-enemy (maybe)
 */
