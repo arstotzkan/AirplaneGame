@@ -2,6 +2,7 @@
 #include "graphics.h"
 #include "scancodes.h"
 #include "Entity.h"
+#include "Projectile.h"
 
 /*class hierarchy:
 * -item
@@ -17,6 +18,7 @@
 */
 
 Entity* square = new Entity(600, 300, 30, 30);
+Projectile* square2 = new Projectile();
 
 void update(float ms)
 {
@@ -28,6 +30,8 @@ void update(float ms)
 void draw()
 {
     square->draw();
+    square2->draw();
+    square2->update();
     graphics::resetPose();
 }
 
