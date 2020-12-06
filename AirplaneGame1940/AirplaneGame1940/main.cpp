@@ -16,12 +16,7 @@
 
 void update(float ms)
 {
-    graphics::MouseState mouse;
-    graphics::getMouseState(mouse);
-    if (mouse.button_left_released)
-    {
-        graphics::playSound("assets\\door2.wav", 1.0f, false);
-    }
+
 }
 
 // The window content drawing function.
@@ -59,8 +54,6 @@ int main()
     br.fill_color[1] = 0.7f;
     br.fill_color[2] = 0.9f;
     graphics::setWindowBackground(br);
-
-    graphics::setFont("assets\\orange juice 2.0.ttf");
 
     graphics::startMessageLoop();
 
