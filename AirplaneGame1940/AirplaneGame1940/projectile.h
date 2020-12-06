@@ -1,5 +1,6 @@
 #include <iostream>
 #include "graphics.h"
+#include "Entity.h"
 
 class Projectile : public Entity
 {
