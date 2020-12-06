@@ -1,4 +1,5 @@
 #include <iostream>
+#include "graphics.h"
 
 /*class hierarchy:
 * -item
@@ -12,9 +13,10 @@
 *		-player(maybe)
 *		-enemy (maybe)
 */
+
 int main()
 {
-	int i = 1;
-	std::cout << i;
-	return 1;
+    int x = 3;
+    std::cout << 2;
+    //placeholder
 }
