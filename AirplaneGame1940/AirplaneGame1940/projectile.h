@@ -1,3 +1,5 @@
+#pragma once
+
 #include <iostream>
 #include "graphics.h"
 #include "Entity.h"
@@ -9,4 +11,5 @@ public:
 	Projectile();
 	void draw();
 	void update();
+	void borderCheck();
 };

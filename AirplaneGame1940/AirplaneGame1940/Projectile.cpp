@@ -32,6 +32,10 @@ void Projectile::draw()
 
 void Projectile::update()
 {
-	x += rand() % 10 - 5;
-	y += rand() % 10 - 5;
+	y -= 5;
+}
+
+void Projectile::borderCheck()
+{
+
 }

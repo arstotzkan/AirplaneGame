@@ -3,6 +3,7 @@
 #include "scancodes.h"
 #include "Entity.h"
 #include "Projectile.h"
+#include "playerPlane.h"
 
 /*class hierarchy:
 * -item +
@@ -17,21 +18,20 @@
 *		-enemy (maybe)
 */
 
-Entity* square = new Entity(600, 300, 30, 30);
-Projectile* square2 = new Projectile();
+playerPlane* square = new playerPlane(600, 300, 30, 30);
+//Projectile* square2 = new Projectile();
 
 void update(float ms)
 {
     square->update();
-
+    //square2->update();
 }
 
 // The window content drawing function.
 void draw()
 {
     square->draw();
-    square2->draw();
-    square2->update();
+    //square2->draw();
     graphics::resetPose();
 }
 

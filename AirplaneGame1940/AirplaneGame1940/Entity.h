@@ -1,5 +1,6 @@
 #pragma once
 #include "graphics.h"
+#include "projectile.h"
 
 class Entity
 {

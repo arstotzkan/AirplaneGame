@@ -32,16 +32,6 @@ void Entity::draw()
 
 void Entity::update()
 {
-	if (graphics::getKeyState(graphics::SCANCODE_W) || graphics::getKeyState(graphics::SCANCODE_UP))
-		y -= 5;
-	if (graphics::getKeyState(graphics::SCANCODE_S) || graphics::getKeyState(graphics::SCANCODE_DOWN))
-		y += 5;
-	if (graphics::getKeyState(graphics::SCANCODE_A) || graphics::getKeyState(graphics::SCANCODE_LEFT))
-		x -= 5;
-	if (graphics::getKeyState(graphics::SCANCODE_D) || graphics::getKeyState(graphics::SCANCODE_RIGHT))
-		x += 5;
-	//if (graphics::getKeyState(graphics::SCANCODE_SPACE)
-		//STH STH NEW PROJECTILE
 
 }
 
