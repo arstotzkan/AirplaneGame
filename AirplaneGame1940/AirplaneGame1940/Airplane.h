@@ -1,6 +1,6 @@
 #include <iostream>
 #include "graphics.h"
-#include "Entity.h"
+#include "entity.h"
 
 class Airplane
 {
@@ -9,7 +9,7 @@ public:
 	float y;
 	float width;
 	float height;
+	int level;
 
-	Airplane(float x, float y, float width, float height);
-	Airplane();
+	Airplane(int lvl);
 };

@@ -2,7 +2,7 @@
 
 #include <iostream>
 #include "graphics.h"
-#include "Entity.h"
+#include "entity.h"
 
 class Projectile
 {
@@ -11,9 +11,9 @@ public:
 	float y;
 	float width;
 	float height;
+	bool thrownByPlayer;
 
-	Projectile(float x, float y, float width, float height);
-	Projectile();
+	Projectile(bool thrownBy, float x , float y);
 	void draw();
 	void update();
 	void borderCheck();

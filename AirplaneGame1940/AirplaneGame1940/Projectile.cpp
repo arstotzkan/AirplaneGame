@@ -1,18 +1,12 @@
-#include "Projectile.h"
+#include "projectile.h"
 #include "graphics.h"
 #include "scancodes.h"
 
-Projectile::Projectile(float temp_x, float temp_y, float temp_width, float temp_height)
+Projectile::Projectile(bool thrownBy, float t_x , float t_y)
 {
-	x = temp_x;
-	y = temp_y;
-	width = temp_width;
-	height = temp_height;
-}
-Projectile::Projectile()
-{
-	x = 400;
-	y = 400;
+	thrownByPlayer = thrownBy;
+	x = t_x;
+	y = t_y;
 	width = 10;
 	height = 5;
 }

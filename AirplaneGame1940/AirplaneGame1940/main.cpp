@@ -1,26 +1,22 @@
 #include <iostream>
 #include "graphics.h"
 #include "scancodes.h"
-#include "Entity.h"
-#include "Projectile.h"
+#include "entity.h"
+#include "projectile.h"
 #include "playerPlane.h"
 #include <list> 
 #include <iterator> 
 
 /*class hierarchy:
 * -item +
-*	-airplane 
-*		-player
+*	-airplane + 
+*		-player +
 *		-enemy
-*			-fighter
-*			-bomber
-*			-heavy bomber
 *	-projectile + 
-*		-player(maybe)
-*		-enemy (maybe)
+*
 */
 
-playerPlane* square = new playerPlane(600, 300, 30, 30);
+PlayerPlane* square = new PlayerPlane();
 std::list <Projectile> projList;
 //Projectile* square2 = new Projectile();
 

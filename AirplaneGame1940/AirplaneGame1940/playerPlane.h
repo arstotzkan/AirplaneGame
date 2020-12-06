@@ -4,7 +4,7 @@
 #include <list> 
 #include <iterator> 
 
-class playerPlane
+class PlayerPlane
 {
 	/*private:
 		float x;
@@ -17,10 +17,9 @@ public:
 	float y;
 	float width;
 	float height;
-	//Projectile* arr;
+	int lives;
 
-	playerPlane(float x, float y, float width, float height);
-	playerPlane();
+	PlayerPlane();
 	void draw();
 	void update(std::list <Projectile> &projectileList);
 	void borderCheck();

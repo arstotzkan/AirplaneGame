@@ -1,4 +1,4 @@
-#include "Entity.h"
+#include "entity.h"
 #include "graphics.h"
 #include "scancodes.h"
 

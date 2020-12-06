@@ -1,27 +1,21 @@
 #include "Entity.h"
 #include "graphics.h"
 #include "scancodes.h"
-#include "playerPlane.h"
+#include "playerplane.h"
 #include <list> 
 #include <iterator> 
 
-playerPlane::playerPlane(float temp_x, float temp_y, float temp_width, float temp_height)
-{
-	x = temp_x;
-	y = temp_y;
-	width = temp_width;
-	height = temp_height;
 
-}
-playerPlane::playerPlane()
+PlayerPlane::PlayerPlane()
 {
 	x = 400;
 	y = 400;
 	width = 100;
 	height = 50;
+	lives = 3;
 }
 
-void playerPlane::draw()
+void PlayerPlane::draw()
 {
 	graphics::Brush br;
 
@@ -35,7 +29,7 @@ void playerPlane::draw()
 	graphics::drawRect(x, y, width, width, br);
 }
 
-void playerPlane::update(std::list <Projectile>  &projectileList)
+void PlayerPlane::update(std::list <Projectile>  &projectileList)
 {
 	if (graphics::getKeyState(graphics::SCANCODE_W) || graphics::getKeyState(graphics::SCANCODE_UP))
 		y -= 5;
@@ -47,13 +41,13 @@ void playerPlane::update(std::list <Projectile>  &projectileList)
 		x += 5;
 	if (graphics::getKeyState(graphics::SCANCODE_SPACE))
 	{
-		Projectile* arr = new Projectile(x, y, 10, 5);
+		Projectile* arr = new Projectile(true, x , y);
 		projectileList.push_back(*arr);
 	}
 	//arr->update();
 }
 
-void playerPlane::borderCheck()
+void PlayerPlane::borderCheck()
 {
 
 }
