@@ -1,4 +1,4 @@
-#include "Entity.h"
+
 #include "graphics.h"
 #include "scancodes.h"
 #include "playerPlane.h"
@@ -9,6 +9,7 @@ playerPlane::playerPlane(float temp_x, float temp_y, float temp_width, float tem
 	y = temp_y;
 	width = temp_width;
 	height = temp_height;
+	arr = new Projectile();
 }
 playerPlane::playerPlane()
 {
@@ -16,6 +17,7 @@ playerPlane::playerPlane()
 	y = 400;
 	width = 100;
 	height = 50;
+	arr = new Projectile();
 }
 
 void playerPlane::draw()
@@ -43,7 +45,7 @@ void playerPlane::update()
 	if (graphics::getKeyState(graphics::SCANCODE_D) || graphics::getKeyState(graphics::SCANCODE_RIGHT))
 		x += 5;
 	if (graphics::getKeyState(graphics::SCANCODE_SPACE))
-		arr = new Projectile();
+		arr = new Projectile(x,y,10,5);
 
 	arr->update();
 }
