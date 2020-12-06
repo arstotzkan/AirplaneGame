@@ -20,5 +20,9 @@ int main()
     std::cout << 2;
 
     //placeholder
-    //peepeepoopoojohjophuio
+<<<<<<< HEAD
+    //peepeepoopoo
+=======
+    //hahahahhaha
+>>>>>>> 417ebb527972533fcc3c37afddf14d9c79b15d45
 }
