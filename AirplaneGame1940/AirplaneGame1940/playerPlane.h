@@ -1,6 +1,8 @@
 #pragma once
 #include "graphics.h"
 #include "projectile.h"
+#include <list> 
+#include <iterator> 
 
 class playerPlane
 {
@@ -20,7 +22,7 @@ public:
 	playerPlane(float x, float y, float width, float height);
 	playerPlane();
 	void draw();
-	void update();
+	void update(std::list <Projectile> projList);
 	void borderCheck();
 
 

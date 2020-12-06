@@ -2,6 +2,8 @@
 #include "graphics.h"
 #include "scancodes.h"
 #include "playerPlane.h"
+#include <list> 
+#include <iterator> 
 
 playerPlane::playerPlane(float temp_x, float temp_y, float temp_width, float temp_height)
 {
@@ -29,11 +31,11 @@ void playerPlane::draw()
 	br.fill_color[0] = 1.0f;
 	br.fill_color[1] = 1.0f;
 	br.fill_color[2] = 1.0f;
-	arr->draw();
+	//arr->draw();
 	graphics::drawRect(x, y, width, width, br);
 }
 
-void playerPlane::update()
+void playerPlane::update(std::list <Projectile> projList)
 {
 	if (graphics::getKeyState(graphics::SCANCODE_W) || graphics::getKeyState(graphics::SCANCODE_UP))
 		y -= 5;
@@ -44,9 +46,11 @@ void playerPlane::update()
 	if (graphics::getKeyState(graphics::SCANCODE_D) || graphics::getKeyState(graphics::SCANCODE_RIGHT))
 		x += 5;
 	if (graphics::getKeyState(graphics::SCANCODE_SPACE))
-		arr = new Projectile(x,y,10,5);
-
-	arr->update();
+	{
+		arr = new Projectile(x, y, 10, 5);
+		projList.push_back(*arr);
+	}
+	//arr->update();
 }
 
 void playerPlane::borderCheck()

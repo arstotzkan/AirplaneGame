@@ -4,6 +4,8 @@
 #include "Entity.h"
 #include "Projectile.h"
 #include "playerPlane.h"
+#include <list> 
+#include <iterator> 
 
 /*class hierarchy:
 * -item +
@@ -19,12 +21,17 @@
 */
 
 playerPlane* square = new playerPlane(600, 300, 30, 30);
+std::list <Projectile> projList;
 //Projectile* square2 = new Projectile();
 
 void update(float ms)
 {
-    square->update();
+    square->update(projList);
     //square2->update();
+    std::list <Projectile> ::iterator it;
+    for (it = projList.begin(); it != projList.end(); ++it)
+        it->update();
+   std::cout << projList.size();
 }
 
 // The window content drawing function.
@@ -33,6 +40,10 @@ void draw()
     square->draw();
     //square2->draw();
     graphics::resetPose();
+
+    std::list <Projectile> ::iterator it;
+    for (it = projList.begin(); it != projList.end(); ++it)
+        it->draw();
 }
 
 int main()
