@@ -1,7 +1,6 @@
 #include "Projectile.h"
 #include "graphics.h"
 #include "scancodes.h"
-#include "Entity.h"
 
 Projectile::Projectile(float temp_x, float temp_y, float temp_width, float temp_height)
 {
