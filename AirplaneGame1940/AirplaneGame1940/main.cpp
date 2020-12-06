@@ -30,9 +30,9 @@ void draw()
 
     graphics::drawRect(500, 250, 200, 200, br);
 
-    br.fill_color[0] = 0.0f;
-    br.fill_color[1] = 0.0f;
-    br.fill_color[2] = 0.0f;
+    br.fill_color[0] = 1.0f;
+    br.fill_color[1] = 1.0f;
+    br.fill_color[2] = 1.0f;
 
     drawText(300, 440, 70, "Hello World!", br);
     graphics::resetPose();
