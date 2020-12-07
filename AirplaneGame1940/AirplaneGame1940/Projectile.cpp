@@ -2,13 +2,9 @@
 #include "graphics.h"
 #include "scancodes.h"
 
-Projectile::Projectile(bool thrownBy, float t_x , float t_y)
+Projectile::Projectile(bool thrownBy, float t_x , float t_y) : Entity::Entity(t_x , t_y , 10)
 {
 	thrownByPlayer = thrownBy;
-	x = t_x;
-	y = t_y;
-	width = 10;
-	height = 5;
 }
 
 void Projectile::draw()
@@ -21,7 +17,7 @@ void Projectile::draw()
 	br.fill_color[0] = 0.0f;
 	br.fill_color[1] = 0.0f;
 	br.fill_color[2] = 0.0f;
-	graphics::drawRect(x, y, width, width, br);
+	graphics::drawDisk(x, y,rad, br);
 }
 
 void Projectile::update()

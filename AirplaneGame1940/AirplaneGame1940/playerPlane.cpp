@@ -1,4 +1,3 @@
-#include "Entity.h"
 #include "graphics.h"
 #include "scancodes.h"
 #include "playerplane.h"
@@ -6,12 +5,8 @@
 #include <iterator> 
 
 
-PlayerPlane::PlayerPlane()
+PlayerPlane::PlayerPlane() : Airplane::Airplane(1)
 {
-	x = 400;
-	y = 400;
-	width = 100;
-	height = 50;
 	lives = 3;
 }
 
@@ -25,8 +20,7 @@ void PlayerPlane::draw()
 	br.fill_color[0] = 1.0f;
 	br.fill_color[1] = 1.0f;
 	br.fill_color[2] = 1.0f;
-	//arr->draw();
-	graphics::drawRect(x, y, width, width, br);
+	graphics::drawDisk(x, y, rad, br);
 }
 
 void PlayerPlane::update(std::list <Projectile>  &projectileList)
@@ -44,7 +38,6 @@ void PlayerPlane::update(std::list <Projectile>  &projectileList)
 		Projectile* arr = new Projectile(true, x , y);
 		projectileList.push_back(*arr);
 	}
-	//arr->update();
 }
 
 void PlayerPlane::borderCheck()

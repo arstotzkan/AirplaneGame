@@ -2,32 +2,22 @@
 #include "graphics.h"
 #include "scancodes.h"
 
-Entity::Entity(float temp_x, float temp_y, float temp_width, float temp_height)
+Entity::Entity(float temp_x, float temp_y, float temp_rad)
 {
 	x = temp_x;
 	y = temp_y;
-	width = temp_width;
-	height = temp_height;
+	rad = temp_rad;
 }
 Entity::Entity()
 {
 	x = 400;
 	y = 400;
-	width = 100;
-	height = 50;
+	rad = 50;
 }
 
 void Entity::draw()
 {
-	graphics::Brush br;
 
-	graphics::setOrientation(0);
-
-	br.outline_opacity = 0.0f;
-	br.fill_color[0] = 1.0f;
-	br.fill_color[1] = 1.0f;
-	br.fill_color[2] = 1.0f;
-	graphics::drawRect(x, y, width, width, br);
 }
 
 void Entity::update()

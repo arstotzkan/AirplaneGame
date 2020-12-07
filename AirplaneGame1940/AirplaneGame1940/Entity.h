@@ -1,6 +1,6 @@
 #pragma once
 #include "graphics.h"
-#include "projectile.h"
+
 
 class Entity
 {
@@ -13,10 +13,9 @@ class Entity
 public:
 	float x;
 	float y;
-	float width;
-	float height;
+	float rad;
 
-	Entity(float x, float y, float width, float height);
+	Entity(float x, float y, float rad);
 	Entity();
 	void draw();
 	void update();

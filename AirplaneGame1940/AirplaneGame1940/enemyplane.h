@@ -1,14 +1,12 @@
 #pragma once
 #include <list>
+#include "airplane.h"
+#include "projectile.h"
 
-class EnemyPlane
+class EnemyPlane : public Airplane
 {
 public:
-	float x;
-	float y;
-	float width;
-	float height;
-	int level;
+
 	int healthPoints;
 
 	EnemyPlane(int lvl);

@@ -6,7 +6,7 @@
 #include <iterator> 
 
 
-EnemyPlane::EnemyPlane(int lvl)
+EnemyPlane::EnemyPlane(int lvl) : Airplane(lvl)
 {
 
 }
@@ -21,7 +21,7 @@ void EnemyPlane::update(std::list <Projectile>& projectileList)
 
 }
 
-void borderCheck()
+void EnemyPlane::borderCheck()
 {
 
 }

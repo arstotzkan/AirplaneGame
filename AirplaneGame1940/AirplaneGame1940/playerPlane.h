@@ -1,10 +1,11 @@
 #pragma once
 #include "graphics.h"
+#include "airplane.h"
 #include "projectile.h"
 #include <list> 
 #include <iterator> 
 
-class PlayerPlane
+class PlayerPlane : public Airplane
 {
 	/*private:
 		float x;
@@ -13,10 +14,7 @@ class PlayerPlane
 		float height;
 	*/
 public:
-	float x;
-	float y;
-	float width;
-	float height;
+
 	int lives;
 
 	PlayerPlane();
