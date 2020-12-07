@@ -17,9 +17,9 @@ public:
 
 	Entity(float x, float y, float rad);
 	Entity();
-	void draw();
-	void update();
-	void borderCheck();
+	virtual void draw();
+	virtual void update();
+	virtual void borderCheck();
 	virtual ~Entity() {}
 
 
