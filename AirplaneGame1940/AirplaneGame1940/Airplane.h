@@ -12,4 +12,5 @@ public:
 	int level;
 
 	Airplane(int lvl);
+	virtual ~Airplane() {}
 };

@@ -17,4 +17,5 @@ public:
 	void draw();
 	void update();
 	void borderCheck();
+	virtual ~Projectile() {};
 };

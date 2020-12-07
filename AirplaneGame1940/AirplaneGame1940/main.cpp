@@ -11,30 +11,26 @@
 * -item +
 *	-airplane + 
 *		-player +
-*		-enemy
+*		-enemy +
 *	-projectile + 
 *
 */
 
 PlayerPlane* square = new PlayerPlane();
 std::list <Projectile> projList;
-//Projectile* square2 = new Projectile();
 
 void update(float ms)
 {
     square->update(projList);
-    //square2->update();
     std::list <Projectile> ::iterator it;
     for (it = projList.begin(); it != projList.end(); ++it)
         it->update();
-   //std::cout << projList.size();
 }
 
 // The window content drawing function.
 void draw()
 {
     square->draw();
-    //square2->draw();
     graphics::resetPose();
 
     std::list <Projectile> ::iterator it;
@@ -60,5 +56,6 @@ int main()
 
     graphics::startMessageLoop();
 
+    delete square;
     return 0;
 }
