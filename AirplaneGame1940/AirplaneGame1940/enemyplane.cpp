@@ -17,18 +17,15 @@ void EnemyPlane::draw()
 
 	graphics::setOrientation(0);
 	br.outline_opacity = 0.0f;
+	br.fill_color[0] = 0.5f;
+	br.fill_color[1] = 0.0f;
+	br.fill_color[2] = 0.0f;
+	graphics::drawDisk(x, y, rad, br);
 }
 
 void EnemyPlane::update(std::list <Projectile>& projectileList)
 {
-	if (graphics::getKeyState(graphics::SCANCODE_W) || graphics::getKeyState(graphics::SCANCODE_UP))
-		y -= 5;
-	if (graphics::getKeyState(graphics::SCANCODE_S) || graphics::getKeyState(graphics::SCANCODE_DOWN))
-		y += 5;
-	if (graphics::getKeyState(graphics::SCANCODE_A) || graphics::getKeyState(graphics::SCANCODE_LEFT))
-		x -= 5;
-	if (graphics::getKeyState(graphics::SCANCODE_D) || graphics::getKeyState(graphics::SCANCODE_RIGHT))
-		x += 5;
+	y += 5;
 
 	borderCheck();
 }
