@@ -2,6 +2,7 @@
 #include "graphics.h"
 #include "airplane.h"
 #include "projectile.h"
+#include "enemyplane.h"
 #include <list> 
 #include <iterator> 
 
@@ -22,6 +23,7 @@ public:
 	void draw();
 	void update(std::list <Projectile> &projectileList);
 	bool borderCheck();
+	bool collisionCheck(std::list <Projectile>& projectileList, std::list <EnemyPlane>& enemyList);
 	virtual ~PlayerPlane() {}
 
 

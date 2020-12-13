@@ -13,5 +13,6 @@ public:
 	void draw();
 	void update(std::list <Projectile>& projectileList);
 	bool borderCheck();
+	bool collisionCheck(std::list <Projectile>& projectileList);
 	virtual ~EnemyPlane() {}
 };
