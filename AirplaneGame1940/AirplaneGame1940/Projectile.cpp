@@ -13,7 +13,7 @@ void Projectile::draw()
 
 	graphics::setOrientation(0);
 
-	br.texture = "assets/projectile.png"
+	br.texture = "assets/projectile.png";
 	graphics::drawRect(x, y,width,height, br);
 }
 
