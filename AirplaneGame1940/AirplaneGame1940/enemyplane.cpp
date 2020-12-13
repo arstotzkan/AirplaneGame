@@ -45,10 +45,13 @@ bool EnemyPlane::collisionCheck(std::list <Projectile>& projectileList)
 		float distance = std::pow(iter->getX() - x, 2);
 		distance += std::pow(iter->getY() - y, 2);
 		distance = std::pow(distance, 0.5);
-		healthPoints = healthPoints - 1;
-		if (!(iter->wasThrownByPlayer()) && min_distance > distance && healthPoints == 0)
+		if (!(iter->wasThrownByPlayer()) && min_distance > distance)
 		{
-			return true;
+			healthPoints = healthPoints - 1;
+			if (healthPoints == 0)
+				return true;
 		}
 	}
+
+	return false;
 }
