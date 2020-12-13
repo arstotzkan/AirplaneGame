@@ -61,7 +61,7 @@ bool PlayerPlane::borderCheck()
 	return false;
 }
 
-bool PlayerPlane::collisionCheck(std::list <Projectile>& projectileList, std::list <EnemyPlane>& enemyList)
+bool PlayerPlane::isDestroyed(std::list <Projectile>& projectileList, std::list <EnemyPlane>& enemyList)
 {
 	std::list <Projectile> ::iterator iter;
 	for (iter = projectileList.begin(); iter != projectileList.end(); ++iter)
