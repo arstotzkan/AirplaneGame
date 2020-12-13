@@ -16,11 +16,12 @@ class PlayerPlane : public Airplane
 public:
 
 	int lives;
+	float lastShot;
 
 	PlayerPlane();
 	void draw();
 	void update(std::list <Projectile> &projectileList);
-	void borderCheck();
+	bool borderCheck();
 	virtual ~PlayerPlane() {}
 
 

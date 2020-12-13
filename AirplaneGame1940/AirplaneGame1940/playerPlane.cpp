@@ -8,6 +8,7 @@
 PlayerPlane::PlayerPlane() : Airplane::Airplane(1)
 {
 	lives = 3;
+	lastShot = 0.0f;
 }
 
 void PlayerPlane::draw()
@@ -36,14 +37,15 @@ void PlayerPlane::update(std::list <Projectile>  &projectileList)
 
 	borderCheck();
 
-	if (graphics::getKeyState(graphics::SCANCODE_SPACE))
+	if (graphics::getKeyState(graphics::SCANCODE_SPACE) && (graphics::getGlobalTime() - lastShot > 100.0f ) )
 	{
-		Projectile* arr = new Projectile(true, x , y);
+		lastShot = graphics::getGlobalTime();
+		Projectile* arr = new Projectile(true, x , y - rad);
 		projectileList.push_back(*arr);
 	}
 }
 
-void PlayerPlane::borderCheck()
+bool PlayerPlane::borderCheck()
 {
 	if (x < 50)
 		x = 50;
@@ -54,4 +56,6 @@ void PlayerPlane::borderCheck()
 		y = 50;
 	else if (y > 450)
 		y = 450;
+
+	return false;
 }

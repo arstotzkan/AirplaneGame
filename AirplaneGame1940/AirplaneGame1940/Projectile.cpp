@@ -27,5 +27,5 @@ void Projectile::update()
 
 bool Projectile::borderCheck()
 {
-
+	return false;
 }
