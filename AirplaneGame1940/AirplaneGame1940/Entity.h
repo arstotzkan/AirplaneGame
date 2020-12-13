@@ -21,6 +21,7 @@ public:
 	virtual void draw();
 	virtual void update();
 	virtual bool borderCheck();
+	virtual float distanceToCorner();
 	virtual ~Entity() {}
 
 
