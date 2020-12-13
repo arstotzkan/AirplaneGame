@@ -13,6 +13,6 @@ public:
 	Projectile(bool thrownBy, float x, float y);
 	void draw();
 	void update();
-	void borderCheck();
+	bool borderCheck();
 	virtual ~Projectile() {};
 };

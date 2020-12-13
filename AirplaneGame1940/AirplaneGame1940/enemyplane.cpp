@@ -21,7 +21,7 @@ void EnemyPlane::update(std::list <Projectile>& projectileList)
 
 }
 
-void EnemyPlane::borderCheck()
+bool EnemyPlane::borderCheck()
 {
 
 }

@@ -12,6 +12,6 @@ public:
 	EnemyPlane(int lvl);
 	void draw();
 	void update(std::list <Projectile>& projectileList);
-	void borderCheck();
+	bool borderCheck();
 	virtual ~EnemyPlane() {}
 };

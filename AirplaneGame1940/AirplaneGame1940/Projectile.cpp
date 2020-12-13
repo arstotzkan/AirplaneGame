@@ -25,7 +25,7 @@ void Projectile::update()
 	y -= 5;
 }
 
-void Projectile::borderCheck()
+bool Projectile::borderCheck()
 {
 
 }
