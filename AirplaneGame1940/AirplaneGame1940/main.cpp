@@ -91,6 +91,7 @@ int main()
 
     graphics::startMessageLoop();
 
+    //graphics::destroyWindow();
     delete square;
     delete enemyCreator;
     return 0;

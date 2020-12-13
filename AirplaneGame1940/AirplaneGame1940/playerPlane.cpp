@@ -42,7 +42,7 @@ void PlayerPlane::update(std::list <Projectile>  &projectileList)
 		lastShot = graphics::getGlobalTime();
 		Projectile* arr = new Projectile(true, x , y - height);
 		projectileList.push_back(*arr);
-		delete arr;
+		//delete arr;
 	}
 }
 
