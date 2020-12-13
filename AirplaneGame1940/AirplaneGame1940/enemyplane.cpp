@@ -16,7 +16,7 @@ void EnemyPlane::draw()
 	graphics::Brush br;
 
 	br.texture = "plane2.png";
-	br.outline_width = 0.0f;
+	br.outline_opacity = 0.0f;
 	graphics::drawRect(x, y, width, height, br);
 }
 
