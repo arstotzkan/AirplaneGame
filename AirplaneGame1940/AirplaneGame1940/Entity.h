@@ -19,7 +19,7 @@ public:
 	Entity();
 	virtual void draw();
 	virtual void update();
-	virtual void borderCheck();
+	virtual bool borderCheck();
 	virtual ~Entity() {}
 
 

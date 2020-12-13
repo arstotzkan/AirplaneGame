@@ -25,7 +25,7 @@ void Entity::update()
 
 }
 
-void Entity::borderCheck()
+bool Entity::borderCheck()
 {
-
+	return true;
 }

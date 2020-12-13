@@ -43,7 +43,7 @@ void PlayerPlane::update(std::list <Projectile>  &projectileList)
 	}
 }
 
-void PlayerPlane::borderCheck()
+bool PlayerPlane::borderCheck()
 {
 	if (x < 50)
 		x = 50;
@@ -54,4 +54,5 @@ void PlayerPlane::borderCheck()
 		y = 50;
 	else if (y > 450)
 		y = 450;
+	return true;
 }
