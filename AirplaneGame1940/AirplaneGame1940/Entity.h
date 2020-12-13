@@ -4,18 +4,12 @@
 
 class Entity
 {
-/*private:
+protected:
 	float x;
 	float y;
 	float width;
 	float height;
-*/
 public:
-	float x;
-	float y;
-	float width;
-	float height;
-
 	Entity(float x, float y, float length , float height);
 	Entity();
 	virtual void draw();
@@ -23,6 +17,11 @@ public:
 	virtual bool borderCheck();
 	virtual float distanceToCorner();
 	virtual ~Entity() {}
+
+	virtual float getX();
+	virtual float getY();
+	virtual float getHeight();
+	virtual float getWidth();
 
 
 };

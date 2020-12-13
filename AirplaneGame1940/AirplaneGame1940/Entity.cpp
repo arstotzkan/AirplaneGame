@@ -38,3 +38,20 @@ float Entity::distanceToCorner()
 {
 	return pow(pow(height, 2) + pow(width, 2), 0.5) / 2;
 }
+
+float Entity::getX()
+{
+	return x;
+}
+float Entity::getY()
+{
+	return y;
+}
+float Entity::getHeight()
+{
+	return height;
+}
+float Entity::getWidth()
+{
+	return width;
+}
