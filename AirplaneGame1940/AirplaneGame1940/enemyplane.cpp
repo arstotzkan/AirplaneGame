@@ -14,6 +14,7 @@ EnemyPlane::EnemyPlane(int lvl, float  x , float y ) : Airplane(lvl , x , y)
 void EnemyPlane::draw()
 {
 	graphics::Brush br;
+	graphics::setOrientation(0);
 
 	br.texture = "plane2.png";
 	br.outline_opacity = 0.0f;
@@ -29,7 +30,7 @@ void EnemyPlane::update(std::list <Projectile>& projectileList)
 
 bool EnemyPlane::borderCheck()
 {
-	if (x < 0)
+	if (x > 900)
 		return true;
 	else
 		return false;

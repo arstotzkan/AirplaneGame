@@ -65,6 +65,13 @@ void draw()
     std::list <Projectile> ::iterator it;
     for (it = projList.begin(); it != projList.end(); ++it)
         it->draw();
+
+    std::list <EnemyPlane> ::iterator it1;
+    for (it1 = enList.begin(); it1 != enList.end();)
+    {
+        it1->draw();
+    }
+    std::cout << enList.size();
 }
 
 int main()
