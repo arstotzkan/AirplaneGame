@@ -13,7 +13,7 @@ Factory::Factory()
 
 void Factory::update(std::list <EnemyPlane> &enemyList)
 {
-	if (counter % 10000 == 1500)
+	if (counter % 10000 == 5/*1000*/)
 	{
 		EnemyPlane* a1 = new EnemyPlane(1, 100, 100);
 		EnemyPlane* a2 = new EnemyPlane(1, 250, 100);
