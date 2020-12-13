@@ -16,14 +16,14 @@ void EnemyPlane::draw()
 	graphics::Brush br;
 	graphics::setOrientation(0);
 
-	br.texture = "plane2.png";
+	br.texture = "assets/plane2.png";
 	br.outline_opacity = 0.0f;
 	graphics::drawRect(x, y, width, height, br);
 }
 
 void EnemyPlane::update(std::list <Projectile>& projectileList)
 {
-	y += 5;
+	y += 2;
 
 	borderCheck();
 }

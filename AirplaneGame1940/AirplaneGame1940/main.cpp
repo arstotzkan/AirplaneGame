@@ -67,7 +67,7 @@ void draw()
         it->draw();
 
     std::list <EnemyPlane> ::iterator it1;
-    for (it1 = enList.begin(); it1 != enList.end();)
+    for (it1 = enList.begin(); it1 != enList.end(); ++it1)
     {
         it1->draw();
     }
