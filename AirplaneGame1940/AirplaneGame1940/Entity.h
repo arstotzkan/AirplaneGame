@@ -13,9 +13,10 @@ class Entity
 public:
 	float x;
 	float y;
-	float rad;
+	float length;
+	float height;
 
-	Entity(float x, float y, float rad);
+	Entity(float x, float y, float length , float height);
 	Entity();
 	virtual void draw();
 	virtual void update();
