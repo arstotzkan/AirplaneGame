@@ -42,6 +42,7 @@ void PlayerPlane::update(std::list <Projectile>  &projectileList)
 		lastShot = graphics::getGlobalTime();
 		Projectile* arr = new Projectile(true, x , y - rad);
 		projectileList.push_back(*arr);
+		delete arr;
 	}
 }
 
@@ -49,13 +50,13 @@ bool PlayerPlane::borderCheck()
 {
 	if (x < 50)
 		x = 50;
-	else if(x > 950)
-		x = 950;
+	else if(x > 450)
+		x = 450;
 	
 	if (y < 50)
 		y = 50;
-	else if (y > 450)
-		y = 450;
+	else if (y > 850)
+		y = 850;
 
 	return false;
 }

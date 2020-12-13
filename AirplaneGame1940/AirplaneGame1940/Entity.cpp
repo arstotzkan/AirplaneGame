@@ -10,8 +10,8 @@ Entity::Entity(float temp_x, float temp_y, float temp_rad)
 }
 Entity::Entity()
 {
-	x = 400;
-	y = 400;
+	x = 250;
+	y = 800;
 	rad = 50;
 }
 
