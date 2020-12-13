@@ -6,7 +6,6 @@
 #include "playerPlane.h"
 #include "Factory.h"
 #include <list> 
-#include <iterator> 
 
 /*class hierarchy:
 * -item +
