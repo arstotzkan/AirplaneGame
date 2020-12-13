@@ -18,7 +18,7 @@ void PlayerPlane::draw()
 	graphics::setOrientation(0);
 
 	br.texture = "assets/plane1.png";
-	graphics::drawDisk(x, y, rad, br);
+	graphics::drawRect(x, y, width ,height, br);
 }
 
 void PlayerPlane::update(std::list <Projectile>  &projectileList)

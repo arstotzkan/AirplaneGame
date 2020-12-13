@@ -6,14 +6,14 @@ Entity::Entity(float temp_x, float temp_y, float temp_l, float temp_h)
 {
 	x = temp_x;
 	y = temp_y;
-	length = temp_l;
-	height = temp_h
+	width = temp_w;
+	height = temp_h;
 }
 Entity::Entity()
 {
 	x = 250;
 	y = 800;
-	length = 50;
+	width = 50;
 	height = 50;
 }
 

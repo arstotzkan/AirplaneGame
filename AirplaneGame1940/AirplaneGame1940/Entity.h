@@ -13,7 +13,7 @@ class Entity
 public:
 	float x;
 	float y;
-	float length;
+	float width;
 	float height;
 
 	Entity(float x, float y, float length , float height);

@@ -16,7 +16,7 @@ void EnemyPlane::draw()
 	graphics::Brush br;
 
 	br.texture = "plane2.png";
-	graphics::drawDisk(x, y, rad, br);
+	graphics::drawRect(x, y, width, height, br);
 }
 
 void EnemyPlane::update(std::list <Projectile>& projectileList)
