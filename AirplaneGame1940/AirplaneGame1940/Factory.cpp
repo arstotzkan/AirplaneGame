@@ -1,6 +1,5 @@
 #include "Factory.h"
 #include "graphics.h"
-#include "entity.h"
 #include "enemyplane.h"
 #include <iostream>
 #include <list>

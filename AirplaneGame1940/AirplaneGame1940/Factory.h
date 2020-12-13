@@ -2,7 +2,6 @@
 
 #include <iostream>
 #include "graphics.h"
-#include "entity.h"
 #include "enemyplane.h"
 
 class Factory
