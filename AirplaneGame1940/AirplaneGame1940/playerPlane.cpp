@@ -33,6 +33,9 @@ void PlayerPlane::update(std::list <Projectile>  &projectileList)
 		x -= 5;
 	if (graphics::getKeyState(graphics::SCANCODE_D) || graphics::getKeyState(graphics::SCANCODE_RIGHT))
 		x += 5;
+
+	borderCheck();
+
 	if (graphics::getKeyState(graphics::SCANCODE_SPACE))
 	{
 		Projectile* arr = new Projectile(true, x , y);
@@ -42,5 +45,13 @@ void PlayerPlane::update(std::list <Projectile>  &projectileList)
 
 void PlayerPlane::borderCheck()
 {
-
+	if (x < 50)
+		x = 50;
+	else if(x > 950)
+		x = 950;
+	
+	if (y < 50)
+		y = 50;
+	else if (y > 450)
+		y = 450;
 }
