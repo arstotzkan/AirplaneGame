@@ -7,7 +7,7 @@
 #include <cmath>
 
 
-PlayerPlane::PlayerPlane() : Airplane::Airplane(1)
+PlayerPlane::PlayerPlane() : Airplane::Airplane(1, 250, 800)
 {
 	lives = 3;
 	lastShot = 0.0f;

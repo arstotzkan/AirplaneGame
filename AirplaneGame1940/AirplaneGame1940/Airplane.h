@@ -10,6 +10,6 @@ public:
 	
 	int level;
 
-	Airplane(int lvl);
+	Airplane(int lvl, float x, float y);
 	virtual ~Airplane() {}
 };

@@ -6,7 +6,7 @@
 #include <iterator> 
 
 
-EnemyPlane::EnemyPlane(int lvl) : Airplane(lvl)
+EnemyPlane::EnemyPlane(int lvl, float  x , float y ) : Airplane(lvl , x , y)
 {
 	healthPoints = 2;
 }
@@ -44,7 +44,10 @@ bool EnemyPlane::collisionCheck(std::list <Projectile>& projectileList)
 		float distance = std::pow(iter->getX() - x, 2);
 		distance += std::pow(iter->getY() - y, 2);
 		distance = std::pow(distance, 0.5);
-		if (!(iter->wasThrownByPlayer()) && min_distance > distance)
+		healthPoints = healthPoints - 1;
+		if (!(iter->wasThrownByPlayer()) && min_distance > distance && healthPoints == 0)
+		{
 			return true;
+		}
 	}
 }

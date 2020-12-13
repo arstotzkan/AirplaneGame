@@ -9,7 +9,7 @@ public:
 
 	int healthPoints;
 
-	EnemyPlane(int lvl);
+	EnemyPlane(int lvl, float x , float y);
 	void draw();
 	void update(std::list <Projectile>& projectileList);
 	bool borderCheck();

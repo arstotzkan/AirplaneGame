@@ -12,6 +12,7 @@ protected:
 public:
 	Entity(float x, float y, float length , float height);
 	Entity();
+	Entity(float temp_x, float temp_y);
 	virtual void draw();
 	virtual void update();
 	virtual bool borderCheck();

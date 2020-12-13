@@ -19,6 +19,14 @@ Entity::Entity()
 	height = 50;
 }
 
+Entity::Entity(float temp_x, float temp_y)
+{
+	x = temp_x;
+	y = temp_y;
+	width = 50;
+	height = 50;
+}
+
 void Entity::draw()
 {
 

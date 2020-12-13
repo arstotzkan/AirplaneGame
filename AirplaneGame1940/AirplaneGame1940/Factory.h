@@ -5,13 +5,10 @@
 #include "entity.h"
 #include "enemyplane.h"
 
-class Factory : public EnemyPlane
+class Factory
 {
 public:
-	Factory f = new EnemyPlane();
-
-	void draw();
-	void update(std::list <Projectile>& projectileList);
-	bool borderCheck();
+	Factory();
+	void update(std::list <EnemyPlane>& enemyList , float time);
 	virtual ~Factory() {}
 };

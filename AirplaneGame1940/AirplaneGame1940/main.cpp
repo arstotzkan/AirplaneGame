@@ -4,6 +4,7 @@
 #include "entity.h"
 #include "projectile.h"
 #include "playerPlane.h"
+#include "Factory.h"
 #include <list> 
 #include <iterator> 
 
@@ -18,10 +19,13 @@
 
 PlayerPlane* square = new PlayerPlane();
 std::list <Projectile> projList;
+std::list <EnemyPlane> enList;
+Factory* enemyCreator = new Factory();
 
 void update(float ms)
 {
     square->update(projList);
+
     std::list <Projectile> ::iterator it;
     for (it = projList.begin(); it != projList.end();)
     {
@@ -34,6 +38,22 @@ void update(float ms)
         else
             ++it;
     }
+
+    std::list <EnemyPlane> ::iterator it1;
+    for (it1 = enList.begin(); it1 != enList.end();)
+    {
+        it1->update(projList);
+        if (it1->borderCheck())
+        {
+            it1 = enList.erase(it1);
+        }
+
+        else
+            ++it1;
+    }
+    
+
+    enemyCreator->update(enList, graphics::getGlobalTime());
 }
 
 // The window content drawing function.
@@ -66,5 +86,6 @@ int main()
     graphics::startMessageLoop();
 
     delete square;
+    delete enemyCreator;
     return 0;
 }
