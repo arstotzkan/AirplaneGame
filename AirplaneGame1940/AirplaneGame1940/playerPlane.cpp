@@ -37,7 +37,7 @@ void PlayerPlane::update(std::list <Projectile>  &projectileList)
 	if (graphics::getKeyState(graphics::SCANCODE_SPACE) && (graphics::getGlobalTime() - lastShot > 100.0f ) )
 	{
 		lastShot = graphics::getGlobalTime();
-		Projectile* arr = new Projectile(true, x , y - rad);
+		Projectile* arr = new Projectile(true, x , y - height);
 		projectileList.push_back(*arr);
 		delete arr;
 	}
