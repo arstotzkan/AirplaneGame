@@ -30,3 +30,8 @@ bool Projectile::borderCheck()
 	else
 		return false;
 }
+
+bool Projectile::wasThrownByPlayer()
+{
+	return thrownByPlayer;
+}

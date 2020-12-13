@@ -14,5 +14,6 @@ public:
 	void draw();
 	void update();
 	bool borderCheck();
+	bool wasThrownByPlayer();
 	virtual ~Projectile() {};
 };
