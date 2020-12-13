@@ -23,8 +23,17 @@ void update(float ms)
 {
     square->update(projList);
     std::list <Projectile> ::iterator it;
-    for (it = projList.begin(); it != projList.end(); ++it)
+    for (it = projList.begin(); it != projList.end();)
+    {
         it->update();
+        if (it->borderCheck())
+        {
+            it = projList.erase(it);
+        }
+
+        else
+            ++it;
+    }
 }
 
 // The window content drawing function.
@@ -34,6 +43,7 @@ void draw()
     graphics::resetPose();
 
     std::list <Projectile> ::iterator it;
+    std::cout << projList.size() ;
     for (it = projList.begin(); it != projList.end(); ++it)
         it->draw();
 }

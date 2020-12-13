@@ -27,5 +27,8 @@ void Projectile::update()
 
 bool Projectile::borderCheck()
 {
-	return false;
+	if (y > 1000 || y < 0)
+		return true;
+	else
+		return false;
 }
