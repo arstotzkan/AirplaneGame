@@ -2,7 +2,7 @@
 #include "graphics.h"
 #include "scancodes.h"
 
-Projectile::Projectile(bool thrownBy, float t_x , float t_y) : Entity::Entity(t_x , t_y , 10, 10)
+Projectile::Projectile(bool thrownBy, float t_x , float t_y) : Entity::Entity(t_x , t_y , 25, 25)
 {
 	thrownByPlayer = thrownBy;
 }
@@ -20,7 +20,7 @@ void Projectile::draw()
 
 void Projectile::update()
 {
-	y -= 5;
+	y -= 3;
 }
 
 bool Projectile::borderCheck()
