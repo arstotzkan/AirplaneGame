@@ -23,6 +23,9 @@ void EnemyPlane::update(std::list <Projectile>& projectileList)
 
 bool EnemyPlane::borderCheck()
 {
-	return false;
+	if (x < 0)
+		return true;
+	else
+		return false;
 }
 
