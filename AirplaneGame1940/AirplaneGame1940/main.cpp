@@ -59,8 +59,8 @@ int main()
 
     graphics::Brush br;
     br.fill_color[0] = 0.0f;
-    br.fill_color[1] = 0.9f;
-    br.fill_color[2] = 0.9f;
+    br.fill_color[1] = 0.85f;
+    br.fill_color[2] = 0.85f;
     graphics::setWindowBackground(br);
 
     graphics::startMessageLoop();
