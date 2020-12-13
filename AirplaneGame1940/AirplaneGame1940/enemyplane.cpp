@@ -15,11 +15,7 @@ void EnemyPlane::draw()
 {
 	graphics::Brush br;
 
-	graphics::setOrientation(0);
-	br.outline_opacity = 0.0f;
-	br.fill_color[0] = 0.5f;
-	br.fill_color[1] = 0.0f;
-	br.fill_color[2] = 0.0f;
+	br.texture = "plane2.png";
 	graphics::drawDisk(x, y, rad, br);
 }
 
