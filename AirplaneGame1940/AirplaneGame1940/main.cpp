@@ -25,7 +25,7 @@ Factory* enemyCreator = new Factory();
 void update(float ms)
 {
     square->update(projList);
-    enemyCreator->update(enList, graphics::getGlobalTime());
+    enemyCreator->update(enList);
 
     std::list <Projectile> ::iterator it;
     for (it = projList.begin(); it != projList.end();)
