@@ -43,7 +43,6 @@ void draw()
     graphics::resetPose();
 
     std::list <Projectile> ::iterator it;
-    std::cout << projList.size() ;
     for (it = projList.begin(); it != projList.end(); ++it)
         it->draw();
 }
@@ -59,9 +58,9 @@ int main()
     graphics::setCanvasScaleMode(graphics::CANVAS_SCALE_FIT);
 
     graphics::Brush br;
-    br.fill_color[0] = 0.5f;
-    br.fill_color[1] = 0.5f;
-    br.fill_color[2] = 0.5f;
+    br.fill_color[0] = 0.0f;
+    br.fill_color[1] = 0.8f;
+    br.fill_color[2] = 0.8f;
     graphics::setWindowBackground(br);
 
     graphics::startMessageLoop();
