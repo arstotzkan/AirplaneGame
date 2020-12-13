@@ -8,6 +8,7 @@
 Factory::Factory()
 {
 	counter = 0;
+
 }
 
 void Factory::update(std::list <EnemyPlane> &enemyList)
