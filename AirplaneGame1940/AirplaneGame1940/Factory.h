@@ -9,7 +9,7 @@ class Factory
 {
 protected:
 	int counter;
-	bool firstWave;
+	//bool firstWave;
 public:
 	Factory();
 	void update(std::list <EnemyPlane>& enemyList);
