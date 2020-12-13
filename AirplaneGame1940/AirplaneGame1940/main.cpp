@@ -52,7 +52,6 @@ void update(float ms)
             ++it1;
     }
     
-
     enemyCreator->update(enList, graphics::getGlobalTime());
 }
 
@@ -71,7 +70,7 @@ void draw()
     {
         it1->draw();
     }
-    std::cout << enList.size();
+    std::cout << enList.size() << std::endl;
 }
 
 int main()

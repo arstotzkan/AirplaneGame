@@ -7,6 +7,8 @@
 
 class Factory
 {
+protected:
+	int counter;
 public:
 	Factory();
 	void update(std::list <EnemyPlane>& enemyList , float time);
