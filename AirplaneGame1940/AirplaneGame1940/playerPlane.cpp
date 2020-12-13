@@ -17,10 +17,7 @@ void PlayerPlane::draw()
 
 	graphics::setOrientation(0);
 
-	br.outline_opacity = 0.0f;
-	br.fill_color[0] = 1.0f;
-	br.fill_color[1] = 1.0f;
-	br.fill_color[2] = 1.0f;
+	br.texture = "assets/plane1.png";
 	graphics::drawDisk(x, y, rad, br);
 }
 
