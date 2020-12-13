@@ -51,8 +51,9 @@ void update(float ms)
         else
             ++it1;
     }
-    
+
     enemyCreator->update(enList, graphics::getGlobalTime());
+
 }
 
 // The window content drawing function.
@@ -70,7 +71,7 @@ void draw()
     {
         it1->draw();
     }
-    std::cout << enList.size() << std::endl;
+    std::cout << graphics::getDeltaTime() << std::endl; // enList.size() << std::endl;
 }
 
 int main()
