@@ -1,13 +1,10 @@
-﻿  Factory.cpp
-LINK : warning C4743: 'const Airplane::`vftable'' has different size in 'c:\users\panos\programming projects\github\airplanegame\airplanegame1940\airplanegame1940\factory.cpp' and 'c:\users\panos\programming projects\github\airplanegame\airplanegame1940\airplanegame1940\airplane.cpp': 80 and 40 bytes
-LINK : warning C4743: 'const Entity::`vftable'' has different size in 'c:\users\panos\programming projects\github\airplanegame\airplanegame1940\airplanegame1940\factory.cpp' and 'c:\users\panos\programming projects\github\airplanegame\airplanegame1940\airplanegame1940\airplane.cpp': 80 and 40 bytes
-LINK : warning C4743: 'const EnemyPlane::`vftable'' has different size in 'c:\users\panos\programming projects\github\airplanegame\airplanegame1940\airplanegame1940\factory.cpp' and 'c:\users\panos\programming projects\github\airplanegame\airplanegame1940\airplanegame1940\enemyplane.cpp': 80 and 40 bytes
-LINK : warning C4743: 'const Airplane::`vftable'' has different size in 'c:\users\panos\programming projects\github\airplanegame\airplanegame1940\airplanegame1940\playerplane.cpp' and 'c:\users\panos\programming projects\github\airplanegame\airplanegame1940\airplanegame1940\factory.cpp': 40 and 80 bytes
-LINK : warning C4743: 'const Entity::`vftable'' has different size in 'c:\users\panos\programming projects\github\airplanegame\airplanegame1940\airplanegame1940\playerplane.cpp' and 'c:\users\panos\programming projects\github\airplanegame\airplanegame1940\airplanegame1940\factory.cpp': 40 and 80 bytes
-Factory.obj : error LNK2001: unresolved external symbol "public: virtual float __cdecl Entity::getWidth(void)" (?getWidth@Entity@@UEAAMXZ)
-Factory.obj : error LNK2001: unresolved external symbol "public: virtual float __cdecl Entity::getHeight(void)" (?getHeight@Entity@@UEAAMXZ)
-Factory.obj : error LNK2001: unresolved external symbol "public: virtual float __cdecl Entity::getY(void)" (?getY@Entity@@UEAAMXZ)
-Factory.obj : error LNK2001: unresolved external symbol "public: virtual float __cdecl Entity::getX(void)" (?getX@Entity@@UEAAMXZ)
-Factory.obj : error LNK2001: unresolved external symbol "public: virtual float __cdecl Entity::distanceToCorner(void)" (?distanceToCorner@Entity@@UEAAMXZ)
-Factory.obj : error LNK2001: unresolved external symbol "public: __cdecl EnemyPlane::EnemyPlane(int,float,float)" (??0EnemyPlane@@QEAA@HMM@Z)
-C:\Users\Panos\Programming Projects\GitHub\AirplaneGame\AirplaneGame1940\x64\Release\AirplaneGame1940.exe : fatal error LNK1120: 6 unresolved externals
+﻿  Entity.cpp
+  Projectile.cpp
+  enemyplane.cpp
+  playerPlane.cpp
+  Generating code
+  0 of 220 functions ( 0.0%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    0 functions had inline decision re-evaluated but remain unchanged
+  Finished generating code
+  AirplaneGame1940.vcxproj -> C:\Users\Panos\Programming Projects\GitHub\AirplaneGame\AirplaneGame1940\x64\Release\AirplaneGame1940.exe

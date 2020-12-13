@@ -4,7 +4,6 @@
 #include "graphics.h"
 #include "entity.h"
 #include "enemyplane.h"
-#include <list>
 
 class Factory
 {

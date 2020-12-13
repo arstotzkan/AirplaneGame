@@ -4,7 +4,6 @@
 #include "enemyplane.h"
 #include <iostream>
 #include <list>
-#include <iterator> 
 
 Factory::Factory()
 {
@@ -14,7 +13,7 @@ Factory::Factory()
 
 void Factory::update(std::list <EnemyPlane> &enemyList)
 {
-	if (counter % 10000 == 1000)
+	if (counter % 10000 == 5/*1000*/)
 	{
 		EnemyPlane* a1 = new EnemyPlane(1, 100, 100);
 		EnemyPlane* a2 = new EnemyPlane(1, 250, 100);
