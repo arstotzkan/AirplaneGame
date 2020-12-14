@@ -1,15 +1,12 @@
 #include "entity.h"
-#include "graphics.h"
-#include "scancodes.h"
-#include <cmath>
 
-
-Entity::Entity(float temp_x, float temp_y, float temp_w, float temp_h)
+Entity::Entity(float temp_x, float temp_y, float vel,  float temp_w, float temp_h)
 {
 	x = temp_x;
 	y = temp_y;
 	width = temp_w;
 	height = temp_h;
+	velocity = vel;
 }
 Entity::Entity()
 {
@@ -19,12 +16,13 @@ Entity::Entity()
 	height = 50;
 }
 
-Entity::Entity(float temp_x, float temp_y)
+Entity::Entity(float temp_x, float temp_y, float vel)
 {
 	x = temp_x;
 	y = temp_y;
 	width = 50;
 	height = 50;
+	velocity = vel;
 }
 
 void Entity::draw()

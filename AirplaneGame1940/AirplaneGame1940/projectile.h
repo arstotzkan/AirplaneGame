@@ -6,10 +6,9 @@
 
 class Projectile : public Entity
 {
-public:
-
+protected:
 	bool thrownByPlayer;
-
+public:
 	Projectile(bool thrownBy, float x, float y);
 	void draw();
 	void update();

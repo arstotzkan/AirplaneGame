@@ -1,13 +1,8 @@
-#include "graphics.h"
-#include "scancodes.h"
 #include "playerplane.h"
-#include "projectile.h"
-#include <list> 
-#include <iterator> 
-#include <cmath>
 
 
-PlayerPlane::PlayerPlane() : Airplane::Airplane(1, 250, 800)
+
+PlayerPlane::PlayerPlane() : Airplane::Airplane(1, 125,  250, 800)
 {
 	lives = 3;
 	lastShot = 0.0f;
@@ -27,13 +22,13 @@ void PlayerPlane::draw()
 void PlayerPlane::update(std::list <Projectile>  &projectileList)
 {
 	if (graphics::getKeyState(graphics::SCANCODE_W) || graphics::getKeyState(graphics::SCANCODE_UP))
-		y -= 5;
+		y -= velocity * graphics::getDeltaTime() / 333;
 	if (graphics::getKeyState(graphics::SCANCODE_S) || graphics::getKeyState(graphics::SCANCODE_DOWN))
-		y += 5;
+		y += velocity * graphics::getDeltaTime() / 333;
 	if (graphics::getKeyState(graphics::SCANCODE_A) || graphics::getKeyState(graphics::SCANCODE_LEFT))
-		x -= 5;
+		x -= velocity * graphics::getDeltaTime() / 333;
 	if (graphics::getKeyState(graphics::SCANCODE_D) || graphics::getKeyState(graphics::SCANCODE_RIGHT))
-		x += 5;
+		x += velocity * graphics::getDeltaTime() / 333;
 
 	borderCheck();
 

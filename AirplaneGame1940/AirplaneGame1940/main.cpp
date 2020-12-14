@@ -1,12 +1,7 @@
 #include <iostream>
 #include "graphics.h"
 #include "scancodes.h"
-#include "entity.h"
-#include "projectile.h"
-#include "playerPlane.h"
-#include "Factory.h"
-#include <list> 
-#include <iterator> 
+#include "game.h"
 
 /*class hierarchy:
 * -item +
@@ -15,62 +10,18 @@
 *		-enemy +
 *	-projectile + 
 *
+* 
 */
+Game* game = new Game();
 
-PlayerPlane* square = new PlayerPlane();
-std::list <Projectile> projList;
-std::list <EnemyPlane> enList;
-Factory* enemyCreator = new Factory();
+void draw()
+{
+    game->draw();
+}
 
 void update(float ms)
 {
-    square->update(projList);
-    enemyCreator->update(enList);
-
-    std::list <Projectile> ::iterator it;
-    for (it = projList.begin(); it != projList.end();)
-    {
-        it->update();
-        if (it->borderCheck())
-        {
-            it = projList.erase(it);
-        }
-
-        else
-            ++it;
-    }
-
-    std::list <EnemyPlane> ::iterator it1;
-    for (it1 = enList.begin(); it1 != enList.end();)
-    {
-        it1->update(projList);
-        if (it1->borderCheck())
-        {
-            it1 = enList.erase(it1);
-        }
-
-        else
-            ++it1;
-    }
-
-
-}
-
-// The window content drawing function.
-void draw()
-{
-    square->draw();
-    graphics::resetPose();
-
-    std::list <Projectile> ::iterator it;
-    for (it = projList.begin(); it != projList.end(); ++it)
-        it->draw();
-
-    std::list <EnemyPlane> ::iterator it1;
-    for (it1 = enList.begin(); it1 != enList.end(); ++it1)
-    {
-        it1->draw();
-    }
+    game->update(ms);
 }
 
 int main()
@@ -91,8 +42,8 @@ int main()
 
     graphics::startMessageLoop();
 
-    //graphics::destroyWindow();
-    delete square;
-    delete enemyCreator;
+    graphics::destroyWindow();
+
+    delete game;
     return 0;
 }

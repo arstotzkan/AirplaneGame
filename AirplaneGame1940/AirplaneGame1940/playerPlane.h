@@ -1,24 +1,19 @@
 #pragma once
 #include "graphics.h"
+#include "scancodes.h"
 #include "airplane.h"
 #include "projectile.h"
 #include "enemyplane.h"
 #include <list> 
-#include <iterator> 
+#include <iterator>
+#include <cmath>
 
 class PlayerPlane : public Airplane
 {
-	/*private:
-		float x;
-		float y;
-		float width;
-		float height;
-	*/
-public:
-
+protected:
 	int lives;
 	float lastShot;
-
+public:
 	PlayerPlane();
 	void draw();
 	void update(std::list <Projectile> &projectileList);

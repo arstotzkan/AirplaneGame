@@ -1,12 +1,6 @@
-#include "entity.h"
-#include "graphics.h"
-#include "scancodes.h"
 #include "enemyplane.h"
-#include <list> 
-#include <iterator> 
 
-
-EnemyPlane::EnemyPlane(int lvl, float  x , float y ) : Airplane(lvl , x , y)
+EnemyPlane::EnemyPlane(int lvl, float  x , float y ) : Airplane(lvl , 66 , x , y)
 {
 	healthPoints = 2;
 }
@@ -23,7 +17,7 @@ void EnemyPlane::draw()
 
 void EnemyPlane::update(std::list <Projectile>& projectileList)
 {
-	y += 2;
+	y += velocity * graphics::getDeltaTime() / 333;
 
 	borderCheck();
 }

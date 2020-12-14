@@ -1,9 +1,8 @@
 #pragma once
 
 #include <iostream>
-#include "graphics.h"
-#include "scancodes.h"
 #include "enemyplane.h"
+#include <list>
 
 class Factory
 {

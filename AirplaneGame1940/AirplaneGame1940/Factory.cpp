@@ -1,8 +1,5 @@
 #include "Factory.h"
-#include "graphics.h"
-#include "enemyplane.h"
-#include <iostream>
-#include <list>
+
 
 Factory::Factory()
 {
