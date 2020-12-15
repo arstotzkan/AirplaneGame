@@ -17,9 +17,12 @@ void Factory::update(std::list <EnemyPlane> &enemyList)
 		enemyList.push_back(*a1);
 		enemyList.push_back(*a2);
 		enemyList.push_back(*a3);
-		//delete a1;
-		//delete a2;
-		//delete a3;
+		delete a1;
+		delete a2;
+		delete a3;
+		a1 = nullptr;
+		a2 = nullptr;
+		a3 = nullptr;
 	}
 	counter++;
 }
