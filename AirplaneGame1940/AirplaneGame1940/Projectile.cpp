@@ -1,7 +1,7 @@
 #include "projectile.h"
 
 
-Projectile::Projectile(bool thrownBy, float t_x , float t_y) : Entity::Entity(t_x , t_y , 100,  25, 25)
+Projectile::Projectile(bool thrownBy, float t_x , float t_y) : Entity::Entity(t_x , t_y , 200,  25, 25)
 {
 	thrownByPlayer = thrownBy;
 }

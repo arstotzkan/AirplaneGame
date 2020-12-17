@@ -26,7 +26,7 @@ void Game::draw()
 		}
 		case 3:
 		{
-			//game is initialized or re-initalized
+			//freeze
 			break;
 		}
 		case 4:
