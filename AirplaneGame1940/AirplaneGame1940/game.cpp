@@ -7,6 +7,7 @@ Game::Game()
 	projList;
 	enList;
 	enemyCreator = new Factory();
+	background = new Background();
 }
 
 void Game::draw()
@@ -19,6 +20,7 @@ void Game::draw()
 		}
 		case 2:
 		{
+			background->draw();
 			square->draw();
 			graphics::resetPose();
 
@@ -55,6 +57,7 @@ void Game::update(float ms)
 		}
 		case 2:
 		{
+			background->update();
 			square->update(projList);
 			enemyCreator->update(enList);
 
@@ -105,4 +108,5 @@ Game::~Game()
 {
 	delete square;
 	delete enemyCreator;
+	delete background;
 }

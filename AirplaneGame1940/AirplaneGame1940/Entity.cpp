@@ -14,6 +14,7 @@ Entity::Entity()
 	y = 800;
 	width = 50;
 	height = 50;
+	velocity = 2;
 }
 
 Entity::Entity(float temp_x, float temp_y, float vel)
