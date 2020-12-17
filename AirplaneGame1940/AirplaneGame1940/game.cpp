@@ -2,7 +2,7 @@
 
 Game::Game()
 {
-	state = 2; 
+	state = 4; 
 	square = new PlayerPlane();
 	projList;
 	enList;
@@ -16,10 +16,22 @@ void Game::draw()
 	{
 		case 1:
 		{
+			//starting menu
 			break;
 		}
 		case 2:
 		{
+			//intro
+			break;
+		}
+		case 3:
+		{
+			//game is initialized or re-initalized
+			break;
+		}
+		case 4:
+		{
+			//normal game
 			background->draw();
 			square->draw();
 			graphics::resetPose();
@@ -36,12 +48,14 @@ void Game::draw()
 
 			break;
 		}
-		case 3:
+		case 5:
 		{
+			//victory menu
 			break;
 		}
-		case 4:
+		case 6:
 		{
+			//game over
 			break;
 		}
 	}
@@ -53,10 +67,23 @@ void Game::update(float ms)
 	{
 		case 1:
 		{
+			//starting menu
 			break;
 		}
 		case 2:
 		{
+			//intro
+			break;
+		}
+		case 3:
+		{
+			//game is initialized or re-initalized
+			break;
+		}
+
+		case 4:
+		{
+			//normal game
 			background->update();
 			square->update(projList);
 			enemyCreator->update(enList);
@@ -88,12 +115,14 @@ void Game::update(float ms)
 			}
 			break;
 		}
-		case 3:
+		case 5:
 		{
+			//victory menu
 			break;
 		}
-		case 4:
+		case 6:
 		{
+			//game over
 			break;
 		}
 	}

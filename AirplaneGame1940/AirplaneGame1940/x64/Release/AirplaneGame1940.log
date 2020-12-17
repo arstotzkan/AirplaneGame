@@ -1,13 +1,15 @@
-﻿  Factory.cpp
-LINK : warning C4743: 'const Airplane::`vftable'' has different size in 'c:\users\panos\programming projects\github\airplanegame\airplanegame1940\airplanegame1940\factory.cpp' and 'c:\users\panos\programming projects\github\airplanegame\airplanegame1940\airplanegame1940\airplane.cpp': 80 and 40 bytes
-LINK : warning C4743: 'const Entity::`vftable'' has different size in 'c:\users\panos\programming projects\github\airplanegame\airplanegame1940\airplanegame1940\factory.cpp' and 'c:\users\panos\programming projects\github\airplanegame\airplanegame1940\airplanegame1940\airplane.cpp': 80 and 40 bytes
-LINK : warning C4743: 'const EnemyPlane::`vftable'' has different size in 'c:\users\panos\programming projects\github\airplanegame\airplanegame1940\airplanegame1940\factory.cpp' and 'c:\users\panos\programming projects\github\airplanegame\airplanegame1940\airplanegame1940\enemyplane.cpp': 80 and 40 bytes
-LINK : warning C4743: 'const Airplane::`vftable'' has different size in 'c:\users\panos\programming projects\github\airplanegame\airplanegame1940\airplanegame1940\playerplane.cpp' and 'c:\users\panos\programming projects\github\airplanegame\airplanegame1940\airplanegame1940\factory.cpp': 40 and 80 bytes
-LINK : warning C4743: 'const Entity::`vftable'' has different size in 'c:\users\panos\programming projects\github\airplanegame\airplanegame1940\airplanegame1940\playerplane.cpp' and 'c:\users\panos\programming projects\github\airplanegame\airplanegame1940\airplanegame1940\factory.cpp': 40 and 80 bytes
-Factory.obj : error LNK2001: unresolved external symbol "public: virtual float __cdecl Entity::getWidth(void)" (?getWidth@Entity@@UEAAMXZ)
-Factory.obj : error LNK2001: unresolved external symbol "public: virtual float __cdecl Entity::getHeight(void)" (?getHeight@Entity@@UEAAMXZ)
-Factory.obj : error LNK2001: unresolved external symbol "public: virtual float __cdecl Entity::getY(void)" (?getY@Entity@@UEAAMXZ)
-Factory.obj : error LNK2001: unresolved external symbol "public: virtual float __cdecl Entity::getX(void)" (?getX@Entity@@UEAAMXZ)
-Factory.obj : error LNK2001: unresolved external symbol "public: virtual float __cdecl Entity::distanceToCorner(void)" (?distanceToCorner@Entity@@UEAAMXZ)
-Factory.obj : error LNK2001: unresolved external symbol "public: __cdecl EnemyPlane::EnemyPlane(int,float,float)" (??0EnemyPlane@@QEAA@HMM@Z)
-C:\Users\Panos\Programming Projects\GitHub\AirplaneGame\AirplaneGame1940\x64\Release\AirplaneGame1940.exe : fatal error LNK1120: 6 unresolved externals
+﻿  Background.cpp
+  game.cpp
+  Generating code
+  251 of 310 functions (81.0%) were compiled, the rest were copied from previous compilation.
+    96 functions were new in current compilation
+    4 functions had inline decision re-evaluated but remain unchanged
+  Finished generating code
+Airplane.obj : warning LNK4099: PDB 'vc142.pdb' was not found with 'Airplane.obj' or at 'C:\Users\Panos\Programming Projects\GitHub\AirplaneGame\AirplaneGame1940\x64\Release\vc142.pdb'; linking object as if no debug info
+enemyplane.obj : warning LNK4099: PDB 'vc142.pdb' was not found with 'enemyplane.obj' or at 'C:\Users\Panos\Programming Projects\GitHub\AirplaneGame\AirplaneGame1940\x64\Release\vc142.pdb'; linking object as if no debug info
+Entity.obj : warning LNK4099: PDB 'vc142.pdb' was not found with 'Entity.obj' or at 'C:\Users\Panos\Programming Projects\GitHub\AirplaneGame\AirplaneGame1940\x64\Release\vc142.pdb'; linking object as if no debug info
+Factory.obj : warning LNK4099: PDB '' was not found with 'Factory.obj' or at ''; linking object as if no debug info
+main.obj : warning LNK4099: PDB '' was not found with 'main.obj' or at ''; linking object as if no debug info
+playerPlane.obj : warning LNK4099: PDB 'vc142.pdb' was not found with 'playerPlane.obj' or at 'C:\Users\Panos\Programming Projects\GitHub\AirplaneGame\AirplaneGame1940\x64\Release\vc142.pdb'; linking object as if no debug info
+Projectile.obj : warning LNK4099: PDB 'vc142.pdb' was not found with 'Projectile.obj' or at 'C:\Users\Panos\Programming Projects\GitHub\AirplaneGame\AirplaneGame1940\x64\Release\vc142.pdb'; linking object as if no debug info
+  AirplaneGame1940.vcxproj -> C:\Users\Panos\Programming Projects\GitHub\AirplaneGame\AirplaneGame1940\x64\Release\AirplaneGame1940.exe
