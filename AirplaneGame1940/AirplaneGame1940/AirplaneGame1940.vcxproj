@@ -155,10 +155,12 @@
     <ClCompile Include="Background.cpp" />
     <ClCompile Include="enemyplane.cpp" />
     <ClCompile Include="Entity.cpp" />
+    <ClCompile Include="Explosion.cpp" />
     <ClCompile Include="Factory.cpp" />
     <ClCompile Include="game.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="playerPlane.cpp" />
+    <ClCompile Include="PowerUp.cpp" />
     <ClCompile Include="Projectile.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -166,9 +168,11 @@
     <ClInclude Include="background.h" />
     <ClInclude Include="enemyplane.h" />
     <ClInclude Include="Entity.h" />
+    <ClInclude Include="Explosion.h" />
     <ClInclude Include="Factory.h" />
     <ClInclude Include="game.h" />
     <ClInclude Include="playerPlane.h" />
+    <ClInclude Include="PowerUp.h" />
     <ClInclude Include="projectile.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
