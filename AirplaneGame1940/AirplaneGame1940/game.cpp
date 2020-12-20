@@ -180,10 +180,15 @@ Game::~Game()
 	delete background;
 }
 
-void Game::initialize()
+void Game::initialize(bool fromScratch)
 {
-	square->setX(250);
-	square->setY(800);
+	if (fromScratch)
+		square = new PlayerPlane();
+	else
+	{
+		square->setX(250);
+		square->setY(800);
+	}
 	projList.clear();
 	enList.clear();
 }

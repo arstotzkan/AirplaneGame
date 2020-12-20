@@ -35,5 +35,5 @@ public:
 	void update(float ms);
 	void setState(int x);
 	virtual ~Game();
-	void initialize();
+	void initialize(bool fromScratch);
 };
