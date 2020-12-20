@@ -82,7 +82,10 @@ void Game::update(float ms)
 		{
 			//starting menu
 			if (graphics::getKeyState(graphics::SCANCODE_SPACE))
+			{
 				state = 4;
+				initialize(true);
+			}
 			break;
 		}
 		case 2:
@@ -147,7 +150,7 @@ void Game::update(float ms)
 			{
 				square->removeLife();
 				if (square->getLifes() > 0)
-					initialize();
+					initialize(false);
 				else
 					state = 6;
 			}
