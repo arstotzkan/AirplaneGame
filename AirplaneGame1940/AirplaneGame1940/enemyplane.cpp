@@ -46,7 +46,7 @@ bool EnemyPlane::isDestroyed(std::list <Projectile>& projectileList, std::list <
 		{
 			Explosion* temp = new Explosion(x, y);
 			expList.push_back(*temp);
-			graphics::playSound("assets/sound/explosion.mp3", 0.5f);
+			graphics::playSound("assets/sound/explosion.mp3", 0.33f);
 			delete temp;
 			temp = nullptr;
 
