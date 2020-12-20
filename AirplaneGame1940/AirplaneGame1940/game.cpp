@@ -60,7 +60,10 @@ void Game::draw()
 		}
 		case 5:
 		{
-			//victory menu
+			graphics::Brush br;
+			graphics::setFont("assets/orange juice 2.0.ttf");
+			graphics::drawText(250, 450, 25, "VICTORY", br);
+			//starting menu
 			break;
 		}
 		case 6:
@@ -160,11 +163,21 @@ void Game::update(float ms)
 				}
 			}
 
+			if (background->getY() >= 1200)
+			{
+				state = 5;
+				lastStateChange = graphics::getGlobalTime();
+			}
+
 			break;
 		}
 		case 5:
 		{
-			//victory menu
+			if (graphics::getKeyState(graphics::SCANCODE_SPACE))
+			{
+				state = 1;
+				lastStateChange = graphics::getGlobalTime();
+			}
 			break;
 		}
 		case 6:
@@ -195,7 +208,10 @@ Game::~Game()
 void Game::initialize(bool fromScratch)
 {
 	if (fromScratch)
+	{
 		square = new PlayerPlane();
+		background = new Background();
+	}
 	else
 	{
 		square->setX(250);
