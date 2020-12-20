@@ -1,14 +1,12 @@
 #include "explosion.h"
 
-Explosion::Explosion(float temp_x, float temp_y) {
-	x = temp_x;
-	y = temp_y;
-	width = 30;
-	height = 30;
+Explosion::Explosion(float temp_x, float temp_y) : Entity::Entity(temp_x , temp_y , 0 ,  30 , 30)
+{
 	timeCreated = graphics::getGlobalTime();
 }
 
-void Explosion::draw() {
+void Explosion::draw() 
+{
 	graphics::Brush br;
 
 	graphics::setOrientation(0);
@@ -21,7 +19,8 @@ void Explosion::draw() {
 	graphics::drawRect(x, y, width, height, br);
 }
 
-void Explosion::update() {
+void Explosion::update() 
+{
 	/**
 	if (width <= 100) {
 		width++;

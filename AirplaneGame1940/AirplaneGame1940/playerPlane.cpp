@@ -12,7 +12,7 @@ void PlayerPlane::draw()
 
 	graphics::setOrientation(0);
 
-	br.texture = "assets/plane.png";
+	br.texture = "assets/planes/player1.png";
 	br.outline_opacity = 0.0f;
 	graphics::drawRect(x, y, width ,height, br);
 }
@@ -32,7 +32,7 @@ void PlayerPlane::update(std::list <Projectile>  &projectileList)
 
 	if (graphics::getKeyState(graphics::SCANCODE_SPACE) && (graphics::getGlobalTime() - lastShot > 100.0f ) )
 	{
-		graphics::playSound("assets/shot.mp3", 0.5f);
+		graphics::playSound("assets/sound/shot.mp3", 0.5f);
 		lastShot = graphics::getGlobalTime();
 		Projectile* arr = new Projectile(true, x , y - height);
 		projectileList.push_back(*arr);
@@ -67,7 +67,7 @@ bool PlayerPlane::isDestroyed(std::list <Projectile>& projectileList, std::list 
 		distance = std::pow(distance, 0.5);
 		if (!(iter->wasThrownByPlayer()) && min_distance > distance)
 		{
-			graphics::playSound("assets/explosion.mp3", 0.5f);
+			graphics::playSound("assets/sound/explosion.mp3", 0.5f);
 			Explosion* temp = new Explosion(x,y);
 			expList.push_back(*temp);
 			delete temp;

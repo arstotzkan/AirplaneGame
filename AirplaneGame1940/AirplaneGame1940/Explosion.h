@@ -2,15 +2,13 @@
 
 #include <iostream>
 #include "graphics.h"
+#include "entity.h"
 #include <list>
 #include <iterator>
 
-class Explosion {
+class Explosion : public Entity
+{
 	protected:
-		float x;
-		float y;
-		float height;
-		float width;
 		float timeCreated;
 
 	public:

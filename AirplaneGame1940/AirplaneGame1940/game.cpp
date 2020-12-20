@@ -18,7 +18,7 @@ void Game::draw()
 		case 1:
 		{
 			graphics::Brush br;
-			graphics::setFont("assets/orange juice 2.0.ttf");
+			graphics::setFont("assets/fonts/Gill Sans.otf");
 			graphics::drawText(250,450,25, "PRESS SPACE TO PLAY", br);
 			//starting menu
 			break;
@@ -66,7 +66,7 @@ void Game::draw()
 			br.fill_color[0] = 1.0f;
 			br.fill_color[1] = 1.0f;
 			br.fill_color[2] = 1.0f;
-			graphics::setFont("assets/orange juice 2.0.ttf");
+			graphics::setFont("assets/fonts/Gill Sans.otf");
 			std::string text = "SCORE: " + std::to_string(score) + " LIVES: " + std::to_string(square->getLifes());
 			graphics::drawText(100, 50, 25, text, br);
 			break;
@@ -74,7 +74,7 @@ void Game::draw()
 		case 5:
 		{
 			graphics::Brush br;
-			graphics::setFont("assets/orange juice 2.0.ttf");
+			graphics::setFont("assets/fonts/Gill Sans.otf");
 			graphics::drawText(250, 450, 25, "VICTORY", br);
 			//starting menu
 			break;
@@ -82,7 +82,7 @@ void Game::draw()
 		case 6:
 		{
 			graphics::Brush br;
-			graphics::setFont("assets/orange juice 2.0.ttf");
+			graphics::setFont("assets/fonts/Gill Sans.otf");
 			graphics::drawText(250, 450, 25, "GAME OVER", br);
 			//starting menu
 			break;

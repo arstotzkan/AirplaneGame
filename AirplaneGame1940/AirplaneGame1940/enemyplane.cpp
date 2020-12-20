@@ -11,7 +11,7 @@ void EnemyPlane::draw()
 	graphics::Brush br;
 	graphics::setOrientation(0);
 
-	std::string img = "assets/plane" + std::to_string(level) + ".png";
+	std::string img = "assets/planes/enemy" + std::to_string(level) + ".png";
 	br.texture = img;
 	br.outline_opacity = 0.0f;
 	graphics::drawRect(x, y, width, height, br);
@@ -46,7 +46,7 @@ bool EnemyPlane::isDestroyed(std::list <Projectile>& projectileList, std::list <
 		{
 			Explosion* temp = new Explosion(x, y);
 			expList.push_back(*temp);
-			graphics::playSound("assets/explosion.mp3", 0.5f);
+			graphics::playSound("assets/sound/explosion.mp3", 0.5f);
 			delete temp;
 			temp = nullptr;
 
