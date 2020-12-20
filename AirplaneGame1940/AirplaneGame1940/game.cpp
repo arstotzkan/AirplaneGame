@@ -49,12 +49,7 @@ void Game::draw()
 				it1->draw();
 			}
 
-			std::list <Explosion> ::iterator it2;
-			for (it2 = exList.begin(); it2 != exList.end(); ++it1)
-			{
-				if (ex.counter == x)
-					exList.erase(it2);
-			}
+
 
 			break;
 		}
@@ -124,6 +119,14 @@ void Game::update(float ms)
 
 				else
 					++it1;
+			}
+
+
+			std::list <Explosion> ::iterator it2;
+			for (it2 = exList.begin(); it2 != exList.end(); ++it1)
+			{
+				if (ex.counter == x)
+					exList.erase(it2);
 			}
 
 			if (square->isDestroyed(projList, enList))		
