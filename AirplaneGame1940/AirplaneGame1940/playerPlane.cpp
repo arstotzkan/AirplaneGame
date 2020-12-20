@@ -69,9 +69,9 @@ bool PlayerPlane::isDestroyed(std::list <Projectile>& projectileList, std::list 
 		distance = std::pow(distance, 0.5);
 		if (!(iter->wasThrownByPlayer()) && min_distance > distance)
 		{
+			graphics::playSound("assets/explosion.mp3", 0.5f);
 			Explosion* temp = new Explosion(x,y);
 			expList.push_back(*temp);
-			graphics::playSound("assets/explosion.mp3", 0.5f);
 			delete temp;
 			temp = nullptr;
 			//--lifes;
