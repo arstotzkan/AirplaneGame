@@ -14,7 +14,7 @@ void PlayerPlane::draw()
 
 	graphics::setOrientation(0);
 
-	br.texture = "assets/plane1.png";
+	br.texture = "assets/plane.png";
 	br.outline_opacity = 0.0f;
 	graphics::drawRect(x, y, width ,height, br);
 }
