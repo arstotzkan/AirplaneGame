@@ -1,24 +1,26 @@
 #include "PowerUp.h"
 
-PowerUp::PowerUp(float vel)
+PowerUp::PowerUp(float t_x, float t_y) : Entity::Entity(t_x , t_y, 2 , 40 , 40)
 {
 }
-PowerUp::PowerUp()
-{
-	velocity = 2;
-}
-PowerUp::PowerUp(float vel)
-{
-	velocity = vel;
-}
+
 void PowerUp::draw()
 {
+	graphics::Brush br;
 
+	graphics::setOrientation(0);
+
+	br.outline_opacity = 0.0f;
+	graphics::drawRect(x, y, width, height, br);
 }
 void PowerUp::update()
 {
+	y += velocity * graphics::getDeltaTime() / 333;
 }
 bool PowerUp::borderCheck()
 {
-	return false;
+	if (y > 900)
+		return true;
+	else
+		return false;
 }

@@ -1,15 +1,15 @@
 #pragma once
 #include "graphics.h"
+#include "entity.h"
 #include <cmath>
 
-class PowerUp
+class PowerUp : public Entity
 {
 protected:
 	float velocity;
 
 public:
-	PowerUp(float vel);
-	PowerUp();
+	PowerUp(float t_x, float t_y);
 	virtual void draw();
 	virtual void update();
 	virtual bool borderCheck();

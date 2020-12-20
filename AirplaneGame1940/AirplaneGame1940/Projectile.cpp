@@ -19,7 +19,10 @@ void Projectile::draw()
 
 void Projectile::update()
 {
-	y -= velocity * graphics::getDeltaTime() / 333;
+	if (thrownByPlayer)
+		y -= velocity * graphics::getDeltaTime() / 333;
+	else
+		y += velocity * graphics::getDeltaTime() / 333;
 }
 
 bool Projectile::borderCheck()
