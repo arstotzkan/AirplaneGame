@@ -49,10 +49,10 @@ bool PlayerPlane::borderCheck()
 	else if(x > 450)
 		x = 450;
 	
-	if (y < 50)
-		y = 50;
-	else if (y > 850)
-		y = 850;
+	if (y < 150)
+		y = 150;
+	else if (y > 950)
+		y = 950;
 
 	return false;
 }

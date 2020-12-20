@@ -24,7 +24,7 @@ void EnemyPlane::update(std::list <Projectile>& projectileList)
 
 bool EnemyPlane::borderCheck()
 {
-	if (x > 900)
+	if (x > 1000)
 		return true;
 	else
 		return false;
