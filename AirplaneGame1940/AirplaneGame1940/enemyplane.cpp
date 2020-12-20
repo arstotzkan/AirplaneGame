@@ -11,18 +11,8 @@ void EnemyPlane::draw()
 	graphics::Brush br;
 	graphics::setOrientation(0);
 
-	string img1 = "assets/plane2" + std::to_string(lvl) + ".png";
-	br.texture = img1;
-	br.outline_opacity = 0.0f;
-	graphics::drawRect(x, y, width, height, br);
-
-	string img2 = "assets/plane" + std::to_string(lvl) + ".png";
-	br.texture = img2;
-	br.outline_opacity = 0.0f;
-	graphics::drawRect(x, y, width, height, br);
-
-	string img3 = "assets/plane3" + std::to_string(lvl) + ".png";
-	br.texture = img3;
+	std::string img = "assets/plane" + std::to_string(level) + ".png";
+	br.texture = img;
 	br.outline_opacity = 0.0f;
 	graphics::drawRect(x, y, width, height, br);
 

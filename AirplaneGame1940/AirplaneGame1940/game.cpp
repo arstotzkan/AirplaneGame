@@ -107,7 +107,6 @@ void Game::update(float ms)
 		case 4:
 		{
 			//normal game
-			std::cout << square->getLifes() << std::endl;
 			background->update();
 			square->update(projList);
 			enemyCreator->update(enList);
