@@ -5,9 +5,6 @@
 
 class PowerUp : public Entity
 {
-protected:
-	float velocity;
-
 public:
 	PowerUp(float t_x, float t_y);
 	virtual void draw();

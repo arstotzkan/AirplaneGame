@@ -114,8 +114,15 @@ void Game::update(float ms)
 					++it1;
 			}
 
-			if (square->isDestroyed(projList, enList))
-				initialize();
+			if (square->isDestroyed(projList, enList))		
+			{
+				square->removeLife();
+				if (square->getLifes() > 0)
+					initialize();
+				else
+					setState(6);
+			}
+
 			break;
 		}
 		case 5:
