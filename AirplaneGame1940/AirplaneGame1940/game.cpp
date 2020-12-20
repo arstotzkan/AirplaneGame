@@ -18,7 +18,7 @@ void Game::draw()
 		{
 			graphics::Brush br;
 			graphics::setFont("assets/orange juice 2.0.ttf");
-			graphics::drawText(250,450,25, "PRESS ENTER TO PLAY", br);
+			graphics::drawText(250,450,25, "PRESS SPACE TO PLAY", br);
 			//starting menu
 			break;
 		}
@@ -78,7 +78,7 @@ void Game::update(float ms)
 		case 1:
 		{
 			//starting menu
-			if (graphics::getKeyState(graphics::SCANCODE_KP_ENTER))
+			if (graphics::getKeyState(graphics::SCANCODE_SPACE))
 				state = 4;
 			break;
 		}
