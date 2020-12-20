@@ -11,4 +11,5 @@ protected:
 public:
 	Airplane(int lvl, float vel, float x, float y);
 	virtual ~Airplane() {}
+	virtual int getLevel() { return level; };
 };

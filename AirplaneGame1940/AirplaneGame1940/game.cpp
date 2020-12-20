@@ -143,6 +143,7 @@ void Game::update(float ms)
 				it1->update(projList);
 				if (it1->borderCheck() || it1->isDestroyed(projList, exList))
 				{
+					score += it1->getLevel() * 50;
 					it1 = enList.erase(it1);
 				}
 
@@ -157,8 +158,9 @@ void Game::update(float ms)
 				it2->update();
 
 				if (it2->shouldBeDestroyed())
+				{
 					it2 = exList.erase(it2);
-
+				}
 				else
 					++it2;
 			}
@@ -223,6 +225,7 @@ void Game::initialize(bool fromScratch)
 	{
 		square = new PlayerPlane();
 		background = new Background();
+		score = 0;
 	}
 	else
 	{
