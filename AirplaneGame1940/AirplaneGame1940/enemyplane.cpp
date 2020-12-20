@@ -2,7 +2,7 @@
 
 EnemyPlane::EnemyPlane(int lvl, float  x , float y ) : Airplane(lvl , 66 , x , y)
 {
-	healthPoints = 2;
+	healthPoints = 1;
 }
 
 void EnemyPlane::draw()
@@ -39,8 +39,9 @@ bool EnemyPlane::isDestroyed(std::list <Projectile>& projectileList)
 		float distance = std::pow(iter->getX() - x, 2);
 		distance += std::pow(iter->getY() - y, 2);
 		distance = std::pow(distance, 0.5);
-		if (!(iter->wasThrownByPlayer()) && min_distance > distance)
+		if (iter->wasThrownByPlayer() && min_distance > distance && y >= 0 )
 		{
+			projectileList.erase(iter);
 			healthPoints = healthPoints - 1;
 			if (healthPoints == 0)
 				return true;

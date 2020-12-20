@@ -105,7 +105,7 @@ void Game::update(float ms)
 			for (it1 = enList.begin(); it1 != enList.end();)
 			{
 				it1->update(projList);
-				if (it1->borderCheck())
+				if (it1->borderCheck() || it1->isDestroyed(projList))
 				{
 					it1 = enList.erase(it1);
 				}
@@ -113,6 +113,9 @@ void Game::update(float ms)
 				else
 					++it1;
 			}
+
+			if (square->isDestroyed(projList, enList))
+				initialize();
 			break;
 		}
 		case 5:
@@ -138,4 +141,11 @@ Game::~Game()
 	delete square;
 	delete enemyCreator;
 	delete background;
+}
+
+void Game::initialize()
+{
+	square = new PlayerPlane();
+	projList.clear();
+	enList.clear();
 }

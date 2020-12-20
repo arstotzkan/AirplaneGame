@@ -67,8 +67,10 @@ bool PlayerPlane::isDestroyed(std::list <Projectile>& projectileList, std::list 
 		distance += std::pow(iter->getY() - y, 2);
 		distance = std::pow(distance, 0.5);
 		if (!(iter->wasThrownByPlayer()) && min_distance > distance)
+		{
+			projectileList.erase(iter);
 			return true;
-
+		}
 	}
 
 	std::list <EnemyPlane> ::iterator iter1;
@@ -79,7 +81,10 @@ bool PlayerPlane::isDestroyed(std::list <Projectile>& projectileList, std::list 
 		distance += std::pow(iter1->getY() - y, 2);
 		distance = std::pow(distance, 0.5);
 		if (min_distance > distance)
+		{
+			enemyList.erase(iter1);
 			return true;
+		}
 	}
 
 	return false;

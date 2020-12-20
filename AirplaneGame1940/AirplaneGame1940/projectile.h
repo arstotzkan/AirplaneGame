@@ -3,6 +3,10 @@
 #include <iostream>
 #include "graphics.h"
 #include "entity.h"
+//#include "enemyplane.h"
+//#include "playerplane.h"
+#include <list>
+#include <iterator>
 
 class Projectile : public Entity
 {
@@ -14,5 +18,6 @@ public:
 	void update();
 	bool borderCheck();
 	bool wasThrownByPlayer();
+	//bool isDestroyed(std::list <EnemyPlane>& enemyList, PlayerPlane *pp);
 	virtual ~Projectile() {};
 };
