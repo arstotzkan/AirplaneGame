@@ -72,7 +72,7 @@ bool PlayerPlane::isDestroyed(std::list <Projectile>& projectileList, std::list 
 			expList.push_back(*temp);
 			delete temp;
 			temp = nullptr;
-
+			//--lifes;
 			projectileList.erase(iter);
 			return true;
 		}

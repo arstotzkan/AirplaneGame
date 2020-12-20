@@ -65,7 +65,10 @@ void Game::draw()
 		}
 		case 6:
 		{
-			//game over
+			graphics::Brush br;
+			graphics::setFont("assets/orange juice 2.0.ttf");
+			graphics::drawText(250, 450, 25, "GAME OVER", br);
+			//starting menu
 			break;
 		}
 	}
@@ -96,6 +99,7 @@ void Game::update(float ms)
 		case 4:
 		{
 			//normal game
+			std::cout << square->getLifes() << std::endl;
 			background->update();
 			square->update(projList);
 			enemyCreator->update(enList);
@@ -157,7 +161,8 @@ void Game::update(float ms)
 		}
 		case 6:
 		{
-			//game over
+			if (graphics::getKeyState(graphics::SCANCODE_SPACE))
+				state = 1;
 			break;
 		}
 	}
@@ -177,7 +182,8 @@ Game::~Game()
 
 void Game::initialize()
 {
-	square = new PlayerPlane();
+	square->setX(250);
+	square->setY(800);
 	projList.clear();
 	enList.clear();
 }

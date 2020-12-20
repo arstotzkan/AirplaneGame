@@ -23,6 +23,8 @@ public:
 
 	virtual float getX();
 	virtual float getY();
+	virtual void setX(float tx) { x = tx; };
+	virtual void setY(float ty) { y = ty; };
 	virtual float getHeight();
 	virtual float getWidth();
 
