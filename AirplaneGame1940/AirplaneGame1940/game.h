@@ -20,6 +20,7 @@ private:
 	Factory* enemyCreator;
 	Background* background;
 	int state;
+	float lastStateChange = 0.0f;
 	/*
 	* state 1: start menu
 	* state 2: introduction

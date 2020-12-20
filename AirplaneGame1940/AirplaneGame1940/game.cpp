@@ -76,8 +76,10 @@ void Game::draw()
 
 void Game::update(float ms)
 {
-	switch (state)
+	if (graphics::getGlobalTime() - lastStateChange > 300.0f)
 	{
+		switch (state)
+		{
 		case 1:
 		{
 			//starting menu
@@ -85,6 +87,7 @@ void Game::update(float ms)
 			{
 				state = 4;
 				initialize(true);
+				lastStateChange = graphics::getGlobalTime();
 			}
 			break;
 		}
@@ -95,7 +98,6 @@ void Game::update(float ms)
 		}
 		case 3:
 		{
-			//game is initialized or re-initalized
 			break;
 		}
 
@@ -146,13 +148,16 @@ void Game::update(float ms)
 					++it2;
 			}
 
-			if (square->isDestroyed(projList, enList, exList))		
+			if (square->isDestroyed(projList, enList, exList))
 			{
 				square->removeLife();
 				if (square->getLifes() > 0)
 					initialize(false);
 				else
+				{
 					state = 6;
+					lastStateChange = graphics::getGlobalTime();
+				}
 			}
 
 			break;
@@ -165,8 +170,12 @@ void Game::update(float ms)
 		case 6:
 		{
 			if (graphics::getKeyState(graphics::SCANCODE_SPACE))
+			{
 				state = 1;
+				lastStateChange = graphics::getGlobalTime();
+			}
 			break;
+		}
 		}
 	}
 }
