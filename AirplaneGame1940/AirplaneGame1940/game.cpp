@@ -8,6 +8,7 @@ Game::Game()
 	enList;
 	enemyCreator = new Factory();
 	background = new Background();
+	score = 0;
 }
 
 void Game::draw()
@@ -55,7 +56,19 @@ void Game::draw()
 				it2->draw();
 			}
 
+			graphics::Brush br;
+			br.fill_color[0] = 0.0f;
+			br.fill_color[1] = 0.0f;
+			br.fill_color[2] = 0.0f;
+			graphics::drawRect(250, 50, 500, 100, br);
 
+			//graphics::Brush br;
+			br.fill_color[0] = 1.0f;
+			br.fill_color[1] = 1.0f;
+			br.fill_color[2] = 1.0f;
+			graphics::setFont("assets/orange juice 2.0.ttf");
+			std::string text = "SCORE: " + std::to_string(score) + " LIVES: " + std::to_string(square->getLifes());
+			graphics::drawText(100, 50, 25, text, br);
 			break;
 		}
 		case 5:

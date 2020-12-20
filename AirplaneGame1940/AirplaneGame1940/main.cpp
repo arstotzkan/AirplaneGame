@@ -26,12 +26,12 @@ void update(float ms)
 
 int main()
 {
-    graphics::createWindow(500, 900, "Hello World");
+    graphics::createWindow(500, 1000, "Hello World");
 
     graphics::setDrawFunction(draw);
     graphics::setUpdateFunction(update);
 
-    graphics::setCanvasSize(500, 900);
+    graphics::setCanvasSize(500, 1000);
     graphics::setCanvasScaleMode(graphics::CANVAS_SCALE_FIT);
 
     graphics::Brush br;

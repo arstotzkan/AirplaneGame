@@ -9,6 +9,7 @@
 #include "Explosion.h"
 #include <list> 
 #include <iterator> 
+#include <string>
 
 class Game
 {
@@ -21,6 +22,7 @@ private:
 	Background* background;
 	int state;
 	float lastStateChange = 0.0f;
+	int score;
 	/*
 	* state 1: start menu
 	* state 2: introduction

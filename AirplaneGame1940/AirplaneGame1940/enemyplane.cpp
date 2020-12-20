@@ -42,7 +42,7 @@ bool EnemyPlane::isDestroyed(std::list <Projectile>& projectileList, std::list <
 		float distance = std::pow(iter->getX() - x, 2);
 		distance += std::pow(iter->getY() - y, 2);
 		distance = std::pow(distance, 0.5);
-		if (iter->wasThrownByPlayer() && min_distance > distance && y >= 0 )
+		if (iter->wasThrownByPlayer() && min_distance > distance && y >= 100 )
 		{
 			Explosion* temp = new Explosion(x, y);
 			expList.push_back(*temp);
