@@ -1,4 +1,5 @@
 #include "enemyplane.h"
+#include <string>
 
 EnemyPlane::EnemyPlane(int lvl, float  x , float y ) : Airplane(lvl , 66 , x , y)
 {
@@ -10,9 +11,11 @@ void EnemyPlane::draw()
 	graphics::Brush br;
 	graphics::setOrientation(0);
 
-	br.texture = "assets/plane2.png";
+	std::string img = "assets/plane" + std::to_string(level) + ".png";
+	br.texture = img;
 	br.outline_opacity = 0.0f;
 	graphics::drawRect(x, y, width, height, br);
+
 }
 
 void EnemyPlane::update(std::list <Projectile>& projectileList)
