@@ -1,7 +1,5 @@
 #include "playerplane.h"
 
-
-
 PlayerPlane::PlayerPlane() : Airplane::Airplane(1, 125,  250, 900)
 {
 	lifes = 3;
