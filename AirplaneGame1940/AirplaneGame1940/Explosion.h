@@ -2,6 +2,8 @@
 
 #include <iostream>
 #include "graphics.h"
+#include <list>
+#include <iterator>
 
 class Explosion {
 	protected:

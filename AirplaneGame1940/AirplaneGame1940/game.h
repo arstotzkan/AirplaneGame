@@ -6,6 +6,7 @@
 #include "playerPlane.h"
 #include "Factory.h"
 #include "background.h"
+#include "Explosion.h"
 #include <list> 
 #include <iterator> 
 
@@ -15,6 +16,7 @@ private:
 	PlayerPlane* square;
 	std::list <Projectile> projList;
 	std::list <EnemyPlane> enList;
+	std::list <Explosion> exList;
 	Factory* enemyCreator;
 	Background* background;
 	int state;
