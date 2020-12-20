@@ -34,6 +34,7 @@ void PlayerPlane::update(std::list <Projectile>  &projectileList)
 
 	if (graphics::getKeyState(graphics::SCANCODE_SPACE) && (graphics::getGlobalTime() - lastShot > 100.0f ) )
 	{
+		graphics::playSound("assets/shot.mp3", 0.5f);
 		lastShot = graphics::getGlobalTime();
 		Projectile* arr = new Projectile(true, x , y - height);
 		projectileList.push_back(*arr);
@@ -70,6 +71,7 @@ bool PlayerPlane::isDestroyed(std::list <Projectile>& projectileList, std::list 
 		{
 			Explosion* temp = new Explosion(x,y);
 			expList.push_back(*temp);
+			graphics::playSound("assets/explosion.mp3", 0.5f);
 			delete temp;
 			temp = nullptr;
 			//--lifes;
