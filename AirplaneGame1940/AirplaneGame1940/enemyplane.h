@@ -2,6 +2,7 @@
 #include <list>
 #include "airplane.h"
 #include "projectile.h"
+#include "Explosion.h"
 #include <list> 
 #include <iterator> 
 #include "graphics.h"
@@ -15,6 +16,6 @@ public:
 	void draw();
 	void update(std::list <Projectile>& projectileList);
 	bool borderCheck();
-	bool isDestroyed(std::list <Projectile>& projectileList);
+	bool isDestroyed(std::list <Projectile>& projectileList, std::list <Explosion>& expList);
 	virtual ~EnemyPlane() {}
 };

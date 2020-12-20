@@ -57,7 +57,7 @@ bool PlayerPlane::borderCheck()
 	return false;
 }
 
-bool PlayerPlane::isDestroyed(std::list <Projectile>& projectileList, std::list <EnemyPlane>& enemyList)
+bool PlayerPlane::isDestroyed(std::list <Projectile>& projectileList, std::list <EnemyPlane>& enemyList , std::list <Explosion>& expList)
 {
 	std::list <Projectile> ::iterator iter;
 	for (iter = projectileList.begin(); iter != projectileList.end(); ++iter)
@@ -68,6 +68,11 @@ bool PlayerPlane::isDestroyed(std::list <Projectile>& projectileList, std::list 
 		distance = std::pow(distance, 0.5);
 		if (!(iter->wasThrownByPlayer()) && min_distance > distance)
 		{
+			Explosion* temp = new Explosion(x,y);
+			expList.push_back(*temp);
+			delete temp;
+			temp = nullptr;
+
 			projectileList.erase(iter);
 			return true;
 		}
@@ -82,6 +87,11 @@ bool PlayerPlane::isDestroyed(std::list <Projectile>& projectileList, std::list 
 		distance = std::pow(distance, 0.5);
 		if (min_distance > distance)
 		{
+			Explosion* temp = new Explosion(x, y);
+			expList.push_back(*temp);
+			delete temp;
+			temp = nullptr;
+
 			enemyList.erase(iter1);
 			return true;
 		}

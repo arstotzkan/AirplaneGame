@@ -49,6 +49,11 @@ void Game::draw()
 				it1->draw();
 			}
 
+			std::list <Explosion> ::iterator it2;
+			for (it2 = exList.begin(); it2 != exList.end(); ++it2)
+			{
+				it2->draw();
+			}
 
 
 			break;
@@ -112,7 +117,7 @@ void Game::update(float ms)
 			for (it1 = enList.begin(); it1 != enList.end();)
 			{
 				it1->update(projList);
-				if (it1->borderCheck() || it1->isDestroyed(projList))
+				if (it1->borderCheck() || it1->isDestroyed(projList, exList))
 				{
 					it1 = enList.erase(it1);
 				}
@@ -123,13 +128,18 @@ void Game::update(float ms)
 
 
 			std::list <Explosion> ::iterator it2;
-			for (it2 = exList.begin(); it2 != exList.end(); ++it1)
+			for (it2 = exList.begin(); it2 != exList.end();)
 			{
-				if (ex.counter == x)
-					exList.erase(it2);
+				it2->update();
+
+				if (it2->shouldBeDestroyed())
+					it2 = exList.erase(it2);
+
+				else
+					++it2;
 			}
 
-			if (square->isDestroyed(projList, enList))		
+			if (square->isDestroyed(projList, enList, exList))		
 			{
 				square->removeLife();
 				if (square->getLifes() > 0)
