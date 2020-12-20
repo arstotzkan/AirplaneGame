@@ -2,7 +2,7 @@
 
 Game::Game()
 {
-	state = 4; 
+	state = 1; 
 	square = new PlayerPlane();
 	projList;
 	enList;
@@ -16,6 +16,9 @@ void Game::draw()
 	{
 		case 1:
 		{
+			graphics::Brush br;
+			graphics::setFont("assets/orange juice 2.0.ttf");
+			graphics::drawText(250,450,25, "PRESS ENTER TO PLAY", br);
 			//starting menu
 			break;
 		}
@@ -68,6 +71,8 @@ void Game::update(float ms)
 		case 1:
 		{
 			//starting menu
+			if (graphics::getKeyState(graphics::SCANCODE_KP_ENTER))
+				state = 4;
 			break;
 		}
 		case 2:
@@ -120,7 +125,7 @@ void Game::update(float ms)
 				if (square->getLifes() > 0)
 					initialize();
 				else
-					setState(6);
+					state = 6;
 			}
 
 			break;
