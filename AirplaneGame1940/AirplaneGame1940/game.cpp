@@ -28,7 +28,9 @@ void Game::draw()
 			br.fill_color[1] = 1.0f;
 			br.fill_color[2] = 1.0f;
 			graphics::setFont("assets/fonts/Gill Sans.otf");
-			graphics::drawText(150, 450, 25, "PRESS SPACE TO PLAY", br);
+			graphics::drawText(150, 150, 25, "PRESS I TO PLAY", br);
+			//graphics::drawText(150, 300, 25, "PRESS O TO PLAY", br);
+			graphics::drawText(150, 450, 25, "PRESS P FOR CREDITS", br);
 			
 			break;
 		}
@@ -38,8 +40,34 @@ void Game::draw()
 			break;
 		}
 		case 2:
-		{
+		{	
 			//credits
+			graphics::Brush br;
+			br.fill_color[0] = 1.0f;
+			br.fill_color[1] = 1.0f;
+			br.fill_color[2] = 1.0f;
+
+			for (int i = 0; i < subStateCounter1; i++)
+			{
+				std::string temp = getLineFromText(i, "assets/credits.txt");
+				graphics::setFont("assets/fonts/Gill Sans.otf");
+				graphics::drawText(50, 50 *(i + 1), 18, temp, br);
+			}
+			
+			std::string text = getLineFromText(subStateCounter1, "assets/credits.txt");
+
+			int minimum = std::min(subStateCounter2 / 3, (int)text.length());
+		
+			graphics::setFont("assets/fonts/Gill Sans.otf");
+
+			graphics::drawText(50 , 50 * (subStateCounter1 + 1) , 18, text.substr(0, minimum), br);
+
+			if (subStateCounter2 / 3 == (int)text.length() && subStateCounter1 < 5)
+			{
+				subStateCounter1++;
+				subStateCounter2 = 0;
+			}
+
 			break;
 		}
 		case 3:
@@ -159,9 +187,14 @@ void Game::update(float ms)
 			case 0:
 			{
 				//starting menu
-				if (graphics::getKeyState(graphics::SCANCODE_SPACE))
+				if (graphics::getKeyState(graphics::SCANCODE_I))
 				{
 					setState(3);
+				}
+
+				if (graphics::getKeyState(graphics::SCANCODE_P))
+				{
+					setState(2);
 				}
 				break;
 			}
@@ -172,13 +205,18 @@ void Game::update(float ms)
 			}
 			case 2:
 			{
-				//credits
+				if (graphics::getKeyState(graphics::SCANCODE_BACKSPACE))
+				{
+					setState(0);
+				}
+
+				subStateCounter2++;
 				break;
 			}
 			case 3:
 			{
 				subStateCounter2++;
-				if (graphics::getKeyState(graphics::SCANCODE_SPACE))
+				if (graphics::getKeyState(graphics::SCANCODE_RETURN))
 				{
 					subStateCounter1++;
 					subStateCounter2 = 0;
@@ -262,7 +300,7 @@ void Game::update(float ms)
 			case 5:
 			{
 				subStateCounter1++;
-				if (graphics::getKeyState(graphics::SCANCODE_SPACE))
+				if (graphics::getKeyState(graphics::SCANCODE_RETURN))
 				{
 					setState(0);
 				}
@@ -271,7 +309,7 @@ void Game::update(float ms)
 			case 6:
 			{
 				subStateCounter1++;
-				if (graphics::getKeyState(graphics::SCANCODE_SPACE))
+				if (graphics::getKeyState(graphics::SCANCODE_RETURN))
 				{
 					setState(0);
 				}
