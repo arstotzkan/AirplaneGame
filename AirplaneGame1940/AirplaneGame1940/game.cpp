@@ -32,9 +32,10 @@ void Game::draw()
 			br.fill_color[0] = 1.0f;
 			br.fill_color[1] = 1.0f;
 			br.fill_color[2] = 1.0f;
-			graphics::setFont("assets/fonts/Gill Sans.otf");
+			graphics::setFont("assets/fonts/Gill Sans Bold.otf");
 			graphics::drawText(50, 50, 60, "DAY OF THE EAGLE", br);
 
+			graphics::setFont("assets/fonts/Gill Sans.otf");
 			for (int i = 0; i <= 2; i++)
 			{
 				br.fill_color[0] = 1.0f;
