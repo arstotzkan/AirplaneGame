@@ -2,7 +2,7 @@
 
 PlayerPlane::PlayerPlane() : Airplane::Airplane(1, 125,  250, 900)
 {
-	lifes = 3;
+	lifes = 1;
 	lastShot = 0.0f;
 }
 

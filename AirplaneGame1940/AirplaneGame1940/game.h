@@ -21,6 +21,8 @@ private:
 	Factory* enemyCreator;
 	Background* background;
 	int state;
+	int subStateCounter1;
+	int subStateCounter2;
 	float lastStateChange = 0.0f;
 	int score;
 	/*
