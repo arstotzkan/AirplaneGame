@@ -297,6 +297,7 @@ void Game::update(float ms)
 				
 				if (graphics::getKeyState(graphics::SCANCODE_LEFT))
 				{
+					graphics::playSound("assets/sound/button.mp3", 0.33f * soundEffects);
 					switch (subStateCounter1)
 					{
 						case 0:
