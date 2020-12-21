@@ -10,6 +10,7 @@
 #include <list> 
 #include <iterator> 
 #include <string>
+#include <algorithm>
 
 class Game
 {
@@ -42,3 +43,5 @@ public:
 	virtual ~Game();
 	void initialize(bool fromScratch);
 };
+
+std::string getLineFromText(int x, const char* file_name);

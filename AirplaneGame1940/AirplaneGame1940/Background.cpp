@@ -1,6 +1,6 @@
 #include "background.h"
 
-Background::Background() : Entity::Entity(250, 0, 15, 500, 2400) //we'll need to make it bigger later
+Background::Background() : Entity::Entity(300, 0, 15, 600, 2400) //we'll need to make it bigger later
 {
 
 }

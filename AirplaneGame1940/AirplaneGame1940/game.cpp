@@ -1,4 +1,6 @@
 #include "game.h"
+#include <fstream>
+#include <iostream>
 
 Game::Game()
 {
@@ -42,7 +44,23 @@ void Game::draw()
 		}
 		case 3:
 		{
-			//intro
+			std::string text = getLineFromText(subStateCounter1, "assets/story.txt");
+			std::string img = "assets/events/intro" + std::to_string(subStateCounter1 + 1) + ".png";
+
+			graphics::Brush br;
+			br.fill_color[0] = 1.0f;
+			br.fill_color[1] = 1.0f;
+			br.fill_color[2] = 1.0f;
+			br.texture = img;
+			graphics::drawRect(300, 200, 400, 250, br);
+
+			br.fill_color[0] = 1.0f;
+			br.fill_color[1] = 1.0f;
+			br.fill_color[2] = 1.0f;
+			int minimum = std::min(subStateCounter2 / 3, (int) text.length());
+
+			graphics::setFont("assets/fonts/Gill Sans.otf");
+			graphics::drawText(50, 400, 18, text.substr(0, minimum), br);
 			break;
 		}
 		case 4:
@@ -72,7 +90,7 @@ void Game::draw()
 			br.fill_color[0] = 0.0f;
 			br.fill_color[1] = 0.0f;
 			br.fill_color[2] = 0.0f;
-			graphics::drawRect(250, 50, 500, 100, br);
+			graphics::drawRect(300, 50, 600, 100, br);
 
 			//graphics::Brush br;
 			br.fill_color[0] = 1.0f;
@@ -97,12 +115,14 @@ void Game::draw()
 
 			graphics::Brush br1;
 			br1.texture = "assets/events/victory.png";
-			graphics::drawRect(250, 300, 400, 250, br1);
+			graphics::drawRect(300, 300, 400, 250, br1);
 
 			br.fill_color[0] = 1.0f;
 			br.fill_color[1] = 1.0f;
 			br.fill_color[2] = 1.0f;
-			graphics::drawText(50, 800, 20, "Never was so much owed by so many to so few", br);
+			std::string quote = "Never was so much owed by so many to so few.";
+			int minimum = std::min(subStateCounter1 / 3, (int)quote.length() );
+			graphics::drawText(50, 600, 20, quote.substr(0, minimum), br);
 			break;
 		}
 		case 6:
@@ -117,12 +137,14 @@ void Game::draw()
 			
 			//graphics::Brush br;
 			br.texture = "assets/events/defeat.png";
-			graphics::drawRect(250, 300, 400, 250, br);
+			graphics::drawRect(300, 300, 400, 250, br);
 
 			br.fill_color[0] = 1.0f;
 			br.fill_color[1] = 1.0f;
 			br.fill_color[2] = 1.0f;
-			graphics::drawText(50, 800, 20, "We shall never surrender!", br);
+			std::string quote = "We shall never surrender!";
+			int minimum = std::min(subStateCounter1 / 3, (int) quote.length());
+			graphics::drawText(50, 600, 20, quote.substr(0, minimum), br);
 			break;
 		}
 	}
@@ -139,9 +161,7 @@ void Game::update(float ms)
 				//starting menu
 				if (graphics::getKeyState(graphics::SCANCODE_SPACE))
 				{
-					state = 4;
-					initialize(true);
-					lastStateChange = graphics::getGlobalTime();
+					setState(3);
 				}
 				break;
 			}
@@ -157,7 +177,18 @@ void Game::update(float ms)
 			}
 			case 3:
 			{
-				//intro
+				subStateCounter2++;
+				if (graphics::getKeyState(graphics::SCANCODE_SPACE))
+				{
+					subStateCounter1++;
+					subStateCounter2 = 0;
+					lastStateChange = graphics::getGlobalTime();
+					if (subStateCounter1 == 7)
+					{
+						setState(4);
+						initialize(true);
+					}
+				}
 				break;
 			}
 
@@ -216,14 +247,13 @@ void Game::update(float ms)
 						initialize(false);
 					else
 					{
-						state = 6;
-						lastStateChange = graphics::getGlobalTime();
+						setState(6);
 					}
 				}
 
 				if (background->getY() >= 1200)
 				{
-					state = 5;
+					setState(5);
 					lastStateChange = graphics::getGlobalTime();
 				}
 
@@ -231,19 +261,19 @@ void Game::update(float ms)
 			}
 			case 5:
 			{
+				subStateCounter1++;
 				if (graphics::getKeyState(graphics::SCANCODE_SPACE))
 				{
-					state = 0;
-					lastStateChange = graphics::getGlobalTime();
+					setState(0);
 				}
 				break;
 			}
 			case 6:
 			{
+				subStateCounter1++;
 				if (graphics::getKeyState(graphics::SCANCODE_SPACE))
 				{
-					state = 0;
-					lastStateChange = graphics::getGlobalTime();
+					setState(0);
 				}
 				break;
 			}
@@ -254,6 +284,9 @@ void Game::update(float ms)
 void Game::setState(int x)
 {
 	state = x;
+	subStateCounter1 = 0;
+	subStateCounter2 = 0;
+	lastStateChange = graphics::getGlobalTime();
 }
 
 Game::~Game()
@@ -271,11 +304,32 @@ void Game::initialize(bool fromScratch)
 		background = new Background();
 		score = 0;
 	}
-	else
-	{
-		square->setX(250);
-		square->setY(800);
-	}
+
+	square->setX(300);
+	square->setY(900);
 	projList.clear();
 	enList.clear();
+}
+
+
+
+
+std::string getLineFromText(int x, const char* file_name)
+{
+	std::string line;
+	std::ifstream file(file_name);
+	int i = 0;
+	if (!file.is_open())
+	{
+		std::cout << "ERROR" << std::endl;
+	}
+	else
+	{
+		while (std::getline(file, line) && i < x)
+		{
+			i++;
+		}
+		file.close();
+		return line;
+	}
 }
