@@ -27,7 +27,8 @@ private:
 	int subStateCounter2;
 	float lastStateChange = 0.0f;
 	int score;
-	int volume;
+	bool music;
+	bool soundEffects;
 	int playerLifes;
 	/*
 	* state 1: start menu

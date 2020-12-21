@@ -33,7 +33,7 @@ bool EnemyPlane::borderCheck()
 		return false;
 }
 
-bool EnemyPlane::isDestroyed(std::list <Projectile>& projectileList, std::list <Explosion>& expList, int vol)
+bool EnemyPlane::isDestroyed(std::list <Projectile>& projectileList, std::list <Explosion>& expList, bool vol)
 {
 	std::list <Projectile> ::iterator iter;
 	for (iter = projectileList.begin(); iter != projectileList.end(); ++iter)

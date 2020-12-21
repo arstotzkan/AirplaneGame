@@ -20,9 +20,9 @@ public:
 	void draw();
 	int getLifes() { return lifes; };
 	void removeLife() { lifes--;};
-	void update(std::list <Projectile> &projectileList, int vol);
+	void update(std::list <Projectile> &projectileList, bool vol);
 	bool borderCheck();
-	bool isDestroyed(std::list <Projectile>& projectileList, std::list <EnemyPlane>& enemyList, std::list <Explosion>& expList , int vol);
+	bool isDestroyed(std::list <Projectile>& projectileList, std::list <EnemyPlane>& enemyList, std::list <Explosion>& expList , bool vol);
 	virtual ~PlayerPlane() {}
 
 

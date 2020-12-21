@@ -1,8 +1,7 @@
 #include "background.h"
 
-Background::Background() : Entity::Entity(300, 0, 15, 600, 2400) //we'll need to make it bigger later
+Background::Background() : Entity::Entity(300,-6500, 15, 600, 15000)
 {
-
 }
 
 void Background::draw()
@@ -23,5 +22,5 @@ void Background::update()
 
 bool Background::borderCheck()
 {
-	return false;
+	return (y >= 7500);
 }

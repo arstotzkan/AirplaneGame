@@ -23,7 +23,7 @@ void PlayerPlane::draw()
 	graphics::drawRect(x, y, width ,height, br);
 }
 
-void PlayerPlane::update(std::list <Projectile>  &projectileList , int vol)
+void PlayerPlane::update(std::list <Projectile>  &projectileList , bool vol)
 {
 	if (graphics::getKeyState(graphics::SCANCODE_W) || graphics::getKeyState(graphics::SCANCODE_UP))
 		y -= velocity * graphics::getDeltaTime() / 333;
@@ -62,7 +62,7 @@ bool PlayerPlane::borderCheck()
 	return false;
 }
 
-bool PlayerPlane::isDestroyed(std::list <Projectile>& projectileList, std::list <EnemyPlane>& enemyList , std::list <Explosion>& expList, int vol)
+bool PlayerPlane::isDestroyed(std::list <Projectile>& projectileList, std::list <EnemyPlane>& enemyList , std::list <Explosion>& expList, bool vol)
 {
 	std::list <Projectile> ::iterator iter;
 	for (iter = projectileList.begin(); iter != projectileList.end(); ++iter)
