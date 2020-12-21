@@ -37,33 +37,3 @@ bool Projectile::wasThrownByPlayer()
 {
 	return thrownByPlayer;
 }
-
-/*
-bool Projectile::isDestroyed(std::list <EnemyPlane>& enemyList, PlayerPlane *pp)
-{
-	std::list <EnemyPlane> ::iterator iter;
-	for (iter = enemyList.begin(); iter != enemyList.end(); ++iter)
-	{
-		float min_distance = iter->distanceToCorner() + distanceToCorner();
-		float distance = std::pow(iter->getX() - x, 2);
-		distance += std::pow(iter->getY() - y, 2);
-		distance = std::pow(distance, 0.5);
-		if (wasThrownByPlayer() && min_distance > distance)
-		{
-			return true;
-		}
-	}
-
-	float min_distance = pp->distanceToCorner() + distanceToCorner();
-	float distance = std::pow(pp->getX() - x, 2);
-	distance += std::pow(pp->getY() - y, 2);
-	distance = std::pow(distance, 0.5);
-	if ( !(wasThrownByPlayer()) && min_distance > distance)
-	{
-		return true;
-	}
-
-	return false;
-
-}
-*/

@@ -11,6 +11,7 @@
 #include <iterator> 
 #include <string>
 #include <algorithm>
+#include <cmath>
 
 class Game
 {
@@ -26,6 +27,8 @@ private:
 	int subStateCounter2;
 	float lastStateChange = 0.0f;
 	int score;
+	int volume;
+	int playerLifes;
 	/*
 	* state 1: start menu
 	* state 2: introduction

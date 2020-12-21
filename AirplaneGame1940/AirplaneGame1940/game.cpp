@@ -14,6 +14,9 @@ Game::Game()
 	enemyCreator = new Factory();
 	background = new Background();
 	score = 0;
+
+	volume = 1;
+	playerLifes = 3;
 }
 
 void Game::draw()
@@ -23,20 +26,91 @@ void Game::draw()
 		case 0:
 		{
 			//starting menu
+			std::string options[3] = { "PLAY", "SETTINGS", "CREDITS" };
 			graphics::Brush br;
 			br.fill_color[0] = 1.0f;
 			br.fill_color[1] = 1.0f;
 			br.fill_color[2] = 1.0f;
 			graphics::setFont("assets/fonts/Gill Sans.otf");
-			graphics::drawText(150, 150, 25, "PRESS I TO PLAY", br);
-			//graphics::drawText(150, 300, 25, "PRESS O TO PLAY", br);
-			graphics::drawText(150, 450, 25, "PRESS P FOR CREDITS", br);
-			
+			graphics::drawText(50, 50, 60, "DAY OF THE EAGLE", br);
+
+			for (int i = 0; i <= 2; i++)
+			{
+				br.fill_color[0] = 1.0f;
+				br.fill_color[1] = 1.0f;
+				br.fill_color[2] = 1.0f;
+
+				if (i == subStateCounter1)
+				{
+					graphics::drawRect(200, 225 + (100 * i), 400, 100, br );
+
+					br.fill_color[0] = 0.0f;
+					br.fill_color[1] = 0.0f;
+					br.fill_color[2] = 0.0f;
+				}				
+				graphics::drawText(50, 250 + (100 * i), 30, options[i], br);
+			}
 			break;
 		}
 		case 1:
 		{
 			//settings
+			graphics::Brush br;
+			br.fill_color[0] = 1.0f;
+			br.fill_color[1] = 1.0f;
+			br.fill_color[2] = 1.0f;
+			graphics::setFont("assets/fonts/Gill Sans.otf");
+			graphics::drawText(50, 50, 45, "SETTINGS:", br);
+
+			if (subStateCounter1 == 0)
+			{
+				br.fill_color[0] = 1.0f;
+				br.fill_color[1] = 1.0f;
+				br.fill_color[2] = 1.0f;
+
+				graphics::drawRect(200, 225, 1000, 100, br);
+
+				br.fill_color[0] = 0.0f;
+				br.fill_color[1] = 0.0f;
+				br.fill_color[2] = 0.0f;
+
+				graphics::drawText(50, 250, 30, "SOUND", br);
+				if (volume == 1)
+					graphics::drawText(350, 250, 30, "YES", br);
+				else
+					graphics::drawText(350, 250, 30, "NO", br);
+
+				br.fill_color[0] = 1.0f;
+				br.fill_color[1] = 1.0f;
+				br.fill_color[2] = 1.0f;
+
+				graphics::drawText(50, 350, 30, "LIFES", br);
+				graphics::drawText(350, 350, 30, std::to_string(playerLifes), br);
+
+			}
+
+			else
+			{
+				br.fill_color[0] = 1.0f;
+				br.fill_color[1] = 1.0f;
+				br.fill_color[2] = 1.0f;
+
+				graphics::drawText(50, 250, 30, "SOUND", br);
+				if (volume == 1)
+					graphics::drawText(350, 250, 30, "YES", br);
+				else
+					graphics::drawText(350, 250, 30, "NO", br);
+
+				graphics::drawRect(200, 325, 1000, 100, br);
+
+				br.fill_color[0] = 0.0f;
+				br.fill_color[1] = 0.0f;
+				br.fill_color[2] = 0.0f;
+
+				graphics::drawText(50, 350, 30, "LIFES", br);
+				graphics::drawText(350, 350, 30, std::to_string(playerLifes), br);
+
+			}
 			break;
 		}
 		case 2:
@@ -180,33 +254,101 @@ void Game::draw()
 
 void Game::update(float ms)
 {
-	if (graphics::getGlobalTime() - lastStateChange > 300.0f)
+	if (graphics::getGlobalTime() - lastStateChange > 200.0f)
 	{
 		switch (state)
 		{
 			case 0:
 			{
 				//starting menu
-				if (graphics::getKeyState(graphics::SCANCODE_I))
+				if (graphics::getKeyState(graphics::SCANCODE_UP) && subStateCounter1 > 0)
 				{
-					setState(3);
+					subStateCounter1--;
+					graphics::playSound("assets/sound/button.mp3", 0.33f * volume);
+					lastStateChange = graphics::getGlobalTime();
 				}
 
-				if (graphics::getKeyState(graphics::SCANCODE_P))
+				if (graphics::getKeyState(graphics::SCANCODE_DOWN) && subStateCounter1 < 2)
 				{
-					setState(2);
+					subStateCounter1++;
+					graphics::playSound("assets/sound/button.mp3", 0.33f * volume);
+					lastStateChange = graphics::getGlobalTime();
+				}
+
+				if (graphics::getKeyState(graphics::SCANCODE_RETURN))
+				{
+					graphics::playSound("assets/sound/button.mp3", 0.33f * volume);
+					if (subStateCounter1 != 0)
+						setState(subStateCounter1);
+					else
+						setState(3);
+					lastStateChange = graphics::getGlobalTime();
 				}
 				break;
 			}
 			case 1:
 			{
 				//settings
+				if (graphics::getKeyState(graphics::SCANCODE_BACKSPACE))
+				{
+					graphics::playSound("assets/sound/button.mp3", 0.33f * volume);
+					setState(0);
+				}
+
+				if (graphics::getKeyState(graphics::SCANCODE_UP))
+				{
+					graphics::playSound("assets/sound/button.mp3", 0.33f * volume);
+					subStateCounter1 = 0;
+					lastStateChange = graphics::getGlobalTime();
+				}
+
+				if (graphics::getKeyState(graphics::SCANCODE_DOWN))
+				{
+					graphics::playSound("assets/sound/button.mp3", 0.33f * volume);
+					subStateCounter1 = 1;
+					lastStateChange = graphics::getGlobalTime();
+				}
+
+				if (graphics::getKeyState(graphics::SCANCODE_LEFT))
+				{
+					graphics::playSound("assets/sound/button.mp3", 0.33f * volume);
+					if (subStateCounter1 == 0)
+					{
+						volume = 0;
+					}
+					else
+					{
+						playerLifes -= 2;
+						playerLifes %= 6;
+						playerLifes = abs(playerLifes);
+						
+					}
+					lastStateChange = graphics::getGlobalTime();
+				}
+
+				if (graphics::getKeyState(graphics::SCANCODE_RIGHT))
+				{
+					graphics::playSound("assets/sound/button.mp3", 0.33f * volume);
+					if (subStateCounter1 == 0)
+					{
+						volume = 1;
+					}
+					else if (playerLifes < 5)
+					{
+						playerLifes += 2;
+						playerLifes %= 6;
+						
+					}
+					lastStateChange = graphics::getGlobalTime();
+				}
+
 				break;
 			}
 			case 2:
 			{
 				if (graphics::getKeyState(graphics::SCANCODE_BACKSPACE))
 				{
+					graphics::playSound("assets/sound/button.mp3", 0.33f * volume);
 					setState(0);
 				}
 
@@ -234,7 +376,7 @@ void Game::update(float ms)
 			{
 				//normal game
 				background->update();
-				square->update(projList);
+				square->update(projList, volume);
 				enemyCreator->update(enList);
 
 				std::list <Projectile> ::iterator it;
@@ -254,7 +396,7 @@ void Game::update(float ms)
 				for (it1 = enList.begin(); it1 != enList.end();)
 				{
 					it1->update(projList);
-					if (it1->borderCheck() || it1->isDestroyed(projList, exList))
+					if (it1->borderCheck() || it1->isDestroyed(projList, exList, volume))
 					{
 						score += it1->getLevel() * 50;
 						it1 = enList.erase(it1);
@@ -278,7 +420,7 @@ void Game::update(float ms)
 						++it2;
 				}
 
-				if (square->isDestroyed(projList, enList, exList))
+				if (square->isDestroyed(projList, enList, exList, volume))
 				{
 					square->removeLife();
 					if (square->getLifes() > 0)
@@ -338,7 +480,7 @@ void Game::initialize(bool fromScratch)
 {
 	if (fromScratch)
 	{
-		square = new PlayerPlane();
+		square = new PlayerPlane(playerLifes);
 		background = new Background();
 		score = 0;
 	}

@@ -2,7 +2,13 @@
 
 PlayerPlane::PlayerPlane() : Airplane::Airplane(1, 125,  250, 900)
 {
-	lifes = 1;
+	lifes = 3;
+	lastShot = 0.0f;
+}
+
+PlayerPlane::PlayerPlane(int l) : Airplane::Airplane(1, 125, 250, 900)
+{
+	lifes = l;
 	lastShot = 0.0f;
 }
 
@@ -17,7 +23,7 @@ void PlayerPlane::draw()
 	graphics::drawRect(x, y, width ,height, br);
 }
 
-void PlayerPlane::update(std::list <Projectile>  &projectileList)
+void PlayerPlane::update(std::list <Projectile>  &projectileList , int vol)
 {
 	if (graphics::getKeyState(graphics::SCANCODE_W) || graphics::getKeyState(graphics::SCANCODE_UP))
 		y -= velocity * graphics::getDeltaTime() / 333;
@@ -32,7 +38,7 @@ void PlayerPlane::update(std::list <Projectile>  &projectileList)
 
 	if (graphics::getKeyState(graphics::SCANCODE_SPACE) && (graphics::getGlobalTime() - lastShot > 100.0f ) )
 	{
-		graphics::playSound("assets/sound/shot.mp3", 0.33f);
+		graphics::playSound("assets/sound/shot.mp3", 0.33f * vol);
 		lastShot = graphics::getGlobalTime();
 		Projectile* arr = new Projectile(true, x , y - height);
 		projectileList.push_back(*arr);
@@ -56,7 +62,7 @@ bool PlayerPlane::borderCheck()
 	return false;
 }
 
-bool PlayerPlane::isDestroyed(std::list <Projectile>& projectileList, std::list <EnemyPlane>& enemyList , std::list <Explosion>& expList)
+bool PlayerPlane::isDestroyed(std::list <Projectile>& projectileList, std::list <EnemyPlane>& enemyList , std::list <Explosion>& expList, int vol)
 {
 	std::list <Projectile> ::iterator iter;
 	for (iter = projectileList.begin(); iter != projectileList.end(); ++iter)
@@ -67,7 +73,7 @@ bool PlayerPlane::isDestroyed(std::list <Projectile>& projectileList, std::list 
 		distance = std::pow(distance, 0.5);
 		if (!(iter->wasThrownByPlayer()) && min_distance > distance)
 		{
-			graphics::playSound("assets/sound/explosion.mp3", 0.33f);
+			graphics::playSound("assets/sound/explosion.mp3", 0.33f * vol);
 			Explosion* temp = new Explosion(x,y);
 			expList.push_back(*temp);
 			delete temp;

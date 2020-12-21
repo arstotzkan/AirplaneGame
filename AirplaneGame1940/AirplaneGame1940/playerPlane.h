@@ -16,12 +16,13 @@ protected:
 	float lastShot;
 public:
 	PlayerPlane();
+	PlayerPlane(int l);
 	void draw();
 	int getLifes() { return lifes; };
 	void removeLife() { lifes--;};
-	void update(std::list <Projectile> &projectileList);
+	void update(std::list <Projectile> &projectileList, int vol);
 	bool borderCheck();
-	bool isDestroyed(std::list <Projectile>& projectileList, std::list <EnemyPlane>& enemyList, std::list <Explosion>& expList );
+	bool isDestroyed(std::list <Projectile>& projectileList, std::list <EnemyPlane>& enemyList, std::list <Explosion>& expList , int vol);
 	virtual ~PlayerPlane() {}
 
 

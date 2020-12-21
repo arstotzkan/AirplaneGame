@@ -16,6 +16,6 @@ public:
 	void draw();
 	void update(std::list <Projectile>& projectileList);
 	bool borderCheck();
-	bool isDestroyed(std::list <Projectile>& projectileList, std::list <Explosion>& expList);
+	bool isDestroyed(std::list <Projectile>& projectileList, std::list <Explosion>& expList, int vol);
 	virtual ~EnemyPlane() {}
 };
