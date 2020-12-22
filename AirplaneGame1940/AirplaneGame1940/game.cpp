@@ -519,6 +519,11 @@ void Game::initialize(bool fromScratch)
 		square = new PlayerPlane(playerLifes);
 		background = new Background();
 		score = 0;
+
+		Explosion* temp = new Explosion(-900, -600); //fixed bug with 1st explosion (some pics would not load immidiately)
+		exList.push_back(*temp);
+		delete temp;
+		temp = nullptr;
 	}
 
 	//square->setX(300);
