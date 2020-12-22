@@ -521,8 +521,8 @@ void Game::initialize(bool fromScratch)
 		score = 0;
 	}
 
-	square->setX(300);
-	square->setY(900);
+	//square->setX(300);
+	//square->setY(900);
 	projList.clear();
 	enList.clear();
 }

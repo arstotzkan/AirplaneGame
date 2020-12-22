@@ -6,7 +6,7 @@ PlayerPlane::PlayerPlane() : Airplane::Airplane(1, 125,  300, 900)
 	lastShot = 0.0f;
 }
 
-PlayerPlane::PlayerPlane(int l) : Airplane::Airplane(1, 125, 250, 900)
+PlayerPlane::PlayerPlane(int l) : Airplane::Airplane(1, 125, 300, 900)
 {
 	lifes = l;
 	lastShot = 0.0f;
