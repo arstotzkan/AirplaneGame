@@ -120,6 +120,9 @@ void Game::draw()
 		
 			graphics::setFont("assets/fonts/Gill Sans.otf");
 
+			if (minimum < (int) text.length())
+				graphics::playSound("assets/sound/typewriter.mp3", 0.25f * soundEffects);
+
 			graphics::drawText(50 , 50 * (subStateCounter1 + 1) , 18, text.substr(0, minimum), br);
 
 			if (subStateCounter2 / 3 == (int)text.length() && subStateCounter1 < 5)
@@ -146,6 +149,9 @@ void Game::draw()
 			br.fill_color[1] = 1.0f;
 			br.fill_color[2] = 1.0f;
 			int minimum = std::min(subStateCounter2 / 3, (int) text.length());
+
+			if (minimum < (int)text.length())
+				graphics::playSound("assets/sound/typewriter.mp3", 0.25f * soundEffects);
 
 			graphics::setFont("assets/fonts/Gill Sans.otf");
 			graphics::drawText(50, 400, 18, text.substr(0, minimum), br);
@@ -205,11 +211,13 @@ void Game::draw()
 			br1.texture = "assets/events/victory.png";
 			graphics::drawRect(300, 300, 400, 250, br1);
 
-			br.fill_color[0] = 1.0f;
-			br.fill_color[1] = 1.0f;
-			br.fill_color[2] = 1.0f;
 			std::string quote = "Never was so much owed by so many to so few.";
+
 			int minimum = std::min(subStateCounter1 / 3, (int)quote.length() );
+
+			if (minimum < (int)quote.length())
+				graphics::playSound("assets/sound/typewriter.mp3", 0.25f * soundEffects);
+
 			graphics::drawText(50, 600, 20, quote.substr(0, minimum), br);
 			break;
 		}
@@ -227,11 +235,13 @@ void Game::draw()
 			br.texture = "assets/events/defeat.png";
 			graphics::drawRect(300, 300, 400, 250, br);
 
-			br.fill_color[0] = 1.0f;
-			br.fill_color[1] = 1.0f;
-			br.fill_color[2] = 1.0f;
 			std::string quote = "We shall never surrender!";
+
 			int minimum = std::min(subStateCounter1 / 3, (int) quote.length());
+
+			if (minimum < (int)quote.length())
+				graphics::playSound("assets/sound/typewriter.mp3", 0.25f * soundEffects);
+
 			graphics::drawText(50, 600, 20, quote.substr(0, minimum), br);
 			break;
 		}
@@ -247,16 +257,24 @@ void Game::update(float ms)
 			case 0:
 			{
 				//starting menu
-				if (graphics::getKeyState(graphics::SCANCODE_UP) && subStateCounter1 > 0)
+				if (graphics::getKeyState(graphics::SCANCODE_UP))
 				{
-					subStateCounter1--;
+					if (subStateCounter1 > 0)
+						subStateCounter1--;
+					else
+						subStateCounter1 = 2;
+
 					graphics::playSound("assets/sound/button.mp3", 0.33f * soundEffects);
 					lastStateChange = graphics::getGlobalTime();
 				}
 
-				if (graphics::getKeyState(graphics::SCANCODE_DOWN) && subStateCounter1 < 2)
+				if (graphics::getKeyState(graphics::SCANCODE_DOWN))
 				{
-					subStateCounter1++;
+					if (subStateCounter1 < 2)
+						subStateCounter1++;
+					else
+						subStateCounter1 = 0;
+
 					graphics::playSound("assets/sound/button.mp3", 0.33f * soundEffects);
 					lastStateChange = graphics::getGlobalTime();
 				}
@@ -281,16 +299,24 @@ void Game::update(float ms)
 					setState(0);
 				}
 
-				if (graphics::getKeyState(graphics::SCANCODE_UP) && subStateCounter1 > 0)
+				if (graphics::getKeyState(graphics::SCANCODE_UP))
 				{
-					subStateCounter1--;
+					if (subStateCounter1 > 0)
+						subStateCounter1--;
+					else
+						subStateCounter1 = 2;
+
 					graphics::playSound("assets/sound/button.mp3", 0.33f * soundEffects);
 					lastStateChange = graphics::getGlobalTime();
 				}
 
-				if (graphics::getKeyState(graphics::SCANCODE_DOWN) && subStateCounter1 < 2)
+				if (graphics::getKeyState(graphics::SCANCODE_DOWN))
 				{
-					subStateCounter1++;
+					if (subStateCounter1 < 2)
+						subStateCounter1++;
+					else
+						subStateCounter1 = 0;
+
 					graphics::playSound("assets/sound/button.mp3", 0.33f * soundEffects);
 					lastStateChange = graphics::getGlobalTime();
 				}
@@ -304,15 +330,18 @@ void Game::update(float ms)
 						{
 							if (playerLifes >= 3)
 								playerLifes -= 2;
+							else
+								playerLifes = 5;
+							break;
 						}
 						case 1:
 						{
-							music = true;
+							music = !(music);
 							break;
 						}
 						case 2:
 						{
-							soundEffects = true;
+							soundEffects = !(soundEffects);
 							break;
 						}
 					}
@@ -330,16 +359,19 @@ void Game::update(float ms)
 						{
 							if (playerLifes <= 3)
 								playerLifes += 2;
+							else
+								playerLifes = 1;
+
 							break;
 						}
 						case 1:
 						{
-							music = false;
+							music = !(music);
 							break;
 						}
 						case 2:
 						{
-							soundEffects = false;
+							soundEffects = !(soundEffects);
 							break;
 						}
 					}
