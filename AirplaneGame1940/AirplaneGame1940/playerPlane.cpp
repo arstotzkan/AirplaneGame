@@ -1,6 +1,6 @@
 #include "playerplane.h"
 
-PlayerPlane::PlayerPlane() : Airplane::Airplane(1, 125,  250, 900)
+PlayerPlane::PlayerPlane() : Airplane::Airplane(1, 125,  300, 900)
 {
 	lifes = 3;
 	lastShot = 0.0f;
@@ -93,12 +93,6 @@ bool PlayerPlane::isDestroyed(std::list <Projectile>& projectileList, std::list 
 		distance = std::pow(distance, 0.5);
 		if (min_distance > distance)
 		{
-			Explosion* temp = new Explosion(x, y);
-			expList.push_back(*temp);
-			delete temp;
-			temp = nullptr;
-
-			enemyList.erase(iter1);
 			return true;
 		}
 	}
