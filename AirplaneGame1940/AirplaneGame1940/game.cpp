@@ -4,8 +4,7 @@
 
 Game::Game()
 {
-	state = 4; 
-	state = 4; 
+	state = 0; 
 	subStateCounter1 = 0;
 	subStateCounter2 = 0;
 
