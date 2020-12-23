@@ -48,7 +48,7 @@ void Game::draw()
 			br.fill_color[2] = 1.0f;
 			graphics::setFont("assets/fonts/Gill Sans.otf");
 			std::string txt = "LOADING...";
-			graphics::drawText(230, 300, 30, txt.substr(0, 7 + (subStateCounter1 / 15) % 3) ,br);
+			graphics::drawText(230, 300, 30, txt.substr(0, 7 + (subStateCounter1 / 25 ) % 4) ,br);
 			break;
 		}
 
@@ -125,6 +125,9 @@ void Game::draw()
 				graphics::drawText(350, 250 + (100 * i), 30, setup[i], br);
 			}
 
+			br.fill_color[0] = 1.0f;
+			br.fill_color[1] = 1.0f;
+			br.fill_color[2] = 1.0f;
 			graphics::drawText(50, 900, 12, "BACKSPACE: GO BACK , ENTER: SKIP", br);
 			break;
 		}
@@ -541,6 +544,14 @@ void Game::update(float ms)
 				//normal game
 				background->update();
 				squadron->update(projList, upList,  soundEffects);
+
+				if (squadron->getLevel() > 4)
+				{
+					squadron->setLevel(4);
+					playerLifes++;
+				}
+
+
 				enemyCreator->update(enList, upList);
 
 				std::list <Projectile> ::iterator it;

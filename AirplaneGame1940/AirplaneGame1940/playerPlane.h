@@ -12,8 +12,7 @@
 
 class PlayerPlane : public Airplane
 {
-protected:
-	float lastShot;
+
 public:
 	PlayerPlane();
 	PlayerPlane(float x, float y);

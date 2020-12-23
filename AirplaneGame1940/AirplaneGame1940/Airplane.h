@@ -8,6 +8,7 @@ class Airplane : public Entity
 {
 protected:
 	int level;
+	float lastShot;
 public:
 	Airplane(int lvl, float vel, float x, float y, float size);
 	virtual ~Airplane() {}

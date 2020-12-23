@@ -44,13 +44,14 @@ void EnemyPlane::update(std::list <Projectile>& projectileList,bool vol)
 		case 2:
 		{
 			y += velocity * graphics::getDeltaTime() / 333;
-			if (r % 240 == 1)
+			if (r % 240 == 1 && (graphics::getGlobalTime() - lastShot > 100.0f))
 			{
 				graphics::playSound("assets/sound/shot.mp3", 0.33f * vol);
 				Projectile* arr = new Projectile(false, x, y + height);
 				projectileList.push_back(*arr);
 				delete arr;
 				arr = nullptr;
+				lastShot = graphics::getGlobalTime();
 			}
 			break;
 		}
@@ -62,20 +63,21 @@ void EnemyPlane::update(std::list <Projectile>& projectileList,bool vol)
 		case 4:
 		{
 			y += velocity * graphics::getDeltaTime() / 400;
-			if (r % 180 == 1)
+			if (r % 180 == 1 && (graphics::getGlobalTime() - lastShot > 150.0f) )
 			{
 				graphics::playSound("assets/sound/shot.mp3", 0.33f * vol);
 				Projectile* arr = new Projectile(false, x, y + height);
 				projectileList.push_back(*arr);
 				delete arr;
 				arr = nullptr;
+				lastShot = graphics::getGlobalTime();
 			}
 			break;
 		}
 		case 5:
 		{
 			y -= velocity * graphics::getDeltaTime() / 500;
-			if (r % 120 == 1 )
+			if (r % 120 == 1 && (graphics::getGlobalTime() - lastShot > 150.0f) )
 			{
 				graphics::playSound("assets/sound/shot.mp3", 0.33f * vol);
 				Projectile* arr = new Projectile(false, x, y + height);
@@ -90,6 +92,7 @@ void EnemyPlane::update(std::list <Projectile>& projectileList,bool vol)
 				arr = nullptr;
 				arr1 = nullptr;
 				arr2 = nullptr;
+				lastShot = graphics::getGlobalTime();
 			}
 			break;
 		}

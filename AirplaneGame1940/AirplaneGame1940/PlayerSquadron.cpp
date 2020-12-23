@@ -32,7 +32,7 @@ void PlayerSquadron::draw()
 
 void PlayerSquadron::update(std::list <Projectile>& projectileList, std::list <PowerUp> &upgradeList,  bool vol)
 {
-
+	std::cout << level << std::endl;
 	lead->update(projectileList, vol);
 
 	if (leftExists)
@@ -151,10 +151,10 @@ void PlayerSquadron::upgrade(std::list <PowerUp>& upgradeList, bool vol)
 				break;
 			}
 
+
 		}
 
-		if (level < 4)
-			level++;
+		level++;
 	}
 
 }

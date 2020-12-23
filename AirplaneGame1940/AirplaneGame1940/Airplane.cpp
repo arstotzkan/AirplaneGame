@@ -6,4 +6,5 @@
 Airplane::Airplane(int lvl, float vel, float x, float y, float size) : Entity::Entity(x, y, vel, size, size)
 {
 	level = lvl;
+	float lastShot;
 }

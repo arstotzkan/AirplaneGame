@@ -21,6 +21,7 @@ public:
 	void upgrade(std::list <PowerUp>& upgradeList, bool vol);
 	void borderCheck();
 	int getLevel() { return level; };
+	void setLevel(int x) { level = x; };
 
 	bool isDestroyed(std::list <Projectile>& projectileList, std::list <EnemyPlane>& enemyList, std::list <Explosion>& expList, bool vol);
 	virtual ~PlayerSquadron();

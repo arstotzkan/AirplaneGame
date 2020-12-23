@@ -2,14 +2,13 @@
 
 PlayerPlane::PlayerPlane() : Airplane::Airplane(1, 125,  300, 900, 60.0f)
 {
-	lastShot = 0.0f;
 
 }
 
 
 PlayerPlane::PlayerPlane(float x, float y) : Airplane::Airplane(1, 125, x, y, 66.0f)
 {
-	lastShot = 0.0f;
+
 }
 
 void PlayerPlane::draw()
