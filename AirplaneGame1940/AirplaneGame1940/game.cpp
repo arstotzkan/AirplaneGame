@@ -2,6 +2,15 @@
 #include <fstream>
 #include <iostream>
 
+#define MAIN_MENU 0
+#define SETTINGS 1
+#define CONTROLS 2
+#define CREDITS 3
+#define INTRO 4
+#define MAIN_GAME 5
+#define VICTORY 6
+#define DEFEAT 7
+
 Game::Game()
 {
 	state = 0; 
@@ -24,10 +33,10 @@ void Game::draw()
 {
 	switch (state)
 	{
-		case 0:
+		case MAIN_MENU:
 		{
 			//starting menu
-			std::string options[3] = { "PLAY", "SETTINGS", "CREDITS" };
+			std::string options[4] = { "PLAY", "SETTINGS", "CONTROLS" , "CREDITS" };
 			graphics::Brush br;
 			br.fill_color[0] = 1.0f;
 			br.fill_color[1] = 1.0f;
@@ -36,7 +45,7 @@ void Game::draw()
 			graphics::drawText(50, 50, 60, "DAY OF THE EAGLE", br);
 
 			graphics::setFont("assets/fonts/Gill Sans.otf");
-			for (int i = 0; i <= 2; i++)
+			for (int i = 0; i <= 3; i++)
 			{
 				br.fill_color[0] = 1.0f;
 				br.fill_color[1] = 1.0f;
@@ -54,7 +63,7 @@ void Game::draw()
 			}
 			break;
 		}
-		case 1:
+		case SETTINGS:
 		{
 			//settings
 			//std::string options[3] = { "LIVES", "MUSIC", "SOUND EFFECTS" };
@@ -99,7 +108,17 @@ void Game::draw()
 			}
 			break;
 		}
-		case 2:
+		case CONTROLS:
+		{
+			graphics::setFont("assets/fonts/Gill Sans.otf");
+			graphics::Brush br;
+			br.fill_color[0] = 1.0f;
+			br.fill_color[1] = 1.0f;
+			br.fill_color[2] = 1.0f;
+			graphics::drawText(50, 250, 60, "PLACEHOLDER", br);
+			break;
+		}
+		case CREDITS:
 		{	
 			//credits
 			graphics::Brush br;
@@ -133,7 +152,7 @@ void Game::draw()
 
 			break;
 		}
-		case 3:
+		case INTRO:
 		{
 			std::string text = getLineFromText(subStateCounter1, "assets/story.txt");
 			std::string img = "assets/events/intro" + std::to_string(subStateCounter1 + 1) + ".png";
@@ -157,7 +176,7 @@ void Game::draw()
 			graphics::drawText(50, 400, 18, text.substr(0, minimum), br);
 			break;
 		}
-		case 4:
+		case MAIN_GAME:
 		{
 			//normal game
 			background->draw();
@@ -197,7 +216,7 @@ void Game::draw()
 			graphics::drawText(300, 50, 25, text2, br);
 			break;
 		}
-		case 5:
+		case VICTORY:
 		{
 			//victory screen
 			graphics::Brush br;
@@ -221,7 +240,7 @@ void Game::draw()
 			graphics::drawText(50, 600, 20, quote.substr(0, minimum), br);
 			break;
 		}
-		case 6:
+		case DEFEAT:
 		{
 			//defeat screen
 			graphics::Brush br;
@@ -254,7 +273,7 @@ void Game::update(float ms)
 	{
 		switch (state)
 		{
-			case 0:
+			case MAIN_MENU:
 			{
 				//starting menu
 				if (graphics::getKeyState(graphics::SCANCODE_UP))
@@ -262,7 +281,7 @@ void Game::update(float ms)
 					if (subStateCounter1 > 0)
 						subStateCounter1--;
 					else
-						subStateCounter1 = 2;
+						subStateCounter1 = 3;
 
 					graphics::playSound("assets/sound/button.mp3", 0.33f * soundEffects);
 					lastStateChange = graphics::getGlobalTime();
@@ -270,7 +289,7 @@ void Game::update(float ms)
 
 				if (graphics::getKeyState(graphics::SCANCODE_DOWN))
 				{
-					if (subStateCounter1 < 2)
+					if (subStateCounter1 < 3)
 						subStateCounter1++;
 					else
 						subStateCounter1 = 0;
@@ -285,18 +304,18 @@ void Game::update(float ms)
 					if (subStateCounter1 != 0)
 						setState(subStateCounter1);
 					else
-						setState(3);
+						setState(INTRO);
 					lastStateChange = graphics::getGlobalTime();
 				}
 				break;
 			}
-			case 1:
+			case SETTINGS:
 			{
 				//settings
 				if (graphics::getKeyState(graphics::SCANCODE_BACKSPACE))
 				{
 					graphics::playSound("assets/sound/button.mp3", 0.33f * soundEffects);
-					setState(0);
+					setState(MAIN_MENU);
 				}
 
 				if (graphics::getKeyState(graphics::SCANCODE_UP))
@@ -380,18 +399,27 @@ void Game::update(float ms)
 
 				break;
 			}
-			case 2:
+			case CONTROLS:
 			{
 				if (graphics::getKeyState(graphics::SCANCODE_BACKSPACE))
 				{
 					graphics::playSound("assets/sound/button.mp3", 0.33f * soundEffects);
-					setState(0);
+					setState(MAIN_MENU);
+				}
+				break;
+			}
+			case CREDITS:
+			{
+				if (graphics::getKeyState(graphics::SCANCODE_BACKSPACE))
+				{
+					graphics::playSound("assets/sound/button.mp3", 0.33f * soundEffects);
+					setState(MAIN_MENU);
 				}
 
 				subStateCounter2++;
 				break;
 			}
-			case 3:
+			case INTRO:
 			{
 				subStateCounter2++;
 				if (graphics::getKeyState(graphics::SCANCODE_RETURN))
@@ -401,14 +429,14 @@ void Game::update(float ms)
 					lastStateChange = graphics::getGlobalTime();
 					if (subStateCounter1 == 7)
 					{
-						setState(4);
+						setState(MAIN_GAME);
 						initialize(true);
 					}
 				}
 				break;
 			}
 
-			case 4:
+			case MAIN_GAME:
 			{
 				//normal game
 				background->update();
@@ -463,33 +491,33 @@ void Game::update(float ms)
 						initialize(false);
 					else
 					{
-						setState(6);
+						setState(DEFEAT);
 					}
 				}
 
 				if (background->borderCheck())
 				{
-					setState(5);
+					setState(VICTORY);
 					lastStateChange = graphics::getGlobalTime();
 				}
 
 				break;
 			}
-			case 5:
+			case VICTORY:
 			{
 				subStateCounter1++;
 				if (graphics::getKeyState(graphics::SCANCODE_RETURN))
 				{
-					setState(0);
+					setState(MAIN_MENU);
 				}
 				break;
 			}
-			case 6:
+			case DEFEAT:
 			{
 				subStateCounter1++;
 				if (graphics::getKeyState(graphics::SCANCODE_RETURN))
 				{
-					setState(0);
+					setState(MAIN_MENU);
 				}
 				break;
 			}
