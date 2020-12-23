@@ -9,28 +9,88 @@ EnemyPlane::EnemyPlane(int lvl, float  x , float y ) : Airplane(lvl , 66 , x , y
 void EnemyPlane::draw()
 {
 	graphics::Brush br;
-	graphics::setOrientation(0);
+	if (level == 1 || level == 2 || level == 4)
+		graphics::setOrientation(90);
+	else if (level == 5)
+		graphics::setOrientation(0);
 
 	std::string img = "assets/planes/enemy" + std::to_string(level) + ".png";
 	br.texture = img;
 	br.outline_opacity = 0.0f;
+
 	graphics::drawRect(x, y, width, height, br);
 
 }
 
 void EnemyPlane::update(std::list <Projectile>& projectileList)
 {
-	y += velocity * graphics::getDeltaTime() / 333;
-
+	switch (level)
+	{
+		case 1:
+		{
+			y += velocity * graphics::getDeltaTime() / 300;
+		}
+		case 2:
+		{
+			y += velocity * graphics::getDeltaTime() / 333;
+		}
+		case 3:
+		{
+			x += velocity * graphics::getDeltaTime() / 333;
+		}
+		case 4:
+		{
+			y += velocity * graphics::getDeltaTime() / 400;
+		}
+		case 5:
+		{
+			y -= velocity * graphics::getDeltaTime() / 500;
+		}
+	}
 	borderCheck();
 }
 
 bool EnemyPlane::borderCheck()
 {
-	if (x > 1000)
-		return true;
-	else
-		return false;
+
+	switch (level)
+	{
+		case 1:
+		{
+			if (y > 1000)
+				return true;
+			else
+				return false;
+		}
+		case 2:
+		{
+			if (y > 1000)
+				return true;
+			else
+				return false;
+		}
+		case 3:
+		{
+			if (x < 0)
+				return true;
+			else
+				return false;
+		}
+		case 4:
+		{
+			if (y > 1000)
+				return true;
+			else
+				return false;
+		}
+		case 5:
+		{
+			if (y < 0)
+				return true;
+			else
+				return false;
+		}
+	}
 }
 
 bool EnemyPlane::isDestroyed(std::list <Projectile>& projectileList, std::list <Explosion>& expList, bool vol)
