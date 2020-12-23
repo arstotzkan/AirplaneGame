@@ -1,6 +1,6 @@
 #include "PowerUp.h"
 
-PowerUp::PowerUp(float t_x, float t_y) : Entity::Entity(t_x , t_y, 2 , 40 , 40)
+PowerUp::PowerUp(float t_x, float t_y) : Entity::Entity(t_x , t_y, 15 , 40 , 40)
 {
 }
 
@@ -11,6 +11,8 @@ void PowerUp::draw()
 	graphics::setOrientation(0);
 
 	br.outline_opacity = 0.0f;
+
+	br.texture = "assets/powerup.png";
 	graphics::drawRect(x, y, width, height, br);
 }
 void PowerUp::update()

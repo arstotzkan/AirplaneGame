@@ -1,17 +1,14 @@
-﻿  enemyplane.cpp
-C:\Users\Panos\Programming Projects\GitHub\AirplaneGame\AirplaneGame1940\AirplaneGame1940\enemyplane.cpp(42,18): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\Users\Panos\Programming Projects\GitHub\AirplaneGame\AirplaneGame1940\AirplaneGame1940\enemyplane.cpp(43,44): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
-C:\Users\Panos\Programming Projects\GitHub\AirplaneGame\AirplaneGame1940\AirplaneGame1940\enemyplane.cpp(44,22): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-  playerPlane.cpp
-C:\Users\Panos\Programming Projects\GitHub\AirplaneGame\AirplaneGame1940\AirplaneGame1940\playerPlane.cpp(65,18): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\Users\Panos\Programming Projects\GitHub\AirplaneGame\AirplaneGame1940\AirplaneGame1940\playerPlane.cpp(66,44): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
-C:\Users\Panos\Programming Projects\GitHub\AirplaneGame\AirplaneGame1940\AirplaneGame1940\playerPlane.cpp(67,22): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\Panos\Programming Projects\GitHub\AirplaneGame\AirplaneGame1940\AirplaneGame1940\playerPlane.cpp(85,18): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\Users\Panos\Programming Projects\GitHub\AirplaneGame\AirplaneGame1940\AirplaneGame1940\playerPlane.cpp(86,45): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
-C:\Users\Panos\Programming Projects\GitHub\AirplaneGame\AirplaneGame1940\AirplaneGame1940\playerPlane.cpp(87,22): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+﻿  game.cpp
+C:\Users\Panos\Programming Projects\GitHub\AirplaneGame\AirplaneGame1940\AirplaneGame1940\game.cpp(75,34): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Panos\Programming Projects\GitHub\AirplaneGame\AirplaneGame1940\AirplaneGame1940\game.cpp(81,32): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Panos\Programming Projects\GitHub\AirplaneGame\AirplaneGame1940\AirplaneGame1940\game.cpp(119,34): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Panos\Programming Projects\GitHub\AirplaneGame\AirplaneGame1940\AirplaneGame1940\game.cpp(125,32): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Panos\Programming Projects\GitHub\AirplaneGame\AirplaneGame1940\AirplaneGame1940\game.cpp(126,33): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Panos\Programming Projects\GitHub\AirplaneGame\AirplaneGame1940\AirplaneGame1940\game.cpp(158,31): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Panos\Programming Projects\GitHub\AirplaneGame\AirplaneGame1940\AirplaneGame1940\game.cpp(170,31): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
   Generating code
-  3 of 434 functions ( 0.7%) were compiled, the rest were copied from previous compilation.
+  2 of 615 functions ( 0.3%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    1 functions had inline decision re-evaluated but remain unchanged
+    2 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
   AirplaneGame1940.vcxproj -> C:\Users\Panos\Programming Projects\GitHub\AirplaneGame\AirplaneGame1940\x64\Release\AirplaneGame1940.exe

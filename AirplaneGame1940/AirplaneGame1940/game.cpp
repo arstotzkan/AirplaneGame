@@ -2,40 +2,59 @@
 #include <fstream>
 #include <iostream>
 
-#define MAIN_MENU 0
-#define SETTINGS 1
-#define CONTROLS 2
-#define CREDITS 3
-#define INTRO 4
-#define MAIN_GAME 5
-#define VICTORY 6
-#define DEFEAT 7
+#define LOADING_SCREEN 0
+#define MAIN_MENU 1
+#define SETTINGS 2
+#define CONTROLS 3
+#define CREDITS 4
+#define INTRO 5
+#define MAIN_GAME 6
+#define VICTORY 7
+#define DEFEAT 8
 
 Game::Game()
 {
-	state = MAIN_GAME;
+	music = true;
+	soundEffects = true;
+
 	subStateCounter1 = 0;
 	subStateCounter2 = 0;
 
-	square = new PlayerPlane();
+	squadron = new PlayerSquadron();
 	projList;
 	enList;
+	upList;
 	enemyCreator = new Factory();
 	background = new Background();
 	score = 0;
 
-	music = true;
-	soundEffects = true;
 	playerLifes = 3;
+
+	state = LOADING_SCREEN;
+
+	//graphics::playMusic("assets/music/Main.mp3", 0.25f * music, true);
+
 }
 
 void Game::draw()
 {
 	switch (state)
 	{
+		case LOADING_SCREEN:
+		{
+			graphics::Brush br;
+			br.fill_color[0] = 1.0f;
+			br.fill_color[1] = 1.0f;
+			br.fill_color[2] = 1.0f;
+			graphics::setFont("assets/fonts/Gill Sans.otf");
+			graphics::drawText(150, 300, 30, "LOADING...", br);
+			break;
+		}
+
 		case MAIN_MENU:
 		{
 			//starting menu
+
 			std::string options[4] = { "PLAY", "SETTINGS", "CONTROLS" , "CREDITS" };
 			graphics::Brush br;
 			br.fill_color[0] = 1.0f;
@@ -106,6 +125,8 @@ void Game::draw()
 				graphics::drawText(50, 250 + (100 * i), 30, settings[i], br);
 				graphics::drawText(350, 250 + (100 * i), 30, setup[i], br);
 			}
+
+			graphics::drawText(50, 900, 12, "BACKSPACE: GO BACK , ENTER: SKIP", br);
 			break;
 		}
 		case CONTROLS:
@@ -115,7 +136,11 @@ void Game::draw()
 			br.fill_color[0] = 1.0f;
 			br.fill_color[1] = 1.0f;
 			br.fill_color[2] = 1.0f;
-			graphics::drawText(50, 250, 60, "PLACEHOLDER", br);
+			graphics::drawText(50, 150, 36, "CONTROLS:", br);
+			graphics::drawText(50, 350, 20, "MOVEMENT: ARROWS OR WASD", br);
+			graphics::drawText(50, 450, 20, "FIRE: SPACE", br);
+
+			graphics::drawText(50, 900, 12, "BACKSPACE: GO BACK , ENTER: SKIP", br);
 			break;
 		}
 		case CREDITS:
@@ -128,12 +153,12 @@ void Game::draw()
 
 			for (int i = 0; i < subStateCounter1; i++)
 			{
-				std::string temp = getLineFromText(i, "assets/credits.txt");
+				std::string temp = getLineFromText(i, "assets/text/credits.txt");
 				graphics::setFont("assets/fonts/Gill Sans.otf");
 				graphics::drawText(50, 50 *(i + 1), 18, temp, br);
 			}
 			
-			std::string text = getLineFromText(subStateCounter1, "assets/credits.txt");
+			std::string text = getLineFromText(subStateCounter1, "assets/text/credits.txt");
 
 			int minimum = std::min(subStateCounter2 / 3, (int)text.length());
 		
@@ -150,11 +175,12 @@ void Game::draw()
 				subStateCounter2 = 0;
 			}
 
+			graphics::drawText(50, 900, 12, "BACKSPACE: GO BACK , ENTER: SKIP", br);
 			break;
 		}
 		case INTRO:
 		{
-			std::string text = getLineFromText(subStateCounter1, "assets/story.txt");
+			std::string text = getLineFromText(subStateCounter1, "assets/text/story.txt");
 			std::string img = "assets/events/intro" + std::to_string(subStateCounter1 + 1) + ".png";
 
 			graphics::Brush br;
@@ -174,13 +200,15 @@ void Game::draw()
 
 			graphics::setFont("assets/fonts/Gill Sans.otf");
 			graphics::drawText(50, 400, 18, text.substr(0, minimum), br);
+
+			graphics::drawText(50, 900, 12, "LEFT: PREVIOUS SLIDE , RIGHT: NEXT SLIDE, BACKSPACE: GO BACK , ENTER: SKIP", br);
 			break;
 		}
 		case MAIN_GAME:
 		{
 			//normal game
 			background->draw();
-			square->draw();
+			squadron->draw();
 			graphics::resetPose();
 
 			std::list <Projectile> ::iterator it;
@@ -199,6 +227,13 @@ void Game::draw()
 				it2->draw();
 			}
 
+			std::list <PowerUp> ::iterator it3;
+			for (it3 = upList.begin(); it3 != upList.end(); ++it3)
+			{
+				it3->draw();
+			}
+
+
 			graphics::Brush br;
 			br.fill_color[0] = 0.0f;
 			br.fill_color[1] = 0.0f;
@@ -211,7 +246,7 @@ void Game::draw()
 			br.fill_color[2] = 1.0f;
 			graphics::setFont("assets/fonts/Gill Sans.otf");
 			std::string text1 = "SCORE: " + std::to_string(score);
-			std::string text2 = "LIVES: " + std::to_string(square->getLifes());
+			std::string text2 = "LIVES: " + std::to_string(playerLifes);
 			graphics::drawText(50, 50, 25, text1, br);
 			graphics::drawText(300, 50, 25, text2, br);
 			break;
@@ -273,6 +308,13 @@ void Game::update(float ms)
 	{
 		switch (state)
 		{
+			case LOADING_SCREEN:
+			{
+				if (graphics::getGlobalTime() > 2000.0f)
+					setState(MAIN_MENU);
+
+				break;
+			}
 			case MAIN_MENU:
 			{
 				//starting menu
@@ -302,7 +344,7 @@ void Game::update(float ms)
 				{
 					graphics::playSound("assets/sound/button.mp3", 0.33f * soundEffects);
 					if (subStateCounter1 != 0)
-						setState(subStateCounter1);
+						setState(subStateCounter1 + 1);
 					else
 						setState(INTRO);
 					lastStateChange = graphics::getGlobalTime();
@@ -356,6 +398,12 @@ void Game::update(float ms)
 						case 1:
 						{
 							music = !(music);
+
+							if (music)
+								graphics::playMusic("assets/music/Menu.mp3", 0.25f * music, true, 2000);
+							else
+								graphics::stopMusic();
+
 							break;
 						}
 						case 2:
@@ -386,6 +434,12 @@ void Game::update(float ms)
 						case 1:
 						{
 							music = !(music);
+
+							if (music)
+								graphics::playMusic("assets/music/Menu.mp3", 0.25f * music, true, 2000);
+							else
+								graphics::stopMusic();
+
 							break;
 						}
 						case 2:
@@ -422,7 +476,7 @@ void Game::update(float ms)
 			case INTRO:
 			{
 				subStateCounter2++;
-				if (graphics::getKeyState(graphics::SCANCODE_RETURN))
+				if (graphics::getKeyState(graphics::SCANCODE_RIGHT))
 				{
 					subStateCounter1++;
 					subStateCounter2 = 0;
@@ -433,6 +487,28 @@ void Game::update(float ms)
 						initialize(true);
 					}
 				}
+
+				if (graphics::getKeyState(graphics::SCANCODE_LEFT))
+				{
+					subStateCounter1--;
+					subStateCounter2 = 0;
+					lastStateChange = graphics::getGlobalTime();
+					if (subStateCounter1 == -1)
+					{
+						setState(MAIN_MENU);
+					}
+				}
+
+				if (graphics::getKeyState(graphics::SCANCODE_BACKSPACE))
+				{
+					setState(MAIN_MENU);
+				}
+
+				if (graphics::getKeyState(graphics::SCANCODE_RETURN))
+				{
+					setState(MAIN_GAME);
+				}
+
 				break;
 			}
 
@@ -440,10 +516,8 @@ void Game::update(float ms)
 			{
 				//normal game
 				background->update();
-				square->update(projList, soundEffects);
-				enemyCreator->update(enList);
-				graphics::stopMusic();
-				graphics::playMusic("assets/music/main.mp3", 0.25f * music, true);
+				squadron->update(projList, upList,  soundEffects);
+				enemyCreator->update(enList, upList);
 
 				std::list <Projectile> ::iterator it;
 				for (it = projList.begin(); it != projList.end();)
@@ -461,7 +535,7 @@ void Game::update(float ms)
 				std::list <EnemyPlane> ::iterator it1;
 				for (it1 = enList.begin(); it1 != enList.end();)
 				{
-					it1->update(projList);
+					it1->update(projList, soundEffects);
 					if (it1->borderCheck() || it1->isDestroyed(projList, exList, soundEffects))
 					{
 						score += it1->getLevel() * 50;
@@ -486,10 +560,23 @@ void Game::update(float ms)
 						++it2;
 				}
 
-				if (square->isDestroyed(projList, enList, exList, soundEffects))
+				std::list <PowerUp> ::iterator it3;
+				for (it3 = upList.begin(); it3 != upList.end();)
 				{
-					square->removeLife();
-					if (square->getLifes() > 0)
+					it3->update();
+
+					if (it3->borderCheck())
+					{
+						it3 = upList.erase(it3);
+					}
+					else
+						++it3;
+				}
+
+				if (squadron->isDestroyed(projList, enList, exList, soundEffects))
+				{
+					playerLifes--;
+					if (playerLifes > 0)
 						initialize(false);
 					else
 					{
@@ -510,8 +597,6 @@ void Game::update(float ms)
 			case VICTORY:
 			{
 				subStateCounter1++;
-				graphics::stopMusic();
-				graphics::playMusic("assets/music/victory.mp3", 0.25f * music, true);
 				if (graphics::getKeyState(graphics::SCANCODE_RETURN))
 				{
 					setState(MAIN_MENU);
@@ -521,8 +606,6 @@ void Game::update(float ms)
 			case DEFEAT:
 			{
 				subStateCounter1++;
-				graphics::stopMusic();
-				graphics::playMusic("assets/music/defeat.mp3", 0.25f*music, true);
 				if (graphics::getKeyState(graphics::SCANCODE_RETURN))
 				{
 					setState(MAIN_MENU);
@@ -535,15 +618,47 @@ void Game::update(float ms)
 
 void Game::setState(int x)
 {
-	state = x;
+
 	subStateCounter1 = 0;
 	subStateCounter2 = 0;
 	lastStateChange = graphics::getGlobalTime();
+	
+	if ( (x == MAIN_GAME || x == VICTORY || x == DEFEAT) || (x == MAIN_MENU && ( state == VICTORY || state == DEFEAT )))
+		graphics::stopMusic();
+
+
+	switch (x)
+	{
+		case MAIN_MENU:
+		{
+			if (state != SETTINGS && state != CONTROLS && state != CREDITS)
+				graphics::playMusic("assets/music/Menu.mp3", 0.25f * music, true, 2000);
+			break;
+		}
+		case MAIN_GAME:
+		{
+			graphics::playMusic("assets/music/Main.mp3", 0.25f * music, true);
+			break;
+		}
+		case VICTORY:
+		{
+			graphics::playMusic("assets/music/Victory.mp3", 0.25f * music, true);
+			break;
+		}
+		case DEFEAT:
+		{
+			graphics::playMusic("assets/music/Defeat.mp3", 0.25f * music, true);
+			break;
+		}
+
+	}
+	state = x;
+
 }
 
 Game::~Game()
 {
-	delete square;
+	delete squadron;
 	delete enemyCreator;
 	delete background;
 }
@@ -552,7 +667,7 @@ void Game::initialize(bool fromScratch)
 {
 	if (fromScratch)
 	{
-		square = new PlayerPlane(playerLifes);
+		squadron = new PlayerSquadron();
 		background = new Background();
 		score = 0;
 
@@ -561,11 +676,18 @@ void Game::initialize(bool fromScratch)
 		delete temp;
 		temp = nullptr;
 	}
-
+	else
+	{
+		if (squadron->getLevel() > 2)
+			squadron = new PlayerSquadron(2);
+		else
+			squadron = new PlayerSquadron();
+	}
 	//square->setX(300);
 	//square->setY(900);
 	projList.clear();
 	enList.clear();
+	upList.clear();
 }
 
 

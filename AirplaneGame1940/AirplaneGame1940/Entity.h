@@ -12,7 +12,7 @@ protected:
 	float velocity;
 
 public:
-	Entity(float x, float y, float length , float height, float vel);
+	Entity(float x, float y, float vel, float length , float height);
 	Entity();
 	Entity(float temp_x, float temp_y, float vel);
 	virtual void draw();

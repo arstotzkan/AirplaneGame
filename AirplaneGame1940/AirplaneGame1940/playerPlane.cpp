@@ -1,16 +1,14 @@
 #include "playerplane.h"
 
-PlayerPlane::PlayerPlane() : Airplane::Airplane(1, 125,  300, 900)
+PlayerPlane::PlayerPlane() : Airplane::Airplane(1, 125,  300, 900, 60.0f)
 {
-	lifes = 3;
 	lastShot = 0.0f;
-	width = 60.0f;
-	height = 60.0f;
+
 }
 
-PlayerPlane::PlayerPlane(int l) : Airplane::Airplane(1, 125, 300, 900)
+
+PlayerPlane::PlayerPlane(float x, float y) : Airplane::Airplane(1, 125, x, y, 66.0f)
 {
-	lifes = l;
 	lastShot = 0.0f;
 }
 
@@ -38,27 +36,39 @@ void PlayerPlane::update(std::list <Projectile>  &projectileList , bool vol)
 
 	borderCheck();
 
-	if (graphics::getKeyState(graphics::SCANCODE_SPACE) && (graphics::getGlobalTime() - lastShot > 100.0f ) )
+	if (graphics::getKeyState(graphics::SCANCODE_SPACE) && (graphics::getGlobalTime() - lastShot > 100.0f))
 	{
 		graphics::playSound("assets/sound/shot.mp3", 0.33f * vol);
 		lastShot = graphics::getGlobalTime();
-		Projectile* arr = new Projectile(true, x-20.0f , y - height);
-		Projectile* arr2 = new Projectile(true, x + 20.0f, y - height);
-		projectileList.push_back(*arr);
+		Projectile* arr1 = new Projectile(true, x - 15.0f, y - height);
+		Projectile* arr2 = new Projectile(true, x + 15.0f, y - height);
+
+		if (level == 2)
+		{
+			Projectile* arr3 = new Projectile(true, x - 30.0f, y - height);
+			Projectile* arr4 = new Projectile(true, x + 30.0f, y - height);
+			projectileList.push_back(*arr3);
+			projectileList.push_back(*arr4);
+			delete arr3;
+			delete arr4;
+			arr3 = nullptr;
+			arr4 = nullptr;
+		}
+		projectileList.push_back(*arr1);
 		projectileList.push_back(*arr2);
-		delete arr;
+		delete arr1;
 		delete arr2;
-		arr = nullptr;
+		arr1 = nullptr;
 		arr2 = nullptr;
 	}
 }
 
 bool PlayerPlane::borderCheck()
 {
-	if (x < 50)
-		x = 50;
-	else if(x > 550)
-		x = 550;
+	if (x < 30)
+		x = 30;
+	else if(x > 570)
+		x = 570;
 	
 	if (y < 150)
 		y = 150;
@@ -84,7 +94,6 @@ bool PlayerPlane::isDestroyed(std::list <Projectile>& projectileList, std::list 
 			expList.push_back(*temp);
 			delete temp;
 			temp = nullptr;
-			//--lifes;
 			projectileList.erase(iter);
 			return true;
 		}
@@ -103,5 +112,24 @@ bool PlayerPlane::isDestroyed(std::list <Projectile>& projectileList, std::list 
 		}
 	}
 
+	return false;
+}
+
+bool PlayerPlane::upgrade(std::list <PowerUp>& upgradeList, bool vol)
+{
+
+	std::list <PowerUp> ::iterator iter;
+	for (iter = upgradeList.begin(); iter != upgradeList.end(); ++iter)
+	{
+		float min_distance = iter->distanceToCorner() + distanceToCorner();
+		float distance = std::pow(iter->getX() - x, 2);
+		distance += std::pow(iter->getY() - y, 2);
+		distance = std::pow(distance, 0.5);
+		if (min_distance > distance)
+		{
+			iter = upgradeList.erase(iter);
+			return true;
+		}
+	}
 	return false;
 }

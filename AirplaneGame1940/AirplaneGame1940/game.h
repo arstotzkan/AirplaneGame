@@ -3,7 +3,7 @@
 #include "scancodes.h"
 #include "entity.h"
 #include "projectile.h"
-#include "playerPlane.h"
+#include "playerSquadron.h"
 #include "Factory.h"
 #include "background.h"
 #include "Explosion.h"
@@ -16,10 +16,13 @@
 class Game
 {
 private:
-	PlayerPlane* square;
+	PlayerSquadron* squadron;
+
 	std::list <Projectile> projList;
 	std::list <EnemyPlane> enList;
 	std::list <Explosion> exList;
+	std::list <PowerUp> upList;
+
 	Factory* enemyCreator;
 	Background* background;
 	int state;

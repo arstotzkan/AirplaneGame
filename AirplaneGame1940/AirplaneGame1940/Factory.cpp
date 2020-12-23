@@ -1,12 +1,11 @@
 #include "Factory.h"
 
-
 Factory::Factory()
 {
 	counter = 0;
 }
 
-void Factory::update(std::list <EnemyPlane>& enemyList)
+void Factory::update(std::list <EnemyPlane>& enemyList, std::list <PowerUp> &powerList)
 {
 	if (counter <= 20000)
 	{
@@ -68,14 +67,21 @@ void Factory::update(std::list <EnemyPlane>& enemyList)
 				a1 = nullptr;
 				a2 = nullptr;
 				a3 = nullptr;
+				
+
+				PowerUp* p1 = new PowerUp(300, -200);
+				powerList.push_back(*p1);
+				delete p1;
+				p1 = nullptr;
+
 				break;
 			}
 
 			case 3250:
 			{
-				EnemyPlane* a1 = new EnemyPlane(2, 150, -100);
-				EnemyPlane* a2 = new EnemyPlane(2, 300, -100);
-				EnemyPlane* a3 = new EnemyPlane(2, 450, -100);
+				EnemyPlane* a1 = new EnemyPlane(3, -100, 150);
+				EnemyPlane* a2 = new EnemyPlane(3, -100, 250);
+				EnemyPlane* a3 = new EnemyPlane(3, -100, 350);
 				EnemyPlane* a4 = new EnemyPlane(3, -100, 450);
 				EnemyPlane* a5 = new EnemyPlane(3, -100, 550);
 				enemyList.push_back(*a1);
@@ -124,7 +130,7 @@ void Factory::update(std::list <EnemyPlane>& enemyList)
 				EnemyPlane* a0 = new EnemyPlane(1, 100, -100);
 				EnemyPlane* a1 = new EnemyPlane(2, 300, -100);
 				EnemyPlane* a2 = new EnemyPlane(1, 500, -100);
-				EnemyPlane* a3 = new EnemyPlane(5, 300, 1100);
+				EnemyPlane* a3 = new EnemyPlane(5, 100, 1100);
 				enemyList.push_back(*a0);
 				enemyList.push_back(*a1);
 				enemyList.push_back(*a2);
@@ -137,6 +143,13 @@ void Factory::update(std::list <EnemyPlane>& enemyList)
 				a1 = nullptr;
 				a2 = nullptr;
 				a3 = nullptr;
+
+				PowerUp* p1 = new PowerUp(300, -200);
+				powerList.push_back(*p1);
+				delete p1;
+				p1 = nullptr;
+
+
 				break;
 			}
 
@@ -253,6 +266,12 @@ void Factory::update(std::list <EnemyPlane>& enemyList)
 				a1 = nullptr;
 				a2 = nullptr;
 				a3 = nullptr;
+
+				PowerUp* p1 = new PowerUp(300, -200);
+				powerList.push_back(*p1);
+				delete p1;
+				p1 = nullptr;
+
 				break;
 			}
 

@@ -9,7 +9,7 @@ class Airplane : public Entity
 protected:
 	int level;
 public:
-	Airplane(int lvl, float vel, float x, float y);
+	Airplane(int lvl, float vel, float x, float y, float size);
 	virtual ~Airplane() {}
 	virtual int getLevel() { return level; };
 };

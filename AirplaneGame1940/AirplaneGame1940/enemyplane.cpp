@@ -1,9 +1,16 @@
 #include "enemyplane.h"
 #include <string>
 
-EnemyPlane::EnemyPlane(int lvl, float  x , float y ) : Airplane(lvl , 66 , x , y)
+float levelToSize(int l)
 {
-	healthPoints = lvl;
+	const float size[5] = { 35, 50, 40 , 75, 100 };
+	return size[l - 1];
+}
+
+
+EnemyPlane::EnemyPlane(int lvl, float  x , float y ) : Airplane(lvl , 66 , x , y, levelToSize(lvl))
+{
+	healthPoints = lvl * 2;
 }
 
 void EnemyPlane::draw()
@@ -12,7 +19,7 @@ void EnemyPlane::draw()
 	if (level == 1 || level == 2 || level == 4)
 		graphics::setOrientation(180);
 	else if (level == 3)
-		graphics::setOrientation(90);
+		graphics::setOrientation(270);
 
 	std::string img = "assets/planes/enemy" + std::to_string(level) + ".png";
 	br.texture = img;
@@ -24,8 +31,9 @@ void EnemyPlane::draw()
 
 }
 
-void EnemyPlane::update(std::list <Projectile>& projectileList)
+void EnemyPlane::update(std::list <Projectile>& projectileList, bool vol)
 {
+	int r = rand();
 	switch (level)
 	{
 		case 1:
@@ -36,6 +44,14 @@ void EnemyPlane::update(std::list <Projectile>& projectileList)
 		case 2:
 		{
 			y += velocity * graphics::getDeltaTime() / 333;
+			if (r % 1000 == 1)
+			{
+				graphics::playSound("assets/sound/shot.mp3", 0.33f * vol);
+				Projectile* arr = new Projectile(false, x, y + height);
+				projectileList.push_back(*arr);
+				delete arr;
+				arr = nullptr;
+			}
 			break;
 		}
 		case 3:
@@ -47,11 +63,35 @@ void EnemyPlane::update(std::list <Projectile>& projectileList)
 		{
 			y += velocity * graphics::getDeltaTime() / 400;
 			break;
+			if (r % 100 == 1)
+			{
+				graphics::playSound("assets/sound/shot.mp3", 0.33f * vol);
+				Projectile* arr = new Projectile(false, x, y + height);
+				projectileList.push_back(*arr);
+				delete arr;
+				arr = nullptr;
+			}
 		}
 		case 5:
 		{
 			y -= velocity * graphics::getDeltaTime() / 500;
 			break;
+			if (r % 100 == 1)
+			{
+				graphics::playSound("assets/sound/shot.mp3", 0.33f * vol);
+				Projectile* arr = new Projectile(false, x, y + height);
+				Projectile* arr1 = new Projectile(false, x + 20 , y + height);
+				Projectile* arr2 = new Projectile(false, x - 20, y + height);
+				projectileList.push_back(*arr);
+				projectileList.push_back(*arr1);
+				projectileList.push_back(*arr2);
+				delete arr;
+				delete arr1;
+				delete arr2;
+				arr = nullptr;
+				arr1 = nullptr;
+				arr2 = nullptr;
+			}
 		}
 	}
 	borderCheck();
