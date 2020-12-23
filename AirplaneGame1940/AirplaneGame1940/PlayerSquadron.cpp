@@ -42,8 +42,6 @@ void PlayerSquadron::update(std::list <Projectile>& projectileList, std::list <P
 
 	borderCheck();
 
-	if( leftExists && rightExists)
-		std::cout << left->getX() << "|" << lead->getX() << "|" << right->getX() << std::endl;
 	upgrade(upgradeList, vol);
 
 
@@ -51,6 +49,7 @@ void PlayerSquadron::update(std::list <Projectile>& projectileList, std::list <P
 
 void PlayerSquadron::borderCheck()
 {
+	//if there are three planes
 
 	if (right->getX() >= 570 && rightExists)
 	{
@@ -59,12 +58,25 @@ void PlayerSquadron::borderCheck()
 			left->setX(410.0f);
 	}
 
+	
 	if (left->getX() <= 30 && leftExists)
 	{
 		lead->setX(110.0f);
 		if (rightExists)
 			right->setX(190.0f);
 	}
+
+	//if there are only two planes
+	if (lead->getX() >= 570 && leftExists)
+	{
+		left->setX(490.0f);
+	}
+
+	if (lead->getX() <= 30 && rightExists)
+	{
+		right->setX(110.0f);
+	}
+
 }
 
 
@@ -107,6 +119,7 @@ void PlayerSquadron::upgrade(std::list <PowerUp>& upgradeList, bool vol)
 
 	if (flag)
 	{
+		graphics::playSound("assets/sound/upgrade.mp3", 0.2f * vol);
 		switch (level)
 		{
 			case 1:

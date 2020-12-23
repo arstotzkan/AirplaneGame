@@ -31,7 +31,7 @@ void EnemyPlane::draw()
 
 }
 
-void EnemyPlane::update(std::list <Projectile>& projectileList, bool vol)
+void EnemyPlane::update(std::list <Projectile>& projectileList,bool vol)
 {
 	int r = rand();
 	switch (level)
@@ -44,7 +44,7 @@ void EnemyPlane::update(std::list <Projectile>& projectileList, bool vol)
 		case 2:
 		{
 			y += velocity * graphics::getDeltaTime() / 333;
-			if (r % 1000 == 1)
+			if (r % 240 == 1)
 			{
 				graphics::playSound("assets/sound/shot.mp3", 0.33f * vol);
 				Projectile* arr = new Projectile(false, x, y + height);
@@ -62,8 +62,7 @@ void EnemyPlane::update(std::list <Projectile>& projectileList, bool vol)
 		case 4:
 		{
 			y += velocity * graphics::getDeltaTime() / 400;
-			break;
-			if (r % 100 == 1)
+			if (r % 180 == 1)
 			{
 				graphics::playSound("assets/sound/shot.mp3", 0.33f * vol);
 				Projectile* arr = new Projectile(false, x, y + height);
@@ -71,12 +70,12 @@ void EnemyPlane::update(std::list <Projectile>& projectileList, bool vol)
 				delete arr;
 				arr = nullptr;
 			}
+			break;
 		}
 		case 5:
 		{
 			y -= velocity * graphics::getDeltaTime() / 500;
-			break;
-			if (r % 100 == 1)
+			if (r % 120 == 1 )
 			{
 				graphics::playSound("assets/sound/shot.mp3", 0.33f * vol);
 				Projectile* arr = new Projectile(false, x, y + height);
@@ -92,6 +91,7 @@ void EnemyPlane::update(std::list <Projectile>& projectileList, bool vol)
 				arr1 = nullptr;
 				arr2 = nullptr;
 			}
+			break;
 		}
 	}
 	borderCheck();

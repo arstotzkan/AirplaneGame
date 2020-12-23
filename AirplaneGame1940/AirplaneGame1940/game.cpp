@@ -47,7 +47,8 @@ void Game::draw()
 			br.fill_color[1] = 1.0f;
 			br.fill_color[2] = 1.0f;
 			graphics::setFont("assets/fonts/Gill Sans.otf");
-			graphics::drawText(150, 300, 30, "LOADING...", br);
+			std::string txt = "LOADING...";
+			graphics::drawText(230, 300, 30, txt.substr(0, 7 + (subStateCounter1 / 15) % 3) ,br);
 			break;
 		}
 
@@ -84,8 +85,6 @@ void Game::draw()
 		}
 		case SETTINGS:
 		{
-			//settings
-			//std::string options[3] = { "LIVES", "MUSIC", "SOUND EFFECTS" };
 			graphics::Brush br;
 			br.fill_color[0] = 1.0f;
 			br.fill_color[1] = 1.0f;
@@ -131,16 +130,37 @@ void Game::draw()
 		}
 		case CONTROLS:
 		{
-			graphics::setFont("assets/fonts/Gill Sans.otf");
+			//credits
 			graphics::Brush br;
 			br.fill_color[0] = 1.0f;
 			br.fill_color[1] = 1.0f;
 			br.fill_color[2] = 1.0f;
-			graphics::drawText(50, 150, 36, "CONTROLS:", br);
-			graphics::drawText(50, 350, 20, "MOVEMENT: ARROWS OR WASD", br);
-			graphics::drawText(50, 450, 20, "FIRE: SPACE", br);
 
-			graphics::drawText(50, 900, 12, "BACKSPACE: GO BACK , ENTER: SKIP", br);
+			for (int i = 0; i < subStateCounter1; i++)
+			{
+				std::string temp = getLineFromText(i, "assets/text/controls.txt");
+				graphics::setFont("assets/fonts/Gill Sans.otf");
+				graphics::drawText(50, 50 * (i + 1), 18, temp, br);
+			}
+
+			std::string text = getLineFromText(subStateCounter1, "assets/text/controls.txt");
+
+			int minimum = std::min(subStateCounter2 / 3, (int)text.length());
+
+			graphics::setFont("assets/fonts/Gill Sans.otf");
+
+			if (minimum < (int)text.length())
+				graphics::playSound("assets/sound/typewriter.mp3", 0.25f * soundEffects);
+
+			graphics::drawText(50, 50 * (subStateCounter1 + 1), 18, text.substr(0, minimum), br);
+
+			if (subStateCounter2 / 3 == (int)text.length() && subStateCounter1 < 2)
+			{
+				subStateCounter1++;
+				subStateCounter2 = 0;
+			}
+
+			graphics::drawText(50, 900, 12, "BACKSPACE: GO BACK", br);
 			break;
 		}
 		case CREDITS:
@@ -175,7 +195,7 @@ void Game::draw()
 				subStateCounter2 = 0;
 			}
 
-			graphics::drawText(50, 900, 12, "BACKSPACE: GO BACK , ENTER: SKIP", br);
+			graphics::drawText(50, 900, 12, "BACKSPACE: GO BACK", br);
 			break;
 		}
 		case INTRO:
@@ -259,7 +279,7 @@ void Game::draw()
 			br.fill_color[1] = 1.0f;
 			br.fill_color[2] = 1.0f;
 			graphics::setFont("assets/fonts/Gill Sans.otf");
-			graphics::drawText(150, 50, 35, "VICTORY", br);
+			graphics::drawText(230, 50, 30, "VICTORY", br);
 
 			graphics::Brush br1;
 			br1.texture = "assets/events/victory.png";
@@ -283,7 +303,7 @@ void Game::draw()
 			br.fill_color[1] = 1.0f;
 			br.fill_color[2] = 1.0f;
 			graphics::setFont("assets/fonts/Gill Sans.otf");
-			graphics::drawText(150, 50, 35, "DEFEAT", br);
+			graphics::drawText(230, 50, 30, "DEFEAT", br);
 			
 			//graphics::Brush br;
 			br.texture = "assets/events/defeat.png";
@@ -310,6 +330,8 @@ void Game::update(float ms)
 		{
 			case LOADING_SCREEN:
 			{
+				subStateCounter1++;
+
 				if (graphics::getGlobalTime() > 2000.0f)
 					setState(MAIN_MENU);
 
@@ -460,6 +482,7 @@ void Game::update(float ms)
 					graphics::playSound("assets/sound/button.mp3", 0.33f * soundEffects);
 					setState(MAIN_MENU);
 				}
+				subStateCounter2++;
 				break;
 			}
 			case CREDITS:
@@ -507,6 +530,7 @@ void Game::update(float ms)
 				if (graphics::getKeyState(graphics::SCANCODE_RETURN))
 				{
 					setState(MAIN_GAME);
+					initialize(true);
 				}
 
 				break;
@@ -538,9 +562,14 @@ void Game::update(float ms)
 					it1->update(projList, soundEffects);
 					if (it1->borderCheck() || it1->isDestroyed(projList, exList, soundEffects))
 					{
-						score += it1->getLevel() * 50;
+						if (!it1->borderCheck())
+						{
+							score += it1->getLevel() * 50;
+						}
+
 						it1 = enList.erase(it1);
 					}
+
 
 					else
 						++it1;
