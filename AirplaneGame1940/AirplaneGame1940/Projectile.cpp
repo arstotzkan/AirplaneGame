@@ -9,8 +9,10 @@ Projectile::Projectile(bool thrownBy, float t_x , float t_y) : Entity::Entity(t_
 void Projectile::draw()
 {
 	graphics::Brush br;
-
-	graphics::setOrientation(0);
+	if (thrownByPlayer)
+		graphics::setOrientation(0);
+	else
+		graphics::setOrientation(45);
 
 	br.texture = "assets/projectile.png";
 	br.outline_opacity = 0.0f;
