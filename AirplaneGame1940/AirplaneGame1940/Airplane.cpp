@@ -3,7 +3,7 @@
 #include "scancodes.h"
 
 
-Airplane::Airplane(int lvl, float vel, float x , float y) : Entity::Entity(x,y, vel, lvl * 50 , lvl * 50)
+Airplane::Airplane(int lvl, float vel, float x , float y) : Entity::Entity(x,y, vel, lvl * 35 , lvl * 35)
 {
 	level = lvl;
 }
