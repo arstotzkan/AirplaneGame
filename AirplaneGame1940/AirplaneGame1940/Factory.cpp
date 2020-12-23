@@ -102,26 +102,22 @@ void Factory::update(std::list <EnemyPlane>& enemyList, std::list <PowerUp> &pow
 
 			case 4000:
 			{
-				EnemyPlane* a0 = new EnemyPlane(1, 100, -100);
-				EnemyPlane* a1 = new EnemyPlane(2, 200, -100);
-				EnemyPlane* a2 = new EnemyPlane(4, 300, -100);
-				EnemyPlane* a3 = new EnemyPlane(2, 400, -100);
-				EnemyPlane* a4 = new EnemyPlane(1, 500, -100);
+				EnemyPlane* a0 = new EnemyPlane(4, 200, -100);
+				EnemyPlane* a1 = new EnemyPlane(4, 250, -100);
+				EnemyPlane* a2 = new EnemyPlane(4, 350, -100);
+				EnemyPlane* a3 = new EnemyPlane(4, 400, -100);
 				enemyList.push_back(*a0);
 				enemyList.push_back(*a1);
 				enemyList.push_back(*a2);
 				enemyList.push_back(*a3);
-				enemyList.push_back(*a4);
 				delete a0;
 				delete a1;
 				delete a2;
 				delete a3;
-				delete a4;
 				a0 = nullptr;
 				a1 = nullptr;
 				a2 = nullptr;
 				a3 = nullptr;
-				a4 = nullptr;
 				break;
 			}
 
@@ -157,7 +153,7 @@ void Factory::update(std::list <EnemyPlane>& enemyList, std::list <PowerUp> &pow
 			{
 				EnemyPlane* a0 = new EnemyPlane(1, 100, -100);
 				EnemyPlane* a1 = new EnemyPlane(1, 200, -100);
-				EnemyPlane* a2 = new EnemyPlane(1, 300, -100);
+				EnemyPlane* a2 = new EnemyPlane(2, 300, -100);
 				EnemyPlane* a3 = new EnemyPlane(1, 400, -100);
 				EnemyPlane* a4 = new EnemyPlane(1, 500, -100);
 				enemyList.push_back(*a0);
@@ -180,33 +176,29 @@ void Factory::update(std::list <EnemyPlane>& enemyList, std::list <PowerUp> &pow
 
 			case 7000:
 			{
-				EnemyPlane* a0 = new EnemyPlane(1, 100, -100);
-				EnemyPlane* a1 = new EnemyPlane(2, 200, -100);
-				EnemyPlane* a2 = new EnemyPlane(4, 300, -100);
-				EnemyPlane* a3 = new EnemyPlane(2, 400, -100);
-				EnemyPlane* a4 = new EnemyPlane(1, 500, -100);
+				EnemyPlane* a0 = new EnemyPlane(2, 100, -100);
+				EnemyPlane* a1 = new EnemyPlane(4, 250, -100);
+				EnemyPlane* a2 = new EnemyPlane(4, 350, -100);
+				EnemyPlane* a3 = new  EnemyPlane(2, 500, -100);
 				enemyList.push_back(*a0);
 				enemyList.push_back(*a1);
 				enemyList.push_back(*a2);
 				enemyList.push_back(*a3);
-				enemyList.push_back(*a4);
 				delete a0;
 				delete a1;
 				delete a2;
 				delete a3;
-				delete a4;
 				a0 = nullptr;
 				a1 = nullptr;
 				a2 = nullptr;
 				a3 = nullptr;
-				a4 = nullptr;
 				break;
 			}
 
 			case 8000:
 			{
 				EnemyPlane* a0 = new EnemyPlane(5, 100, 1100);
-				EnemyPlane* a1 = new EnemyPlane(5, 500, 1100);
+				EnemyPlane* a1 = new EnemyPlane(5, 500, 1300);
 				enemyList.push_back(*a0);
 				enemyList.push_back(*a1);
 				delete a0;
@@ -226,24 +218,20 @@ void Factory::update(std::list <EnemyPlane>& enemyList, std::list <PowerUp> &pow
 		{
 			case 1500:
 			{
-				EnemyPlane* a0 = new EnemyPlane(2, 100, -100);
-				EnemyPlane* a1 = new EnemyPlane(4, 200, -100);
-				EnemyPlane* a2 = new EnemyPlane(4, 300, -100);
-				EnemyPlane* a3 = new EnemyPlane(4, 400, -100);
-				EnemyPlane* a4 = new EnemyPlane(2, 500, -100);
+				EnemyPlane* a0 = new EnemyPlane(2, 150, -100);
+				EnemyPlane* a1 = new EnemyPlane(4, 250, -100);
+				EnemyPlane* a3 = new EnemyPlane(4, 350, -100);
+				EnemyPlane* a4 = new EnemyPlane(2, 450, -100);
 				enemyList.push_back(*a0);
 				enemyList.push_back(*a1);
-				enemyList.push_back(*a2);
 				enemyList.push_back(*a3);
 				enemyList.push_back(*a4);
 				delete a0;
 				delete a1;
-				delete a2;
 				delete a3;
 				delete a4;
 				a0 = nullptr;
 				a1 = nullptr;
-				a2 = nullptr;
 				a3 = nullptr;
 				a4 = nullptr;
 				break;
@@ -251,7 +239,7 @@ void Factory::update(std::list <EnemyPlane>& enemyList, std::list <PowerUp> &pow
 			case 2500:
 			{
 				EnemyPlane* a0 = new EnemyPlane(5, 100, 1100);
-				EnemyPlane* a1 = new EnemyPlane(5, 500, 1100);
+				EnemyPlane* a1 = new EnemyPlane(5, 500, 1300);
 				EnemyPlane* a2 = new EnemyPlane(3, -100, 300);
 				EnemyPlane* a3 = new EnemyPlane(3, -100, 500);
 				enemyList.push_back(*a0);
@@ -277,8 +265,8 @@ void Factory::update(std::list <EnemyPlane>& enemyList, std::list <PowerUp> &pow
 
 			case 4000:
 			{
-				EnemyPlane* a0 = new EnemyPlane(5, 100, 1100);
-				EnemyPlane* a1 = new EnemyPlane(5, 500, 1100);
+				EnemyPlane* a0 = new EnemyPlane(5, 100, 1300);
+				EnemyPlane* a1 = new EnemyPlane(5, 500, 100);
 				EnemyPlane* a2 = new EnemyPlane(4, 200, -100);
 				EnemyPlane* a3 = new EnemyPlane(4, 400, -100);
 				enemyList.push_back(*a0);
