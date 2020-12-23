@@ -13,4 +13,5 @@ public:
 	Factory();
 	void update(std::list <EnemyPlane>& enemyList);
 	virtual ~Factory() {}
+	int getCounter() { return counter; };
 };

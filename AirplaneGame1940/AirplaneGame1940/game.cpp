@@ -13,7 +13,7 @@
 
 Game::Game()
 {
-	state = 0; 
+	state = MAIN_GAME;
 	subStateCounter1 = 0;
 	subStateCounter2 = 0;
 
@@ -498,6 +498,8 @@ void Game::update(float ms)
 				if (background->borderCheck())
 				{
 					setState(VICTORY);
+					std::cout << graphics::getGlobalTime() - lastStateChange << std::endl;
+					std::cout << enemyCreator->getCounter() <<std::endl;
 					lastStateChange = graphics::getGlobalTime();
 				}
 
