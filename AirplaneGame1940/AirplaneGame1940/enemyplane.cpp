@@ -80,7 +80,7 @@ bool EnemyPlane::borderCheck()
 		}
 		case 3:
 		{
-			if (x < 0)
+			if (x > 600)
 				return true;
 			else
 				return false;
