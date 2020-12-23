@@ -442,6 +442,8 @@ void Game::update(float ms)
 				background->update();
 				square->update(projList, soundEffects);
 				enemyCreator->update(enList);
+				graphics::stopMusic();
+				graphics::playMusic("assets/music/main.mp3", 0.25f * music, true);
 
 				std::list <Projectile> ::iterator it;
 				for (it = projList.begin(); it != projList.end();)
@@ -508,6 +510,8 @@ void Game::update(float ms)
 			case VICTORY:
 			{
 				subStateCounter1++;
+				graphics::stopMusic();
+				graphics::playMusic("assets/music/victory.mp3", 0.25f * music, true);
 				if (graphics::getKeyState(graphics::SCANCODE_RETURN))
 				{
 					setState(MAIN_MENU);
@@ -517,6 +521,8 @@ void Game::update(float ms)
 			case DEFEAT:
 			{
 				subStateCounter1++;
+				graphics::stopMusic();
+				graphics::playMusic("assets/music/defeat.mp3", 0.25f*music, true);
 				if (graphics::getKeyState(graphics::SCANCODE_RETURN))
 				{
 					setState(MAIN_MENU);
