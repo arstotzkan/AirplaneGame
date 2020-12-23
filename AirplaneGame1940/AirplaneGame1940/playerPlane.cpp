@@ -4,6 +4,8 @@ PlayerPlane::PlayerPlane() : Airplane::Airplane(1, 125,  300, 900)
 {
 	lifes = 3;
 	lastShot = 0.0f;
+	width = 60.0f;
+	height = 60.0f;
 }
 
 PlayerPlane::PlayerPlane(int l) : Airplane::Airplane(1, 125, 300, 900)
@@ -40,10 +42,14 @@ void PlayerPlane::update(std::list <Projectile>  &projectileList , bool vol)
 	{
 		graphics::playSound("assets/sound/shot.mp3", 0.33f * vol);
 		lastShot = graphics::getGlobalTime();
-		Projectile* arr = new Projectile(true, x , y - height);
+		Projectile* arr = new Projectile(true, x-20.0f , y - height);
+		Projectile* arr2 = new Projectile(true, x + 20.0f, y - height);
 		projectileList.push_back(*arr);
+		projectileList.push_back(*arr2);
 		delete arr;
+		delete arr2;
 		arr = nullptr;
+		arr2 = nullptr;
 	}
 }
 
