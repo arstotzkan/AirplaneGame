@@ -9,6 +9,8 @@ class Factory
 {
 protected:
 	int counter;
+	float lastSpawn;
+	bool onlyOnce;
 public:
 	Factory();
 	void update(std::list <EnemyPlane>& enemyList, std::list <PowerUp>& powerList);

@@ -53,17 +53,17 @@ void PlayerSquadron::borderCheck()
 
 	if (right->getX() >= 570 && rightExists)
 	{
-		lead->setX(490.0f);
+		lead->setX(500.0f);
 		if (leftExists)
-			left->setX(410.0f);
+			left->setX(430.0f);
 	}
 
 	
 	if (left->getX() <= 30 && leftExists)
 	{
-		lead->setX(110.0f);
+		lead->setX(100.0f);
 		if (rightExists)
-			right->setX(190.0f);
+			right->setX(170.0f);
 	}
 
 	//if there are only two planes
@@ -130,12 +130,12 @@ void PlayerSquadron::upgrade(std::list <PowerUp>& upgradeList, bool vol)
 
 			case 2:
 			{
-				left->setX(lead->getX() - 80);
+				left->setX(lead->getX() - 70);
 				left->setY(lead->getY());
 
 				leftExists = true;
 
-				right->setX(lead->getX() + 80);
+				right->setX(lead->getX() + 70);
 				right->setY(lead->getY());
 
 				rightExists = true;

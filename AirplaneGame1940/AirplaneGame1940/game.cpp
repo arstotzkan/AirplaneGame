@@ -24,7 +24,7 @@ Game::Game()
 	projList;
 	enList;
 	upList;
-	enemyCreator = new Factory();
+	enemyCreator;
 	background = new Background();
 	score = 0;
 
@@ -261,12 +261,13 @@ void Game::draw()
 			br.fill_color[0] = 0.0f;
 			br.fill_color[1] = 0.0f;
 			br.fill_color[2] = 0.0f;
+			br.outline_opacity = 0.0f;
 			graphics::drawRect(300, 50, 600, 100, br);
 
-			//graphics::Brush br;
 			br.fill_color[0] = 1.0f;
 			br.fill_color[1] = 1.0f;
 			br.fill_color[2] = 1.0f;
+
 			graphics::setFont("assets/fonts/Gill Sans.otf");
 			std::string text1 = "SCORE: " + std::to_string(score);
 			std::string text2 = "LIVES: " + std::to_string(playerLifes);
@@ -623,7 +624,7 @@ void Game::update(float ms)
 						setState(DEFEAT);
 					}
 				}
-
+				
 				if (background->borderCheck())
 				{
 					setState(VICTORY);
@@ -710,6 +711,7 @@ void Game::initialize(bool fromScratch)
 		squadron = new PlayerSquadron();
 		background = new Background();
 		score = 0;
+		enemyCreator = new Factory();
 
 		Explosion* temp = new Explosion(-900, -600); //fixed bug with 1st explosion (some pics would not load immidiately)
 		exList.push_back(*temp);
