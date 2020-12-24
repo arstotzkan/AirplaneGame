@@ -150,6 +150,24 @@ void PlayerSquadron::upgrade(std::list <PowerUp>& upgradeList, bool vol)
 				break;
 			}
 
+			case 4:
+			{
+				if (!leftExists)
+				{
+					left->setX(lead->getX() - 70);
+					left->powerUp();
+					leftExists = true;
+				}
+				
+				if (!rightExists)
+				{
+					right->setX(lead->getX() + 70);
+					right->powerUp();
+					rightExists =  true;
+				}
+				break;
+			}
+
 
 		}
 
