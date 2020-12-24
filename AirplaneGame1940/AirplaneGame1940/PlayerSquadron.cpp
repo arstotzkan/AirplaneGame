@@ -26,11 +26,11 @@ PlayerSquadron::PlayerSquadron(int lvl)
 
 void PlayerSquadron::draw()
 {
-	lead->draw();
+	lead->draw("0");
 	if (leftExists)
-		left->draw();
+		left->draw("1");
 	if (rightExists)
-		right->draw();
+		right->draw("1");
 }
 
 void PlayerSquadron::update(std::list <Projectile>& projectileList, std::list <PowerUp> &upgradeList,  bool vol, float time)

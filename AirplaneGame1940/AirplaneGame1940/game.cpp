@@ -647,7 +647,7 @@ void Game::update(float ms)
 						initialize(false);
 					else
 					{
-						Explosion* ex = new Explosion(squadron->getX(), squadron->getY());
+						Explosion* ex = new Explosion(squadron->getX(), squadron->getY(), 100.0f);
 						exList.push_back(*ex);
 						delete ex;
 						ex = nullptr;

@@ -11,13 +11,13 @@ PlayerPlane::PlayerPlane(float x, float y) : Airplane::Airplane(1, 125, x, y, 66
 
 }
 
-void PlayerPlane::draw()
+void PlayerPlane::draw(std::string img)
 {
 	graphics::Brush br;
 
 	graphics::setOrientation(0);
 
-	br.texture = "assets/planes/player1.png";
+	br.texture = "assets/planes/player" + img  + ".png";
 	br.outline_opacity = 0.0f;
 	graphics::drawRect(x, y, width ,height, br);
 }

@@ -16,7 +16,7 @@ class PlayerPlane : public Airplane
 public:
 	PlayerPlane();
 	PlayerPlane(float x, float y);
-	void draw();
+	void draw(std::string img);
 	void update(std::list <Projectile> &projectileList, bool vol, float time);
 	bool borderCheck();
 	bool isDestroyed(std::list <Projectile>& projectileList, std::list <EnemyPlane>& enemyList, std::list <Explosion>& expList , bool vol);
