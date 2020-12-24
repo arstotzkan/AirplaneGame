@@ -156,22 +156,14 @@ void Factory::update(std::list <EnemyPlane>& enemyList, std::list <PowerUp> &pow
 			case 14:
 			case 22:
 			{
-				EnemyPlane* a0 = new EnemyPlane(2, 100, -100);
-				EnemyPlane* a1 = new EnemyPlane(4, 250, -100);
-				EnemyPlane* a2 = new EnemyPlane(4, 350, -100);
-				EnemyPlane* a3 = new  EnemyPlane(2, 500, -100);
+				EnemyPlane* a0 = new EnemyPlane(4, 100, -100);
+				EnemyPlane* a1 = new  EnemyPlane(4, 500, -100);
 				enemyList.push_back(*a0);
 				enemyList.push_back(*a1);
-				enemyList.push_back(*a2);
-				enemyList.push_back(*a3);
 				delete a0;
 				delete a1;
-				delete a2;
-				delete a3;
 				a0 = nullptr;
 				a1 = nullptr;
-				a2 = nullptr;
-				a3 = nullptr;
 				break;
 			}
 

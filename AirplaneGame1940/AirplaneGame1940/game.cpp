@@ -9,8 +9,9 @@
 #define CREDITS 4
 #define INTRO 5
 #define MAIN_GAME 6
-#define VICTORY 7
-#define DEFEAT 8
+#define SCREEN_FREEZE 7
+#define VICTORY 8
+#define DEFEAT 9
 
 Game::Game()
 {
@@ -28,11 +29,11 @@ Game::Game()
 	background = new Background();
 	score = 0;
 
+	paused = false;
+
 	playerLifes = 3;
 
 	state = LOADING_SCREEN;
-
-	//graphics::playMusic("assets/music/Main.mp3", 0.25f * music, true);
 
 }
 
@@ -227,11 +228,25 @@ void Game::draw()
 			graphics::drawText(50, 900, 12, "LEFT: PREVIOUS SLIDE , RIGHT: NEXT SLIDE, BACKSPACE: GO BACK , ENTER: SKIP", br);
 			break;
 		}
+		case SCREEN_FREEZE:
+		{
+			if (paused)
+			{
+				graphics::Brush br;
+				br.fill_color[0] = 0.0f;
+				br.fill_color[1] = 0.0f;
+				br.fill_color[2] = 0.0f;
+				graphics::setFont("assets/fonts/Gill Sans.otf");
+				graphics::drawText(250, 200, 30, "PAUSED", br);
+			}
+		}
 		case MAIN_GAME:
 		{
 			//normal game
 			background->draw();
-			squadron->draw();
+			
+			if (playerLifes > 0)
+			 squadron->draw();
 			graphics::resetPose();
 
 			std::list <Projectile> ::iterator it;
@@ -554,20 +569,7 @@ void Game::update(float ms)
 
 
 				enemyCreator->update(enList, upList);
-
-				std::list <Projectile> ::iterator it;
-				for (it = projList.begin(); it != projList.end();)
-				{
-					it->update();
-					if (it->borderCheck())
-					{
-						it = projList.erase(it);
-					}
-
-					else
-						++it;
-				}
-
+		
 				std::list <EnemyPlane> ::iterator it1;
 				for (it1 = enList.begin(); it1 != enList.end();)
 				{
@@ -587,6 +589,18 @@ void Game::update(float ms)
 						++it1;
 				}
 
+				std::list <Projectile> ::iterator it;
+				for (it = projList.begin(); it != projList.end();)
+				{
+					it->update();
+					if (it->borderCheck())
+					{
+						it = projList.erase(it);
+					}
+
+					else
+						++it;
+				}
 
 				std::list <Explosion> ::iterator it2;
 				for (it2 = exList.begin(); it2 != exList.end();)
@@ -621,16 +635,82 @@ void Game::update(float ms)
 						initialize(false);
 					else
 					{
-						setState(DEFEAT);
+						Explosion* ex = new Explosion(squadron->getX(), squadron->getY());
+						exList.push_back(*ex);
+						delete ex;
+						ex = nullptr;
+						setState(SCREEN_FREEZE);
 					}
 				}
 				
 				if (background->borderCheck())
 				{
-					setState(VICTORY);
-					std::cout << graphics::getGlobalTime() - lastStateChange << std::endl;
-					std::cout << enemyCreator->getCounter() <<std::endl;
+					setState(SCREEN_FREEZE);
 					lastStateChange = graphics::getGlobalTime();
+				}
+
+				if (graphics::getKeyState(graphics::SCANCODE_P))
+				{
+					paused = true;
+					setState(SCREEN_FREEZE);
+				}
+
+				break;
+			}
+			case SCREEN_FREEZE:
+			{
+				if (graphics::getKeyState(graphics::SCANCODE_P) && paused)
+				{
+					paused = false;
+					setState(MAIN_GAME);
+				}
+
+				if (playerLifes == 0 )
+				{
+					if (graphics::getGlobalTime() - lastStateChange < 2000.0f)
+					{
+						std::list <Explosion> ::iterator it2;
+						for (it2 = exList.begin(); it2 != exList.end();)
+						{
+							it2->update();
+
+							if (it2->shouldBeDestroyed())
+							{
+								it2 = exList.erase(it2);
+							}
+							else
+								++it2;
+						}
+					}
+					else
+						setState(DEFEAT);
+				}
+
+				if (background->borderCheck())
+				{
+					if (graphics::getGlobalTime() - lastStateChange < 2000.0f)
+					{
+						std::list <Explosion> ::iterator it2;
+						for (it2 = exList.begin(); it2 != exList.end();)
+						{
+							it2->update();
+
+							if (it2->shouldBeDestroyed())
+							{
+								it2 = exList.erase(it2);
+							}
+							else
+								++it2;
+						}
+
+						float temp_y = squadron->getY();
+						temp_y -= 300 * graphics::getDeltaTime() / 333;
+						if (temp_y >= 30)
+							squadron->setY(temp_y);
+					}
+
+					else
+						setState(VICTORY);
 				}
 
 				break;

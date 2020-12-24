@@ -23,6 +23,10 @@ public:
 	int getLevel() { return level; };
 	void setLevel(int x) { level = x; };
 
+	float getX() { return lead->getX(); };
+	float getY() { return lead->getY(); };
+	void setY(float new_y);
+
 	bool isDestroyed(std::list <Projectile>& projectileList, std::list <EnemyPlane>& enemyList, std::list <Explosion>& expList, bool vol);
 	virtual ~PlayerSquadron();
 };

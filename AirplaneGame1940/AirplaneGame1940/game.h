@@ -32,6 +32,7 @@ private:
 	int score;
 	bool music;
 	bool soundEffects;
+	bool paused;
 	int playerLifes;
 	/*
 	* state 1: start menu

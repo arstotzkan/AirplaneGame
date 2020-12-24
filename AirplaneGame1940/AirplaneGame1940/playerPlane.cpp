@@ -82,7 +82,7 @@ bool PlayerPlane::isDestroyed(std::list <Projectile>& projectileList, std::list 
 	std::list <Projectile> ::iterator iter;
 	for (iter = projectileList.begin(); iter != projectileList.end(); ++iter)
 	{
-		float min_distance = iter->distanceToCorner() + distanceToCorner();
+		float min_distance = iter->distanceToCorner() + getSize();
 		float distance = std::pow(iter->getX() - x, 2);
 		distance += std::pow(iter->getY() - y, 2);
 		distance = std::pow(distance, 0.5);
@@ -101,7 +101,7 @@ bool PlayerPlane::isDestroyed(std::list <Projectile>& projectileList, std::list 
 	std::list <EnemyPlane> ::iterator iter1;
 	for (iter1 = enemyList.begin(); iter1 != enemyList.end(); ++iter1)
 	{
-		float min_distance = iter1->distanceToCorner() + distanceToCorner();
+		float min_distance = iter1->getSize() + getSize();
 		float distance = std::pow(iter1->getX() - x, 2);
 		distance += std::pow(iter1->getY() - y, 2);
 		distance = std::pow(distance, 0.5);

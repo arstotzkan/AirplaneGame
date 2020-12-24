@@ -13,4 +13,5 @@ public:
 	Airplane(int lvl, float vel, float x, float y, float size);
 	virtual ~Airplane() {}
 	virtual int getLevel() { return level; };
+	virtual float getSize() { return width; };
 };
