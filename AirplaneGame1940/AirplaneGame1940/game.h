@@ -28,11 +28,17 @@ private:
 	int state;
 	int subStateCounter1;
 	int subStateCounter2;
+
+
 	float lastStateChange = 0.0f;
+	float gameTime = 0.0f;
+
 	int score;
 	bool music;
 	bool soundEffects;
 	bool paused;
+
+	int initialLifes;
 	int playerLifes;
 	/*
 	* state 1: start menu

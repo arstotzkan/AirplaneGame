@@ -22,7 +22,7 @@ void PlayerPlane::draw()
 	graphics::drawRect(x, y, width ,height, br);
 }
 
-void PlayerPlane::update(std::list <Projectile>  &projectileList , bool vol)
+void PlayerPlane::update(std::list <Projectile>  &projectileList , bool vol, float time)
 {
 	if (graphics::getKeyState(graphics::SCANCODE_W) || graphics::getKeyState(graphics::SCANCODE_UP))
 		y -= velocity * graphics::getDeltaTime() / 333;
@@ -35,10 +35,10 @@ void PlayerPlane::update(std::list <Projectile>  &projectileList , bool vol)
 
 	borderCheck();
 
-	if (graphics::getKeyState(graphics::SCANCODE_SPACE) && (graphics::getGlobalTime() - lastShot > 100.0f))
+	if (graphics::getKeyState(graphics::SCANCODE_SPACE) && (time - lastShot > 100.0f))
 	{
 		graphics::playSound("assets/sound/shot.mp3", 0.33f * vol);
-		lastShot = graphics::getGlobalTime();
+		lastShot = time;
 		Projectile* arr1 = new Projectile(true, x - 15.0f, y - height);
 		Projectile* arr2 = new Projectile(true, x + 15.0f, y - height);
 

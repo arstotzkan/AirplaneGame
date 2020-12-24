@@ -17,7 +17,7 @@ public:
 	PlayerPlane();
 	PlayerPlane(float x, float y);
 	void draw();
-	void update(std::list <Projectile> &projectileList, bool vol);
+	void update(std::list <Projectile> &projectileList, bool vol, float time);
 	bool borderCheck();
 	bool isDestroyed(std::list <Projectile>& projectileList, std::list <EnemyPlane>& enemyList, std::list <Explosion>& expList , bool vol);
 	bool upgrade(std::list <PowerUp> & upgradeList, bool vol);

@@ -31,7 +31,10 @@ Game::Game()
 
 	paused = false;
 
+	gameTime = 0.0f;
+
 	playerLifes = 3;
+	initialLifes = 3;
 
 	state = LOADING_SCREEN;
 
@@ -95,7 +98,7 @@ void Game::draw()
 			
 			std::string settings[3] = { "LIFES" , "MUSIC" , "SOUND EFFECTS" };
 			std::string setup[3] = { "a", "b", "c" };
-			setup[0] = std::to_string(playerLifes);
+			setup[0] = std::to_string(initialLifes);
 			
 			if (music)
 				setup[1] = "ON";
@@ -158,7 +161,7 @@ void Game::draw()
 
 			graphics::drawText(50, 50 * (subStateCounter1 + 1), 18, text.substr(0, minimum), br);
 
-			if (subStateCounter2 / 3 == (int)text.length() && subStateCounter1 < 2)
+			if (subStateCounter2 / 3 == (int)text.length() && subStateCounter1 < 3)
 			{
 				subStateCounter1++;
 				subStateCounter2 = 0;
@@ -430,10 +433,10 @@ void Game::update(float ms)
 					{
 						case 0:
 						{
-							if (playerLifes >= 3)
-								playerLifes -= 2;
+							if (initialLifes >= 3)
+								initialLifes -= 2;
 							else
-								playerLifes = 5;
+								initialLifes = 5;
 							break;
 						}
 						case 1:
@@ -465,10 +468,10 @@ void Game::update(float ms)
 					{
 						case 0:
 						{
-							if (playerLifes <= 3)
-								playerLifes += 2;
+							if (initialLifes <= 3)
+								initialLifes += 2;
 							else
-								playerLifes = 1;
+								initialLifes = 1;
 
 							break;
 						}
@@ -558,8 +561,10 @@ void Game::update(float ms)
 			case MAIN_GAME:
 			{
 				//normal game
+				gameTime += graphics::getDeltaTime();
+
 				background->update();
-				squadron->update(projList, upList,  soundEffects);
+				squadron->update(projList, upList,  soundEffects, gameTime);
 
 				if (squadron->getLevel() > 4)
 				{
@@ -568,7 +573,7 @@ void Game::update(float ms)
 				}
 
 
-				enemyCreator->update(enList, upList);
+				enemyCreator->update(enList, upList, gameTime);
 		
 				std::list <EnemyPlane> ::iterator it1;
 				for (it1 = enList.begin(); it1 != enList.end();)
@@ -743,31 +748,36 @@ void Game::setState(int x)
 	subStateCounter1 = 0;
 	subStateCounter2 = 0;
 	lastStateChange = graphics::getGlobalTime();
-	
-	if ( (x == MAIN_GAME || x == VICTORY || x == DEFEAT) || (x == MAIN_MENU && ( state == VICTORY || state == DEFEAT )))
-		graphics::stopMusic();
-
 
 	switch (x)
 	{
 		case MAIN_MENU:
 		{
 			if (state != SETTINGS && state != CONTROLS && state != CREDITS)
+			{
+				graphics::stopMusic();
 				graphics::playMusic("assets/music/Menu.mp3", 0.25f * music, true, 2000);
+			}
 			break;
 		}
 		case MAIN_GAME:
 		{
-			graphics::playMusic("assets/music/Main.mp3", 0.25f * music, true);
+			if (state != SCREEN_FREEZE)
+			{
+				graphics::stopMusic();
+				graphics::playMusic("assets/music/Main.mp3", 0.25f * music, true);
+			}
 			break;
 		}
 		case VICTORY:
 		{
+			graphics::stopMusic();
 			graphics::playMusic("assets/music/Victory.mp3", 0.25f * music, true);
 			break;
 		}
 		case DEFEAT:
 		{
+			graphics::stopMusic();
 			graphics::playMusic("assets/music/Defeat.mp3", 0.25f * music, true);
 			break;
 		}
@@ -792,6 +802,8 @@ void Game::initialize(bool fromScratch)
 		background = new Background();
 		score = 0;
 		enemyCreator = new Factory();
+		playerLifes = initialLifes;
+		gameTime = 0.0f;
 
 		Explosion* temp = new Explosion(-900, -600); //fixed bug with 1st explosion (some pics would not load immidiately)
 		exList.push_back(*temp);

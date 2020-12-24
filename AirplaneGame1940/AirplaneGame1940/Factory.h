@@ -13,7 +13,7 @@ protected:
 	bool onlyOnce;
 public:
 	Factory();
-	void update(std::list <EnemyPlane>& enemyList, std::list <PowerUp>& powerList);
+	void update(std::list <EnemyPlane>& enemyList, std::list <PowerUp>& powerList, float time);
 	virtual ~Factory() {}
 	int getCounter() { return counter; };
 };

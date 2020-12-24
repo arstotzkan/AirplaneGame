@@ -17,7 +17,7 @@ public:
 	PlayerSquadron();
 	PlayerSquadron(int lv);
 	void draw();
-	void update(std::list <Projectile>& projectileList, std::list <PowerUp>& upgradeList,  bool vol);
+	void update(std::list <Projectile>& projectileList, std::list <PowerUp>& upgradeList,  bool vol, float time);
 	void upgrade(std::list <PowerUp>& upgradeList, bool vol);
 	void borderCheck();
 	int getLevel() { return level; };

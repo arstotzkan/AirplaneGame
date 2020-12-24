@@ -3,16 +3,16 @@
 Factory::Factory()
 {
 	counter = 0;
-	lastSpawn = graphics::getGlobalTime();
+	lastSpawn = 0.0f;
 	onlyOnce = false;
 }
 
-void Factory::update(std::list <EnemyPlane>& enemyList, std::list <PowerUp> &powerList)
+void Factory::update(std::list <EnemyPlane>& enemyList, std::list <PowerUp> &powerList, float time)
 {
 	
-	if (graphics::getGlobalTime() - lastSpawn >= 10000.0f)
+	if (time - lastSpawn >= 10000.0f)
 	{
-		lastSpawn = graphics::getGlobalTime();
+		lastSpawn = time;
 		onlyOnce = true;
 		counter++;
 	}

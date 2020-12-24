@@ -30,14 +30,14 @@ void PlayerSquadron::draw()
 		right->draw();
 }
 
-void PlayerSquadron::update(std::list <Projectile>& projectileList, std::list <PowerUp> &upgradeList,  bool vol)
+void PlayerSquadron::update(std::list <Projectile>& projectileList, std::list <PowerUp> &upgradeList,  bool vol, float time)
 {
-	lead->update(projectileList, vol);
+	lead->update(projectileList, vol, time);
 
 	if (leftExists)
-		left->update(projectileList, vol);
+		left->update(projectileList, vol, time);
 	if (rightExists)
-		right->update(projectileList, vol);
+		right->update(projectileList, vol, time);
 
 	borderCheck();
 
