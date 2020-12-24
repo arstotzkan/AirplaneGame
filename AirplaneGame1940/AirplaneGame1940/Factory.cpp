@@ -67,6 +67,7 @@ void Factory::update(std::list <EnemyPlane>& enemyList, std::list <PowerUp> &pow
 			case 4:
 			case 6:
 			case 7:
+			case 10:
 			case 17:
 			{
 				EnemyPlane* a1 = new EnemyPlane(2, 150, -100);
@@ -87,7 +88,6 @@ void Factory::update(std::list <EnemyPlane>& enemyList, std::list <PowerUp> &pow
 			case 8:
 			case 11:
 			case 16:
-			case 21:
 			case 23:
 			{
 				EnemyPlane* a1 = new EnemyPlane(3, -100, 150);
@@ -117,14 +117,12 @@ void Factory::update(std::list <EnemyPlane>& enemyList, std::list <PowerUp> &pow
 				break;
 			}
 			case 9:
-			case 10:
 			case 13:
-			case 18:
 			case 19:
 			case 24:
 			{
 				EnemyPlane* a0 = new EnemyPlane(4, 100, -100);
-				EnemyPlane* a1 = new EnemyPlane(4, 300, -100);
+				EnemyPlane* a1 = new EnemyPlane(4, 300, -200);
 				EnemyPlane* a2 = new EnemyPlane(4, 500, -100);
 				enemyList.push_back(*a0);
 				enemyList.push_back(*a1);
@@ -139,6 +137,7 @@ void Factory::update(std::list <EnemyPlane>& enemyList, std::list <PowerUp> &pow
 			}
 
 			case 12:
+			case 18:
 			case 20:
 			case 27:
 			{
@@ -154,16 +153,21 @@ void Factory::update(std::list <EnemyPlane>& enemyList, std::list <PowerUp> &pow
 				break;
 			}
 			case 14:
+			case 21:
 			case 22:
 			{
-				EnemyPlane* a0 = new EnemyPlane(4, 100, -100);
-				EnemyPlane* a1 = new  EnemyPlane(4, 500, -100);
+				EnemyPlane* a0 = new EnemyPlane(4, 100, -200);
+				EnemyPlane* a1 = new  EnemyPlane(4, 300, -100);
+				EnemyPlane* a2 = new  EnemyPlane(4, 500, -200);
 				enemyList.push_back(*a0);
 				enemyList.push_back(*a1);
+				enemyList.push_back(*a2);
 				delete a0;
 				delete a1;
+				delete a2;
 				a0 = nullptr;
 				a1 = nullptr;
+				a2 = nullptr;
 				break;
 			}
 

@@ -44,7 +44,7 @@ void EnemyPlane::update(std::list <Projectile>& projectileList,bool vol)
 		case 2:
 		{
 			y += velocity * graphics::getDeltaTime() / 333;
-			if (r % 350 == 1 && (graphics::getGlobalTime() - lastShot > 100.0f))
+			if (r % 500 == 1 && (graphics::getGlobalTime() - lastShot > 225.0f))
 			{
 				graphics::playSound("assets/sound/shot.mp3", 0.33f * vol);
 				Projectile* arr = new Projectile(false, x, y + height);
@@ -63,7 +63,7 @@ void EnemyPlane::update(std::list <Projectile>& projectileList,bool vol)
 		case 4:
 		{
 			y += velocity * graphics::getDeltaTime() / 400;
-			if (r % 250 == 1 && (graphics::getGlobalTime() - lastShot > 150.0f) )
+			if (r % 400 == 1 && (graphics::getGlobalTime() - lastShot > 225.0f) )
 			{
 				graphics::playSound("assets/sound/shot.mp3", 0.33f * vol);
 				Projectile* arr = new Projectile(false, x, y + height);
@@ -77,7 +77,7 @@ void EnemyPlane::update(std::list <Projectile>& projectileList,bool vol)
 		case 5:
 		{
 			y -= velocity * graphics::getDeltaTime() / 500;
-			if (r % 250 == 1 && (graphics::getGlobalTime() - lastShot > 150.0f) )
+			if (r % 300 == 1 && (graphics::getGlobalTime() - lastShot > 225.0f) )
 			{
 				graphics::playSound("assets/sound/shot.mp3", 0.33f * vol);
 				Projectile* arr = new Projectile(false, x, y + height);
@@ -153,7 +153,7 @@ bool EnemyPlane::isDestroyed(std::list <Projectile>& projectileList, std::list <
 	std::list <Projectile> ::iterator iter;
 	for (iter = projectileList.begin(); iter != projectileList.end();)
 	{
-		float min_distance = iter->distanceToCorner() + getSize();
+		float min_distance = iter->distanceToCorner() + getSize() - 10.0f;
 		float distance = std::pow(iter->getX() - x, 2);
 		distance += std::pow(iter->getY() - y, 2);
 		distance = std::pow(distance, 0.5);
@@ -161,19 +161,27 @@ bool EnemyPlane::isDestroyed(std::list <Projectile>& projectileList, std::list <
 		{
 			iter = projectileList.erase(iter);
 			healthPoints = healthPoints - 1;
+
+
 			if (healthPoints == 0)
+			{
+				Explosion* temp = new Explosion(x, y, width);
+				expList.push_back(*temp);
+				graphics::playSound("assets/sound/explosion.mp3", 0.33f * vol);
+				delete temp;
+				temp = nullptr;
+				return true;
+			}
+
+			else
 			{
 				Explosion* temp = new Explosion(x, y);
 				expList.push_back(*temp);
 				graphics::playSound("assets/sound/explosion.mp3", 0.33f * vol);
 				delete temp;
 				temp = nullptr;
-
-				return true;
-			}
-
-			else
 				++iter;
+			}
 		}
 
 		else

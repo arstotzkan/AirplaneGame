@@ -256,6 +256,13 @@ void Game::draw()
 			for (it = projList.begin(); it != projList.end(); ++it)
 				it->draw();
 
+
+			/*std::list <Explosion> ::iterator it2;
+			for (it2 = exList.begin(); it2 != exList.end(); ++it2)
+			{
+				it2->draw();
+			}*/
+
 			std::list <EnemyPlane> ::iterator it1;
 			for (it1 = enList.begin(); it1 != enList.end(); ++it1)
 			{

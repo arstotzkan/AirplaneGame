@@ -2,7 +2,11 @@
 
 Explosion::Explosion(float temp_x, float temp_y) : Entity::Entity(temp_x , temp_y , 0 ,  30 , 30)
 {
-	timeCreated = graphics::getGlobalTime();
+	counter = 1;
+}
+
+Explosion::Explosion(float temp_x, float temp_y, float size) : Entity::Entity(temp_x, temp_y, 0, size, size)
+{
 	counter = 1;
 }
 

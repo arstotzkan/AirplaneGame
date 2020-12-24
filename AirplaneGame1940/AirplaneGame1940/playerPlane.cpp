@@ -82,18 +82,12 @@ bool PlayerPlane::isDestroyed(std::list <Projectile>& projectileList, std::list 
 	std::list <Projectile> ::iterator iter;
 	for (iter = projectileList.begin(); iter != projectileList.end(); ++iter)
 	{
-		float min_distance = iter->distanceToCorner() + getSize();
+		float min_distance = iter->distanceToCorner() + getSize()- 10.0f;
 		float distance = std::pow(iter->getX() - x, 2);
 		distance += std::pow(iter->getY() - y, 2);
 		distance = std::pow(distance, 0.5);
 		if (!(iter->wasThrownByPlayer()) && min_distance > distance)
 		{
-			graphics::playSound("assets/sound/explosion.mp3", 0.33f * vol);
-			Explosion* temp = new Explosion(x,y);
-			expList.push_back(*temp);
-			delete temp;
-			temp = nullptr;
-			projectileList.erase(iter);
 			return true;
 		}
 	}
@@ -101,7 +95,7 @@ bool PlayerPlane::isDestroyed(std::list <Projectile>& projectileList, std::list 
 	std::list <EnemyPlane> ::iterator iter1;
 	for (iter1 = enemyList.begin(); iter1 != enemyList.end(); ++iter1)
 	{
-		float min_distance = iter1->getSize() + getSize();
+		float min_distance = iter1->getSize() + getSize() - 20.0f;
 		float distance = std::pow(iter1->getX() - x, 2);
 		distance += std::pow(iter1->getY() - y, 2);
 		distance = std::pow(distance, 0.5);

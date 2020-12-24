@@ -10,11 +10,11 @@
 class Explosion : public Entity
 {
 	protected:
-		float timeCreated;
 		int counter;
 
 	public:
 		Explosion(float temp_x, float temp_y);
+		Explosion(float temp_x, float temp_y , float size);
 		void draw();
 		void update();
 		bool shouldBeDestroyed(){ return (counter / 3 > 11 ) ; };

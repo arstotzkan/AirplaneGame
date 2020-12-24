@@ -14,6 +14,9 @@ PlayerSquadron::PlayerSquadron()
 PlayerSquadron::PlayerSquadron(int lvl)
 {
 	lead = new PlayerPlane();
+	if (lvl > 1)
+		lead->powerUp();
+
 	left = new PlayerPlane(lead->getX() - 80 , lead->getY());
 	right = new PlayerPlane(lead->getX() + 80, lead->getY());
 	level = lvl;
@@ -155,6 +158,7 @@ void PlayerSquadron::upgrade(std::list <PowerUp>& upgradeList, bool vol)
 				if (!leftExists)
 				{
 					left->setX(lead->getX() - 70);
+					left->setY(lead->getY());
 					left->powerUp();
 					leftExists = true;
 				}
@@ -162,6 +166,7 @@ void PlayerSquadron::upgrade(std::list <PowerUp>& upgradeList, bool vol)
 				if (!rightExists)
 				{
 					right->setX(lead->getX() + 70);
+					right->setY(lead->getY());
 					right->powerUp();
 					rightExists =  true;
 				}
