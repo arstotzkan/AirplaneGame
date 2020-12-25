@@ -1,0 +1,4 @@
+CONTROLS:
+WASD or Arrows to move
+SPACE to shoot
+P to pause
