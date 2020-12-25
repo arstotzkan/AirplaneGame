@@ -719,6 +719,20 @@ void Game::update(float ms)
 						temp_y -= 300 * graphics::getDeltaTime() / 333;
 						if (temp_y >= 30)
 							squadron->setY(temp_y);
+
+
+						float temp_x = squadron->getX();
+						if (temp_x > 300)
+						{
+							temp_x -= 300 * graphics::getDeltaTime() / 333;
+							squadron->setX(temp_x);
+						}
+						else if (temp_x < 300)
+						{
+							temp_x += 300 * graphics::getDeltaTime() / 333;
+							squadron->setX(temp_x);
+						}
+
 					}
 
 					else

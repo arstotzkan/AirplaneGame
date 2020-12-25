@@ -23,7 +23,7 @@ public:
 	bool upgrade(std::list <PowerUp> & upgradeList, bool vol);
 
 	void powerUp() { level++; };
-
+	void setLevel(int lvl) { level = lvl; };
 	virtual ~PlayerPlane() {}
 
 

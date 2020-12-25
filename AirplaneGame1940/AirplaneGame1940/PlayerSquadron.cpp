@@ -35,6 +35,7 @@ void PlayerSquadron::draw()
 
 void PlayerSquadron::update(std::list <Projectile>& projectileList, std::list <PowerUp> &upgradeList,  bool vol, float time)
 {
+	upgrade(upgradeList, vol);
 	lead->update(projectileList, vol, time);
 
 	if (leftExists)
@@ -43,9 +44,6 @@ void PlayerSquadron::update(std::list <Projectile>& projectileList, std::list <P
 		right->update(projectileList, vol, time);
 
 	borderCheck();
-
-	upgrade(upgradeList, vol);
-
 
 }
 
@@ -87,11 +85,28 @@ bool PlayerSquadron::isDestroyed(std::list <Projectile>& projectileList, std::li
 	std::list <PlayerPlane> ::iterator it;
 
 	if (rightExists && right->isDestroyed(projectileList, enemyList, expList, vol))
+	{
 		rightExists = false;
+		right->setLevel(1);
+
+		Explosion* temp = new Explosion(right->getX(), right->getY(), right->getSize() );
+		expList.push_back(*temp);
+		graphics::playSound("assets/sound/explosion.mp3", 0.33f * vol);
+		delete temp;
+		temp = nullptr;
+	}
 
 	if (leftExists && left->isDestroyed(projectileList, enemyList, expList, vol))
+	{
 		leftExists = false;
-	
+		left->setLevel(1);
+
+		Explosion* temp = new Explosion(left->getX(), left->getY(), left->getSize());
+		expList.push_back(*temp);
+		graphics::playSound("assets/sound/explosion.mp3", 0.33f * vol);
+		delete temp;
+		temp = nullptr;
+	}
 
 	if (!rightExists && !leftExists && level > 2)
 		level = 2;
@@ -148,8 +163,10 @@ void PlayerSquadron::upgrade(std::list <PowerUp>& upgradeList, bool vol)
 			{
 				std::list <PlayerPlane> ::iterator it;
 
-				left->powerUp();
-				right->powerUp();
+				if (rightExists)
+					left->powerUp();
+				if(leftExists)
+					right->powerUp();
 				break;
 			}
 
@@ -190,6 +207,17 @@ void PlayerSquadron::setY(float new_y)
 	
 	if (rightExists)
 		right->setY(new_y);
+}
+
+void PlayerSquadron::setX(float new_x)
+{
+	lead->setX(new_x);
+
+	if (leftExists)
+		left->setX(new_x- 70);
+
+	if (rightExists)
+		right->setX(new_x + 70);
 }
 
 PlayerSquadron::~PlayerSquadron() 

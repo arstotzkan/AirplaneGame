@@ -26,6 +26,7 @@ public:
 	float getX() { return lead->getX(); };
 	float getY() { return lead->getY(); };
 	void setY(float new_y);
+	void setX(float new_X);
 
 	bool isDestroyed(std::list <Projectile>& projectileList, std::list <EnemyPlane>& enemyList, std::list <Explosion>& expList, bool vol);
 	virtual ~PlayerSquadron();

@@ -1,12 +1,12 @@
 #include "playerplane.h"
 
-PlayerPlane::PlayerPlane() : Airplane::Airplane(1, 125,  300, 900, 60.0f)
+PlayerPlane::PlayerPlane() : Airplane::Airplane(1, 125,  300, 900, 65.0f)
 {
 
 }
 
 
-PlayerPlane::PlayerPlane(float x, float y) : Airplane::Airplane(1, 125, x, y, 66.0f)
+PlayerPlane::PlayerPlane(float x, float y) : Airplane::Airplane(1, 125, x, y, 65.0f)
 {
 
 }
@@ -39,13 +39,13 @@ void PlayerPlane::update(std::list <Projectile>  &projectileList , bool vol, flo
 	{
 		graphics::playSound("assets/sound/shot.mp3", 0.33f * vol);
 		lastShot = time;
-		Projectile* arr1 = new Projectile(true, x - 15.0f, y - height);
-		Projectile* arr2 = new Projectile(true, x + 15.0f, y - height);
+		Projectile* arr1 = new Projectile(true, x - 13.0f, y - height);
+		Projectile* arr2 = new Projectile(true, x + 13.0f, y - height);
 
 		if (level == 2)
 		{
-			Projectile* arr3 = new Projectile(true, x - 30.0f, y - height);
-			Projectile* arr4 = new Projectile(true, x + 30.0f, y - height);
+			Projectile* arr3 = new Projectile(true, x - 26.0f, y - height);
+			Projectile* arr4 = new Projectile(true, x + 26.0f, y - height);
 			projectileList.push_back(*arr3);
 			projectileList.push_back(*arr4);
 			delete arr3;
