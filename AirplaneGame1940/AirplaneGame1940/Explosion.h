@@ -7,7 +7,7 @@
 #include <iterator>
 #include <string>
 
-class Explosion : public Entity
+class Explosion : public Entity //ekriksi
 {
 	protected:
 		int counter;

@@ -5,6 +5,7 @@
 
 class PowerUp : public Entity
 {
+	//an ta aggixei o paikths, tha kanei upgrade
 public:
 	PowerUp(float t_x, float t_y);
 	virtual void draw();

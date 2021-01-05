@@ -7,6 +7,7 @@
 
 class Factory
 {
+	//dimiourgei exthrika aeroplana
 protected:
 	int counter; //metritis wste na dhmiourghthei to katallhlo exthriko formation
 	float lastSpawn; //teleutaia stigmh pou egine spawn antipalwn
