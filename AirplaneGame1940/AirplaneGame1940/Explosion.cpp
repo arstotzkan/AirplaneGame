@@ -1,16 +1,16 @@
 #include "explosion.h"
 
-Explosion::Explosion(float temp_x, float temp_y) : Entity::Entity(temp_x , temp_y , 0 ,  30 , 30)
+Explosion::Explosion(float temp_x, float temp_y) : Entity::Entity(temp_x , temp_y , 0 ,  30 , 30) // 1os kataskeuasths
 {
 	counter = 1;
 }
 
-Explosion::Explosion(float temp_x, float temp_y, float size) : Entity::Entity(temp_x, temp_y, 0, size, size)
+Explosion::Explosion(float temp_x, float temp_y, float size) : Entity::Entity(temp_x, temp_y, 0, size, size) // 2os kataskeuasths
 {
 	counter = 1;
 }
 
-void Explosion::draw()
+void Explosion::draw() // zwgrafizei thn ekriksi
 {
 
 	if (!shouldBeDestroyed())
@@ -25,7 +25,7 @@ void Explosion::draw()
 	}
 }
 
-void Explosion::update() 
+void Explosion::update() // anaparagei tis ekriksis
 {
 	counter++;
 }
