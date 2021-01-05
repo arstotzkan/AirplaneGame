@@ -22,7 +22,7 @@ void PlayerPlane::draw(std::string img)
 	graphics::drawRect(x, y, width ,height, br);
 }
 
-void PlayerPlane::update(std::list <Projectile>  &projectileList , bool vol, float time)
+void PlayerPlane::update(std::list <Projectile>  &projectileList , bool vol, float time) // o player metakinei to aeroplano me ta arrow keys
 {
 	if (graphics::getKeyState(graphics::SCANCODE_W) || graphics::getKeyState(graphics::SCANCODE_UP))
 		y -= velocity * graphics::getDeltaTime() / 333;
@@ -35,7 +35,7 @@ void PlayerPlane::update(std::list <Projectile>  &projectileList , bool vol, flo
 
 	borderCheck();
 
-	if (graphics::getKeyState(graphics::SCANCODE_SPACE) && (time - lastShot > 100.0f))
+	if (graphics::getKeyState(graphics::SCANCODE_SPACE) && (time - lastShot > 100.0f)) // ektoksevei projectiles otan o player pataei spacebar
 	{
 		graphics::playSound("assets/sound/shot.mp3", 0.33f * vol);
 		lastShot = time;
@@ -77,7 +77,7 @@ bool PlayerPlane::borderCheck()
 	return false;
 }
 
-bool PlayerPlane::isDestroyed(std::list <Projectile>& projectileList, std::list <EnemyPlane>& enemyList , std::list <Explosion>& expList, bool vol)
+bool PlayerPlane::isDestroyed(std::list <Projectile>& projectileList, std::list <EnemyPlane>& enemyList , std::list <Explosion>& expList, bool vol) // gyrnaei false ektos apo otan uparxei epafh me enemy plane h enemy projectile
 {
 	std::list <Projectile> ::iterator iter;
 	for (iter = projectileList.begin(); iter != projectileList.end(); ++iter)

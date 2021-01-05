@@ -31,7 +31,7 @@ void EnemyPlane::draw()
 
 }
 
-void EnemyPlane::update(std::list <Projectile>& projectileList,bool vol)
+void EnemyPlane::update(std::list <Projectile>& projectileList,bool vol) // diaforetika cases gia diafora movement patterns gia ta enemy planes
 {
 	int r = rand();
 	switch (level)
@@ -148,7 +148,7 @@ bool EnemyPlane::borderCheck()
 	}
 }
 
-bool EnemyPlane::isDestroyed(std::list <Projectile>& projectileList, std::list <Explosion>& expList, bool vol)
+bool EnemyPlane::isDestroyed(std::list <Projectile>& projectileList, std::list <Explosion>& expList, bool vol) // gyrnaei true otan ta hp == 0, paizei explosion sound otan to enemy plane xtyphthei apo projectile
 {
 	std::list <Projectile> ::iterator iter;
 	for (iter = projectileList.begin(); iter != projectileList.end();)
