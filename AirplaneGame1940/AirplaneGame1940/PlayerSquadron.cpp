@@ -1,6 +1,6 @@
 #include "playerSquadron.h"
 
-PlayerSquadron::PlayerSquadron()
+PlayerSquadron::PlayerSquadron() //kataskevastis
 {
 	lead = new PlayerPlane();
 	left = new PlayerPlane();
@@ -11,7 +11,7 @@ PlayerSquadron::PlayerSquadron()
 
 }
 
-PlayerSquadron::PlayerSquadron(int lvl)
+PlayerSquadron::PlayerSquadron(int lvl) //kataskevastis
 {
 	lead = new PlayerPlane();
 	if (lvl > 1)
@@ -24,7 +24,7 @@ PlayerSquadron::PlayerSquadron(int lvl)
 	rightExists = false;
 }
 
-void PlayerSquadron::draw()
+void PlayerSquadron::draw() //zwgrafizei ta aeroplana (an to left kai to right yparxoun)
 {
 	lead->draw("0");
 	if (leftExists)
@@ -33,7 +33,7 @@ void PlayerSquadron::draw()
 		right->draw("1");
 }
 
-void PlayerSquadron::update(std::list <Projectile>& projectileList, std::list <PowerUp> &upgradeList,  bool vol, float time)
+void PlayerSquadron::update(std::list <Projectile>& projectileList, std::list <PowerUp> &upgradeList,  bool vol, float time) //kanei update tis theseis twn aeroplanwn
 {
 	upgrade(upgradeList, vol);
 	lead->update(projectileList, vol, time);
@@ -47,7 +47,7 @@ void PlayerSquadron::update(std::list <Projectile>& projectileList, std::list <P
 
 }
 
-void PlayerSquadron::borderCheck()
+void PlayerSquadron::borderCheck() //if there are two or three planes, their distance must not be decreased
 {
 	//if there are three planes
 
@@ -80,50 +80,50 @@ void PlayerSquadron::borderCheck()
 }
 
 
-bool PlayerSquadron::isDestroyed(std::list <Projectile>& projectileList, std::list <EnemyPlane>& enemyList, std::list <Explosion>& expList, bool vol)
+bool PlayerSquadron::isDestroyed(std::list <Projectile>& projectileList, std::list <EnemyPlane>& enemyList, std::list <Explosion>& expList, bool vol) //katastrofi twn auxillary aeroplanwn
 {
 	std::list <PlayerPlane> ::iterator it;
 
-	if (rightExists && right->isDestroyed(projectileList, enemyList, expList, vol))
+	if (rightExists && right->isDestroyed(projectileList, enemyList, expList, vol)) //an katastrafei to dexi aeroplano
 	{
-		rightExists = false;
+		rightExists = false; //erasing and reinitialization
 		right->setLevel(1);
 
-		Explosion* temp = new Explosion(right->getX(), right->getY(), right->getSize() );
+		Explosion* temp = new Explosion(right->getX(), right->getY(), right->getSize() ); //ekrixi
 		expList.push_back(*temp);
 		graphics::playSound("assets/sound/explosion.mp3", 0.33f * vol);
 		delete temp;
 		temp = nullptr;
 	}
 
-	if (leftExists && left->isDestroyed(projectileList, enemyList, expList, vol))
+	if (leftExists && left->isDestroyed(projectileList, enemyList, expList, vol)) //an katastrafei to aristero aeroplano
 	{
-		leftExists = false;
+		leftExists = false; //erasing and reinitialization
 		left->setLevel(1);
 
-		Explosion* temp = new Explosion(left->getX(), left->getY(), left->getSize());
+		Explosion* temp = new Explosion(left->getX(), left->getY(), left->getSize()); //ekrixi
 		expList.push_back(*temp);
 		graphics::playSound("assets/sound/explosion.mp3", 0.33f * vol);
 		delete temp;
 		temp = nullptr;
 	}
 
-	if (!rightExists && !leftExists && level > 2)
+	if (!rightExists && !leftExists && level > 2) //wste o xrhsths na mporei na ksanakanei upgrade
 		level = 2;
 
-	if (lead->isDestroyed(projectileList, enemyList, expList, vol))
+	if (lead->isDestroyed(projectileList, enemyList, expList, vol)) //an prepei na katastrafei to kyrio aeroplano
 		return true;
 
 	return false;
 
 }
 
-void PlayerSquadron::upgrade(std::list <PowerUp>& upgradeList, bool vol)
+void PlayerSquadron::upgrade(std::list <PowerUp>& upgradeList, bool vol) //sygkrousi me power-up
 {
 	bool flag = false;
 
 	if (lead->upgrade(upgradeList, vol))
-		flag = true;
+		flag = true; 
 
 	std::list <PlayerPlane> ::iterator it;
 
@@ -134,7 +134,7 @@ void PlayerSquadron::upgrade(std::list <PowerUp>& upgradeList, bool vol)
 		right->upgrade(upgradeList, vol);
 
 
-	if (flag)
+	if (flag) //ti tha simbei analoga me to epipedo tou squadron
 	{
 		graphics::playSound("assets/sound/upgrade.mp3", 0.2f * vol);
 		switch (level)
@@ -198,7 +198,7 @@ void PlayerSquadron::upgrade(std::list <PowerUp>& upgradeList, bool vol)
 
 }
 
-void PlayerSquadron::setY(float new_y)
+void PlayerSquadron::setY(float new_y) //setter
 {
 	lead->setY(new_y);
 
@@ -209,7 +209,7 @@ void PlayerSquadron::setY(float new_y)
 		right->setY(new_y);
 }
 
-void PlayerSquadron::setX(float new_x)
+void PlayerSquadron::setX(float new_x) //setter
 {
 	lead->setX(new_x);
 
@@ -220,7 +220,7 @@ void PlayerSquadron::setX(float new_x)
 		right->setX(new_x + 70);
 }
 
-PlayerSquadron::~PlayerSquadron() 
+PlayerSquadron::~PlayerSquadron() //destructor
 { 
 	delete lead;
 	delete right;
