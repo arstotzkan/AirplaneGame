@@ -655,12 +655,12 @@ void Game::update(float ms)
 						++it3;
 				}
 
-				if (squadron->isDestroyed(projList, enList, exList, soundEffects))
+				if (squadron->isDestroyed(projList, enList, exList, soundEffects)) //katastrofi lead plane
 				{
 					playerLifes--;
 					if (playerLifes > 0)
-						initialize(false);
-					else
+						initialize(false); //reinitalization
+					else //loss condition
 					{
 						Explosion* ex = new Explosion(squadron->getX(), squadron->getY(), 100.0f);
 						exList.push_back(*ex);
@@ -670,13 +670,13 @@ void Game::update(float ms)
 					}
 				}
 				
-				if (background->borderCheck())
+				if (background->borderCheck()) //victory condition
 				{
 					setState(SCREEN_FREEZE);
 					lastStateChange = graphics::getGlobalTime();
 				}
 
-				if (graphics::getKeyState(graphics::SCANCODE_P))
+				if (graphics::getKeyState(graphics::SCANCODE_P)) //pausi
 				{
 					paused = true;
 					setState(SCREEN_FREEZE);
