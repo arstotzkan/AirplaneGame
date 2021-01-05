@@ -25,7 +25,7 @@ void Explosion::draw() // zwgrafizei thn ekriksi
 	}
 }
 
-void Explosion::update() // anaparagei tis ekriksis
+void Explosion::update() // anaparagei tis ekrikseis
 {
 	counter++;
 }
