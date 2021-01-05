@@ -1,15 +1,15 @@
 #include "Factory.h"
 
-Factory::Factory()
+Factory::Factory() // kataskeuasths
 {
 	counter = 0;
 	lastSpawn = 0.0f;
 	onlyOnce = false;
 }
 
-void Factory::update(std::list <EnemyPlane>& enemyList, std::list <PowerUp> &powerList, float time)
+void Factory::update(std::list <EnemyPlane>& enemyList, std::list <PowerUp> &powerList, float time) // kataskeuazei ta exthrika aeroplana
 {
-	
+
 	if (time - lastSpawn >= 10000.0f)
 	{
 		lastSpawn = time;
