@@ -1,6 +1,6 @@
 #include "entity.h"
 
-Entity::Entity(float temp_x, float temp_y, float vel,  float temp_w, float temp_h)
+Entity::Entity(float temp_x, float temp_y, float vel,  float temp_w, float temp_h) //constructors
 {
 	x = temp_x;
 	y = temp_y;
@@ -26,17 +26,17 @@ Entity::Entity(float temp_x, float temp_y, float vel)
 	velocity = vel;
 }
 
-void Entity::draw()
+void Entity::draw() //klhronomeitai apo upoklaseis, xrhsimopoieitai gia na zwgrafisei ta entities
 {
 
 }
 
-void Entity::update()
+void Entity::update() //idio me draw, kanei update th thesh twn entities
 {
 
 }
 
-bool Entity::borderCheck()
+bool Entity::borderCheck() // klhronomeitai, gyrizei true otan to entity vrisketai konta (px playerplane) h eksw (px projectile) apo thn othonh tou player
 {
 	return false;
 }

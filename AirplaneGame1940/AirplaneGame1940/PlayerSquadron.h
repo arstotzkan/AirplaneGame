@@ -5,13 +5,14 @@
 
 class PlayerSquadron
 {
+//einai to synolo filikwn aeroplanwn pou elegxei o paikths
 protected:
 	int level;
 	PlayerPlane* lead;
 	PlayerPlane* left;
 	PlayerPlane* right;
-	bool leftExists;
-	bool rightExists;
+	bool leftExists; //an yparxei aristero aeroplano, an einai false to aeroplano yparxei mono os placeholder
+	bool rightExists; //an yparxei dexi aeroplano, an einai false to aeroplano yparxei mono os placeholder
 
 public:
 	PlayerSquadron();

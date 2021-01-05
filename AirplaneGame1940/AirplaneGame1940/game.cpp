@@ -15,6 +15,7 @@
 
 Game::Game()
 {
+	//CONSTRUCTOR
 	music = true;
 	soundEffects = true;
 
@@ -42,10 +43,13 @@ Game::Game()
 
 void Game::draw()
 {
+	//zwgrafisei stin othoni analoga me to gameState
 	switch (state)
 	{
 		case LOADING_SCREEN:
 		{
+			//to proto pragma pou vlepei o xrhsths
+			//yparxei mono kai mono gia na paizei mousikh sto main menu
 			graphics::Brush br;
 			br.fill_color[0] = 1.0f;
 			br.fill_color[1] = 1.0f;
@@ -89,6 +93,8 @@ void Game::draw()
 		}
 		case SETTINGS:
 		{
+			//paromoio me to start menu
+
 			graphics::Brush br;
 			br.fill_color[0] = 1.0f;
 			br.fill_color[1] = 1.0f;
@@ -137,7 +143,7 @@ void Game::draw()
 		}
 		case CONTROLS:
 		{
-			//credits
+			//deixnei ta controls gia to paixnidi
 			graphics::Brush br;
 			br.fill_color[0] = 1.0f;
 			br.fill_color[1] = 1.0f;
@@ -207,6 +213,9 @@ void Game::draw()
 		}
 		case INTRO:
 		{
+			//introduction
+			//deixnei keimeno me typewritter effect
+			//kai deixnei tin eikona
 			std::string text = getLineFromText(subStateCounter1, "assets/text/story.txt");
 			std::string img = "assets/events/intro" + std::to_string(subStateCounter1 + 1) + ".png";
 
@@ -233,6 +242,8 @@ void Game::draw()
 		}
 		case SCREEN_FREEZE:
 		{
+			//pausi othonis
+			//paused -> to main paixnidi exei stamathsei
 			if (paused)
 			{
 				graphics::Brush br;
@@ -246,6 +257,8 @@ void Game::draw()
 		case MAIN_GAME:
 		{
 			//normal game
+			//zwgrafizei aeroplana, ekrikseis, power-up, kai projectiles
+
 			background->draw();
 			
 			if (playerLifes > 0)
@@ -255,13 +268,6 @@ void Game::draw()
 			std::list <Projectile> ::iterator it;
 			for (it = projList.begin(); it != projList.end(); ++it)
 				it->draw();
-
-
-			/*std::list <Explosion> ::iterator it2;
-			for (it2 = exList.begin(); it2 != exList.end(); ++it2)
-			{
-				it2->draw();
-			}*/
 
 			std::list <EnemyPlane> ::iterator it1;
 			for (it1 = enList.begin(); it1 != enList.end(); ++it1)
@@ -303,6 +309,7 @@ void Game::draw()
 		case VICTORY:
 		{
 			//victory screen
+			//xaroumenh eikona kai xaroumeno quote
 			graphics::Brush br;
 			br.fill_color[0] = 1.0f;
 			br.fill_color[1] = 1.0f;
@@ -327,6 +334,7 @@ void Game::draw()
 		case DEFEAT:
 		{
 			//defeat screen
+			//lyphterh eikona kai lyphtero quote
 			graphics::Brush br;
 			br.fill_color[0] = 1.0f;
 			br.fill_color[1] = 1.0f;
@@ -334,7 +342,6 @@ void Game::draw()
 			graphics::setFont("assets/fonts/Gill Sans.otf");
 			graphics::drawText(230, 50, 30, "DEFEAT", br);
 			
-			//graphics::Brush br;
 			br.texture = "assets/events/defeat.png";
 			graphics::drawRect(300, 300, 400, 250, br);
 
@@ -353,14 +360,14 @@ void Game::draw()
 
 void Game::update(float ms)
 {
-	if (graphics::getGlobalTime() - lastStateChange > 200.0f)
+	if (graphics::getGlobalTime() - lastStateChange > 200.0f) //gia na min ginontai oi allages ypervolika grhgora
 	{
 		switch (state)
 		{
 			case LOADING_SCREEN:
 			{
 				subStateCounter1++;
-
+				//apla perimenei mexri na anoixtei to main menu
 				if (graphics::getGlobalTime() > 2000.0f)
 					setState(MAIN_MENU);
 
@@ -369,6 +376,7 @@ void Game::update(float ms)
 			case MAIN_MENU:
 			{
 				//starting menu
+				//to highlighted option paei panw katw analoga me to input tou xrhsth
 				if (graphics::getKeyState(graphics::SCANCODE_UP))
 				{
 					if (subStateCounter1 > 0)
@@ -405,6 +413,7 @@ void Game::update(float ms)
 			case SETTINGS:
 			{
 				//settings
+				//paromoio me to menu, apla allazeis kai option an patas aristera/dexia veli
 				if (graphics::getKeyState(graphics::SCANCODE_BACKSPACE))
 				{
 					graphics::playSound("assets/sound/button.mp3", 0.33f * soundEffects);
@@ -506,6 +515,8 @@ void Game::update(float ms)
 			}
 			case CONTROLS:
 			{
+				//to subStateCounter2 voithaei gia to typing effect
+				//kai epistrofi sto main menu
 				if (graphics::getKeyState(graphics::SCANCODE_BACKSPACE))
 				{
 					graphics::playSound("assets/sound/button.mp3", 0.33f * soundEffects);
@@ -516,6 +527,8 @@ void Game::update(float ms)
 			}
 			case CREDITS:
 			{
+				//to subStateCounter2 voithaei gia to typing effect
+				//kai epistrofi sto main menu
 				if (graphics::getKeyState(graphics::SCANCODE_BACKSPACE))
 				{
 					graphics::playSound("assets/sound/button.mp3", 0.33f * soundEffects);
@@ -527,6 +540,7 @@ void Game::update(float ms)
 			}
 			case INTRO:
 			{
+				//typing effect kai anamoni gia input (epistrofi, skip, synexeia stin epomenh eikona)
 				subStateCounter2++;
 				if (graphics::getKeyState(graphics::SCANCODE_RIGHT))
 				{
@@ -568,6 +582,7 @@ void Game::update(float ms)
 			case MAIN_GAME:
 			{
 				//normal game
+				//allages sta aeroplana, projectiles, ekrikseis kai power-up
 				gameTime += graphics::getDeltaTime();
 
 				background->update();
@@ -671,6 +686,8 @@ void Game::update(float ms)
 			}
 			case SCREEN_FREEZE:
 			{
+				//perimenei unpause, i an oi zwes tou paikti einai mikroteres tou 0, apla deixnei tin ekriksi
+				//an o paiktis nikise to paixnidi, to paixnidi kanei ta aparaithta victory animation
 				if (graphics::getKeyState(graphics::SCANCODE_P) && paused)
 				{
 					paused = false;
@@ -743,6 +760,7 @@ void Game::update(float ms)
 			}
 			case VICTORY:
 			{
+				//anamoni inout, typing effect
 				subStateCounter1++;
 				if (graphics::getKeyState(graphics::SCANCODE_RETURN))
 				{
@@ -752,6 +770,7 @@ void Game::update(float ms)
 			}
 			case DEFEAT:
 			{
+				//anamoni inout, typing effect
 				subStateCounter1++;
 				if (graphics::getKeyState(graphics::SCANCODE_RETURN))
 				{
@@ -765,13 +784,14 @@ void Game::update(float ms)
 
 void Game::setState(int x)
 {
-
+	//thethei state
 	subStateCounter1 = 0;
 	subStateCounter2 = 0;
 	lastStateChange = graphics::getGlobalTime();
 
 	switch (x)
 	{
+		//to switch stamataei tin mousiki, kai arxisei to allo tragoudi
 		case MAIN_MENU:
 		{
 			if (state != SETTINGS && state != CONTROLS && state != CREDITS)
@@ -810,6 +830,7 @@ void Game::setState(int x)
 
 Game::~Game()
 {
+	//destructor
 	delete squadron;
 	delete enemyCreator;
 	delete background;
@@ -817,8 +838,10 @@ Game::~Game()
 
 void Game::initialize(bool fromScratch)
 {
+	//arxikopoihsh tou paixnidiou
 	if (fromScratch)
 	{
+		//ginetai stin arxi tou paixnidiou
 		squadron = new PlayerSquadron();
 		background = new Background();
 		score = 0;
@@ -833,6 +856,7 @@ void Game::initialize(bool fromScratch)
 	}
 	else
 	{
+		//ginetai otan xanei zwi o paiktis
 		if (squadron->getLevel() > 2)
 			squadron = new PlayerSquadron(2);
 		else

@@ -15,6 +15,8 @@
 
 class Game
 {
+//i kyria klasi tou paixnidiou
+//elegxei kathe plevra tou paixnidiou
 private:
 	PlayerSquadron* squadron;
 

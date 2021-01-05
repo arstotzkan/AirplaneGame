@@ -21,7 +21,7 @@ void Projectile::draw()
 	graphics::resetPose();
 }
 
-void Projectile::update()
+void Projectile::update() // paei pros ta panw an to exei ektoksepsei paikths, pros ta katw an to exei ektoksepsei a.i.
 {
 	if (thrownByPlayer)
 		y -= velocity * graphics::getDeltaTime() / 333;
