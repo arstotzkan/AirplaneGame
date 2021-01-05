@@ -8,9 +8,9 @@
 class Factory
 {
 protected:
-	int counter;
-	float lastSpawn;
-	bool onlyOnce;
+	int counter; //metritis wste na dhmiourghthei to katallhlo exthriko formation
+	float lastSpawn; //teleutaia stigmh pou egine spawn antipalwn
+	bool onlyOnce; //apofygi diplwn spawn
 public:
 	Factory();
 	void update(std::list <EnemyPlane>& enemyList, std::list <PowerUp>& powerList, float time);
