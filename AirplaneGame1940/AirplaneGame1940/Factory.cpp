@@ -7,7 +7,7 @@ Factory::Factory() // kataskeuasths
 	onlyOnce = false;
 }
 
-void Factory::update(std::list <EnemyPlane>& enemyList, std::list <PowerUp> &powerList, float time) // kataskeuazei ta exthrika aeroplana
+void Factory::update(std::list <EnemyPlane>& enemyList, std::list <PowerUp> &powerList, float time) // kataskeuazei ta exthrika aeroplana se sxesi me ton xrono
 {
 
 	if (time - lastSpawn >= 10000.0f)

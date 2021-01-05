@@ -8,6 +8,7 @@
 
 class Projectile : public Entity
 {
+	//ektoksevontai kai apo ton paikti kai apo to AI
 protected:
 	bool thrownByPlayer;
 public:

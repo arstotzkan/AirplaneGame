@@ -12,7 +12,7 @@
 
 class PlayerPlane : public Airplane
 {
-
+	//filika aeroplana, pou ta elegxei o paikths
 public:
 	PlayerPlane();
 	PlayerPlane(float x, float y);

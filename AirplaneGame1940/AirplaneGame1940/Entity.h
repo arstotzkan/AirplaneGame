@@ -2,7 +2,7 @@
 #include "graphics.h"
 #include <cmath>
 
-class Entity
+class Entity //abstract class, oi perissoteres klasses einai apogonoi ths
 {
 protected:
 	float x;

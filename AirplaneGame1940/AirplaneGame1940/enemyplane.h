@@ -8,7 +8,7 @@
 #include <cstdlib>
 #include "graphics.h"
 
-class EnemyPlane : public Airplane
+class EnemyPlane : public Airplane //enemies
 {
 protected:
 	int healthPoints;

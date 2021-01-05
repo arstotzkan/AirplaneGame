@@ -4,7 +4,7 @@
 #include "graphics.h"
 #include "entity.h"
 
-class Airplane : public Entity
+class Airplane : public Entity //abstract class 
 {
 protected:
 	int level;
